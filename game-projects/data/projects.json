@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "phase": 1,
+    "generatedAt": "2026-09-07T00:00:00+09:00",
+    "latestProjectDate": "",
+    "coverageStart": "2018-01-01",
+    "defaultWindowDays": 90,
+    "targetRegions": ["CN", "HK", "TW", "JP", "KR", "SEA", "US"],
+    "targetPlatforms": ["ios", "android", "steam", "windows", "switch", "playstation", "xbox", "web", "wechat_minigame", "douyin_minigame"]
+  },
+  "projects": [],
+  "releases": [],
+  "rankSnapshots": []
+}

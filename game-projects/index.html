@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="日本娱乐 IP 游戏化项目、上线时间与跨平台榜单表现 BI">
+  <title>日本 IP 游戏化项目 BI</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=20260907-site-tabs1">
+  <link rel="stylesheet" href="styles.css?v=20260907-phase1">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="返回游戏化项目首页">
+      <span class="brand-mark game-mark" aria-hidden="true">G</span>
+      <span>
+        <strong>Game Radar</strong>
+        <small>日本 IP × 全平台游戏化项目 BI</small>
+      </span>
+    </a>
+    <nav class="site-tabs" aria-label="BI 项目切换">
+      <a class="site-tab" href="../">IP 联动雷达</a>
+      <a class="site-tab active" href="./" aria-current="page">IP 游戏化项目</a>
+    </nav>
+    <div class="freshness">
+      <span class="freshness-dot" aria-hidden="true"></span>
+      <span id="generated-at">正在读取项目库…</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">JAPANESE IP GAME PROJECT TRACKER</p>
+        <h1 id="page-title">游戏化项目与市场表现</h1>
+        <p class="intro-copy">追踪日本动漫、漫画、轻小说、游戏及 VTuber IP 的独立游戏项目，按地区和平台明确记录公布、测试、计划上线与实际上线时间，并观察首发及后续榜单表现。</p>
+        <p class="data-source-note"><strong>目标平台</strong> iOS / Android · Steam / PC · Nintendo Switch · PlayStation · Xbox · 网页游戏与小游戏。临时联动活动仍归入“IP 联动雷达”，不会与独立游戏化项目混算。</p>
+      </div>
+      <div class="data-date">
+        <span>项目库最新日期</span>
+        <strong id="latest-project-date">—</strong>
+      </div>
+    </section>
+
+    <section class="filter-panel" aria-labelledby="filter-title">
+      <div class="section-heading compact">
+        <div>
+          <p class="section-kicker">FILTERS</p>
+          <h2 id="filter-title">项目筛选</h2>
+        </div>
+        <button id="reset-filters" class="button secondary" type="button">重置</button>
+      </div>
+      <div class="project-date-panel">
+        <div>
+          <span>项目动态期间</span>
+          <strong id="date-range-label">—</strong>
+        </div>
+        <div class="date-range-fields">
+          <label>
+            <span>开始</span>
+            <input id="start-date-filter" type="date">
+          </label>
+          <span class="date-range-separator" aria-hidden="true">—</span>
+          <label>
+            <span>结束</span>
+            <input id="end-date-filter" type="date">
+          </label>
+        </div>
+      </div>
+      <div class="filters project-filters">
+        <label>
+          <span>平台</span>
+          <select id="platform-filter"><option value="all">全部平台</option></select>
+        </label>
+        <label>
+          <span>地区</span>
+          <select id="region-filter"><option value="all">全部地区</option></select>
+        </label>
+        <label>
+          <span>项目状态</span>
+          <select id="status-filter"><option value="all">全部状态</option></select>
+        </label>
+        <label>
+          <span>IP 类型</span>
+          <select id="ip-type-filter"><option value="all">全部类型</option></select>
+        </label>
+        <label>
+          <span>产品</span>
+          <select id="product-filter"><option value="all">全部产品</option></select>
+        </label>
+        <label class="search-field">
+          <span>关键词</span>
+          <input id="search-filter" type="search" placeholder="搜索产品、IP或公司">
+        </label>
+      </div>
+      <p id="filter-summary" class="filter-summary" aria-live="polite"></p>
+    </section>
+
+    <section class="kpi-grid" aria-label="项目关键指标">
+      <article class="kpi-card">
+        <span>筛选期项目动态</span>
+        <strong id="kpi-projects">—</strong>
+        <small>同一项目跨平台与地区只计一次</small>
+      </article>
+      <article class="kpi-card">
+        <span>已正式上线</span>
+        <strong id="kpi-launched">—</strong>
+        <small>按产品项目去重</small>
+      </article>
+      <article class="kpi-card">
+        <span>未来计划上线</span>
+        <strong id="kpi-upcoming">—</strong>
+        <small>已有明确日期或时间窗口</small>
+      </article>
+      <article class="kpi-card accent">
+        <span>已记录平台版本</span>
+        <strong id="kpi-releases">—</strong>
+        <small>产品 × 地区 × 平台</small>
+      </article>
+    </section>
+
+    <section class="panel recent-project-panel" aria-labelledby="recent-project-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">RECENT PROJECTS</p>
+          <h2 id="recent-project-title">最近的 IP 游戏化项目</h2>
+          <p class="section-note">按最近一次公布、测试或上线动态排序，不进行 IP 影响力排名。</p>
+        </div>
+        <span id="recent-project-count" class="count-badge">0 项</span>
+      </div>
+      <div id="recent-project-list" class="recent-project-list" aria-live="polite"></div>
+      <div id="recent-project-empty" class="empty-state" hidden>项目数据正在建库，完成核验后将在这里展示最近动态。</div>
+    </section>
+
+    <section class="project-dashboard-grid">
+      <article class="panel schedule-panel" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">RELEASE SCHEDULE</p>
+            <h2 id="schedule-title">上线时间表</h2>
+            <p class="section-note">计划日期与实际日期分开保存，并精确到地区和平台。</p>
+          </div>
+        </div>
+        <div id="release-schedule" class="release-schedule" aria-live="polite"></div>
+        <div id="schedule-empty" class="empty-state" hidden>当前筛选条件下没有可展示的上线时间。</div>
+      </article>
+
+      <article class="panel performance-panel" aria-labelledby="performance-title">
+        <div class="section-heading performance-heading">
+          <div>
+            <p class="section-kicker">MARKET PERFORMANCE</p>
+            <h2 id="performance-title">平台榜单与产品表现</h2>
+            <p class="section-note">保留平台原始指标，再转换为可比较的表现等级。</p>
+          </div>
+          <label class="compact-select">
+            <span>产品</span>
+            <select id="performance-product-filter"><option value="all">筛选期全部产品</option></select>
+          </label>
+        </div>
+        <div id="performance-list" class="performance-list" aria-live="polite"></div>
+        <div id="performance-empty" class="empty-state" hidden>榜单数据正在建库，尚无可展示的产品表现。</div>
+        <p class="performance-method">手游、Steam与主机榜单不会直接比较原始数值；后续将按平台分别计算首发峰值、持续表现与公开商业指标。</p>
+      </article>
+    </section>
+
+    <section class="panel table-panel" aria-labelledby="project-table-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PROJECT DATABASE</p>
+          <h2 id="project-table-title">游戏化项目明细</h2>
+          <p class="section-note">一个项目可对应多个地区和平台版本，每条版本均保留独立上线日期。</p>
+        </div>
+        <span id="project-count" class="count-badge">0 条</span>
+      </div>
+      <div class="table-wrap project-table-wrap">
+        <table class="project-table">
+          <thead>
+            <tr>
+              <th>产品 / IP</th>
+              <th>开发 / 发行</th>
+              <th>平台 / 地区</th>
+              <th>首次公布</th>
+              <th>计划上线</th>
+              <th>实际上线</th>
+              <th>状态</th>
+              <th>榜单表现</th>
+            </tr>
+          </thead>
+          <tbody id="project-table-body"></tbody>
+        </table>
+      </div>
+      <div id="project-table-empty" class="empty-state" hidden>项目数据正在建库，当前没有已核验记录。</div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>收录边界</strong>
+    <span>以日本娱乐 IP 为核心开发的独立游戏项目；短期联动不在本页重复统计。</span>
+    <span class="footer-source">第一阶段：页面框架与数据结构已就绪，历史项目与榜单将在后续阶段导入。</span>
+  </footer>
+
+  <script src="data/projects.js?v=20260907-phase1"></script>
+  <script src="app.js?v=20260907-phase1"></script>
+</body>
+</html>
