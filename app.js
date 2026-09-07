@@ -86,11 +86,14 @@
   ].filter(Boolean).sort();
   const minimumDate = observedDates[0] || "";
   const maximumDate = observedDates.at(-1) || data.meta.latestRankDate || "";
-  const recentStart = maximumDate ? new Date(`${maximumDate}T00:00:00Z`) : null;
-  if (recentStart) recentStart.setUTCDate(recentStart.getUTCDate() - 89);
+  const latestRankDate = firstIsoDate(data.meta.latestRankDate);
+  const defaultEndDate = latestRankDate && latestRankDate >= minimumDate && latestRankDate <= maximumDate
+    ? latestRankDate
+    : maximumDate;
+  const recentStart = defaultEndDate ? new Date(`${defaultEndDate}T00:00:00Z`) : null;
+  if (recentStart) recentStart.setUTCDate(recentStart.getUTCDate() - 6);
   const recentStartText = recentStart ? recentStart.toISOString().slice(0, 10) : "";
   const defaultStartDate = minimumDate && recentStartText ? (minimumDate > recentStartText ? minimumDate : recentStartText) : minimumDate;
-  const defaultEndDate = maximumDate;
   const dayMilliseconds = 24 * 60 * 60 * 1000;
   const minimumTime = minimumDate ? Date.parse(`${minimumDate}T00:00:00Z`) : 0;
   const maximumTime = maximumDate ? Date.parse(`${maximumDate}T00:00:00Z`) : minimumTime;
