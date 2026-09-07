@@ -15,7 +15,7 @@
   };
   const regionNames = {
     CN: "中国大陆", HK: "香港", TW: "台湾", JP: "日本", KR: "韩国",
-    SEA: "东南亚", US: "美国", GLOBAL: "全球",
+    SEA: "东南亚", US: "美国", GLOBAL: "全球公告范围", ASIA: "亚洲公告范围",
   };
   const statusNames = {
     announced: "已公布", testing: "测试中", preregister: "预约中", upcoming: "即将上线",
@@ -24,7 +24,7 @@
   const metricNames = {
     free_rank: "免费游戏榜", grossing_rank: "畅销游戏榜", top_seller_rank: "畅销榜",
     concurrent_users: "同时在线", download_rank: "下载榜", physical_sales: "实体销量",
-    review_count: "评价数", review_score: "好评率", revenue: "公开收入",
+    review_count: "评价数", review_score: "好评率", revenue: "公开收入", store_award: "商店奖项",
   };
   const levelNames = {
     phenomenon: "现象级", strong: "强势", good: "表现良好",
@@ -288,6 +288,7 @@
   }
 
   function formatMetric(snapshot) {
+    if (snapshot.display) return snapshot.display;
     const name = metricNames[snapshot.metricType] || snapshot.metricType || "平台指标";
     if (Number.isFinite(Number(snapshot.rank))) return `${name} 第 ${numberFormat.format(Number(snapshot.rank))} 名`;
     if (Number.isFinite(Number(snapshot.value))) {
@@ -380,7 +381,7 @@
     renderTable(rows);
     elements.summary.textContent = projects.length
       ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台版本。`
-      : "第一阶段页面框架已完成；项目发现、上线日期核验和榜单数据将在下一阶段导入。";
+      : "当前筛选条件下没有可展示的项目；可调整项目动态期间或其他筛选条件。";
   }
 
   function updateStateAndRender() {
