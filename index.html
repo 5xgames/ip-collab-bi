@@ -6,7 +6,7 @@
   <meta name="description" content="日本娱乐 IP 与手游联动地区表现 BI">
   <title>日本 IP × 手游联动 BI</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260907-site-tabs1">
+  <link rel="stylesheet" href="styles.css?v=20260907-pagination1">
 </head>
 <body>
   <header class="topbar">
@@ -211,7 +211,19 @@
           <p class="section-kicker">COLLABORATIONS</p>
           <h2 id="event-table-title">联动项目明细</h2>
         </div>
-        <span id="event-count" class="count-badge">0 条</span>
+        <div class="table-heading-actions">
+          <label class="page-size-control">
+            <span>每页</span>
+            <select id="event-page-size" aria-label="联动项目每页显示数量">
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <span>条</span>
+          </label>
+          <span id="event-count" class="count-badge">0 条</span>
+        </div>
       </div>
       <div class="table-wrap event-table-wrap">
         <table class="event-details-table">
@@ -237,6 +249,7 @@
         </table>
       </div>
       <div id="event-empty" class="empty-state" hidden>当前筛选条件下没有联动项目。</div>
+      <nav id="event-pagination" class="pagination" aria-label="联动项目分页" hidden></nav>
     </section>
 
     <section class="panel table-panel" aria-labelledby="coverage-title">
@@ -246,7 +259,19 @@
           <h2 id="coverage-title">地区版本与读取状态</h2>
           <p class="section-note">用于区分“未入榜”“未读取”和“待抓取”，不会用估算值补齐。</p>
         </div>
-        <span id="coverage-count" class="count-badge">0 项</span>
+        <div class="table-heading-actions">
+          <label class="page-size-control">
+            <span>每页</span>
+            <select id="coverage-page-size" aria-label="地区版本每页显示数量">
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <span>条</span>
+          </label>
+          <span id="coverage-count" class="count-badge">0 项</span>
+        </div>
       </div>
       <div class="table-wrap">
         <table>
@@ -264,6 +289,7 @@
         </table>
       </div>
       <div id="coverage-empty" class="empty-state" hidden>当前筛选条件下没有地区版本配置。</div>
+      <nav id="coverage-pagination" class="pagination" aria-label="地区版本分页" hidden></nav>
     </section>
   </main>
 
@@ -275,6 +301,6 @@
   </footer>
 
   <script src="data/dashboard.js?v=4bfdf7065208"></script>
-  <script src="app.js?v=20260907-default7d1"></script>
+  <script src="app.js?v=20260907-pagination1"></script>
 </body>
 </html>

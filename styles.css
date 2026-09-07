@@ -667,6 +667,68 @@ input[type="date"] {
 
 .table-panel { margin-bottom: 20px; }
 .table-wrap { overflow-x: auto; }
+.table-heading-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.page-size-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.page-size-control select {
+  width: 68px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 18px;
+}
+
+.pagination[hidden] { display: none; }
+
+.pagination-summary {
+  margin-right: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.pagination-button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.pagination-button:hover:not(:disabled) { border-color: rgba(47, 111, 237, 0.38); color: var(--blue); }
+.pagination-button.current { border-color: var(--blue); background: var(--blue); color: #ffffff; }
+.pagination-button:disabled { cursor: default; opacity: 0.38; }
+.pagination-ellipsis { min-width: 20px; color: var(--muted); text-align: center; }
 table { width: 100%; border-collapse: collapse; min-width: 920px; }
 th, td { padding: 13px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 th { color: var(--muted); background: var(--surface-soft); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
@@ -856,6 +918,7 @@ footer strong { color: var(--ink); }
   .kpi-card strong { font-size: 25px; }
   .section-heading { flex-direction: column; align-items: stretch; }
   .section-heading.compact { flex-direction: row; align-items: center; }
+  .table-heading-actions { justify-content: space-between; }
   .trend-filters { justify-content: stretch; }
   .compact-select { flex: 1 1 180px; }
   .compact-select select,

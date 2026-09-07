@@ -61,9 +61,13 @@
     eventBody: $("#event-table-body"),
     eventEmpty: $("#event-empty"),
     eventCount: $("#event-count"),
+    eventPageSize: $("#event-page-size"),
+    eventPagination: $("#event-pagination"),
     coverageBody: $("#coverage-table-body"),
     coverageEmpty: $("#coverage-empty"),
     coverageCount: $("#coverage-count"),
+    coveragePageSize: $("#coverage-page-size"),
+    coveragePagination: $("#coverage-pagination"),
     impactList: $("#impact-list"),
     ipRankingList: $("#ip-ranking-list"),
     rankingScope: $("#ranking-scope"),
@@ -102,6 +106,11 @@
     platform: "all", region: "all", product: "all", ip: "all", search: "", trendKey: "",
     startDate: defaultStartDate, endDate: defaultEndDate,
   };
+  const pagination = {
+    events: { page: 1, pageSize: 25 },
+    coverage: { page: 1, pageSize: 25 },
+  };
+  let paginationFilterSignature = "";
   const numberFormat = new Intl.NumberFormat("zh-CN");
 
   function escapeHtml(value) {
@@ -513,11 +522,67 @@
     }).join("");
   }
 
+  function paginationItems(currentPage, totalPages) {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, index) => index + 1);
+    const visible = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
+    const pages = [...visible].filter((page) => page >= 1 && page <= totalPages).sort((a, b) => a - b);
+    const items = [];
+    for (const page of pages) {
+      if (items.length && page - items.at(-1) > 1) items.push("ellipsis");
+      items.push(page);
+    }
+    return items;
+  }
+
+  function renderPagination(container, kind, totalItems, renderPage, unit = "条") {
+    const pager = pagination[kind];
+    const totalPages = Math.max(1, Math.ceil(totalItems / pager.pageSize));
+    pager.page = Math.max(1, Math.min(pager.page, totalPages));
+    container.hidden = totalItems <= pager.pageSize;
+    if (container.hidden) {
+      container.innerHTML = "";
+      return;
+    }
+    const startItem = (pager.page - 1) * pager.pageSize + 1;
+    const endItem = Math.min(totalItems, pager.page * pager.pageSize);
+    const pageButtons = paginationItems(pager.page, totalPages).map((item) => {
+      if (item === "ellipsis") return '<span class="pagination-ellipsis" aria-hidden="true">…</span>';
+      const current = item === pager.page;
+      return `<button class="pagination-button ${current ? "current" : ""}" type="button" data-page="${item}" aria-label="第 ${item} 页" ${current ? 'aria-current="page"' : ""}>${item}</button>`;
+    }).join("");
+    container.innerHTML = `
+      <span class="pagination-summary">${startItem}–${endItem} / 共 ${totalItems} ${unit} · 第 ${pager.page}/${totalPages} 页</span>
+      <button class="pagination-button" type="button" data-page="${pager.page - 1}" aria-label="上一页" ${pager.page === 1 ? "disabled" : ""}>上一页</button>
+      ${pageButtons}
+      <button class="pagination-button" type="button" data-page="${pager.page + 1}" aria-label="下一页" ${pager.page === totalPages ? "disabled" : ""}>下一页</button>`;
+    container.querySelectorAll("[data-page]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.disabled) return;
+        pager.page = Number(button.dataset.page);
+        renderPage();
+        container.closest(".table-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
+  function resetPaginationForFilters() {
+    const signature = [
+      state.startDate, state.endDate, state.platform, state.region,
+      state.product, state.ip, state.search.trim().toLocaleLowerCase("zh-CN"),
+    ].join("|");
+    if (signature === paginationFilterSignature) return;
+    pagination.events.page = 1;
+    pagination.coverage.page = 1;
+    paginationFilterSignature = signature;
+  }
+
   function renderEvents(events) {
     const sorted = [...events].sort((a, b) => firstIsoDate(b.start).localeCompare(firstIsoDate(a.start)) || a.product.localeCompare(b.product));
     elements.eventCount.textContent = `${sorted.length} 条`;
     elements.eventEmpty.hidden = sorted.length > 0;
-    elements.eventBody.innerHTML = sorted.map((event) => {
+    const pager = pagination.events;
+    const pageEvents = sorted.slice((pager.page - 1) * pager.pageSize, pager.page * pager.pageSize);
+    elements.eventBody.innerHTML = pageEvents.map((event) => {
       const kind = eventStatusKind(event);
       return `
         <tr>
@@ -529,13 +594,16 @@
           <td class="event-metric">${rankChangeHtml(event.grossing)}</td>
         </tr>`;
     }).join("");
+    renderPagination(elements.eventPagination, "events", sorted.length, () => renderEvents(events), "条");
   }
 
   function renderCoverage(versions) {
     const sorted = [...versions].sort((a, b) => (a.platform || "ios").localeCompare(b.platform || "ios") || a.region.localeCompare(b.region) || a.product.localeCompare(b.product));
     elements.coverageCount.textContent = `${sorted.length} 项`;
     elements.coverageEmpty.hidden = sorted.length > 0;
-    elements.coverageBody.innerHTML = sorted.map((version) => `
+    const pager = pagination.coverage;
+    const pageVersions = sorted.slice((pager.page - 1) * pager.pageSize, pager.page * pager.pageSize);
+    elements.coverageBody.innerHTML = pageVersions.map((version) => `
       <tr>
         <td><span class="table-primary">${escapeHtml(version.product)}</span><span class="table-secondary">${escapeHtml(version.productKey)}</span></td>
         <td><span class="table-primary">${escapeHtml(version.region)}</span><span class="table-secondary">${escapeHtml(version.serverVersion)}</span></td>
@@ -544,6 +612,7 @@
         <td><span class="status-chip ${statusClass(version.grossingStatus)}">${escapeHtml(version.grossingStatus || "待抓取")}</span></td>
         <td><div class="source-links">${version.qimaiUrl ? `<a href="${escapeHtml(version.qimaiUrl)}" target="_blank" rel="noopener">七麦</a>` : ""}${version.appMagicUrl ? `<a href="${escapeHtml(version.appMagicUrl)}" target="_blank" rel="noopener">AppMagic</a>` : ""}${version.popularityUrl ? `<a href="${escapeHtml(version.popularityUrl)}" target="_blank" rel="noopener">${version.platform === "wechat_minigame" ? "人气榜" : "热门榜"}</a>` : ""}${version.rankUrl ? `<a href="${escapeHtml(version.rankUrl)}" target="_blank" rel="noopener">渠道畅销榜</a>` : ""}${version.storeUrl ? `<a href="${escapeHtml(version.storeUrl)}" target="_blank" rel="noopener">${String(version.platform).endsWith("_minigame") ? "小游戏页" : (version.platform === "android" ? "Google Play" : "App Store")}</a>` : ""}${!version.qimaiUrl && !version.appMagicUrl && !version.popularityUrl && !version.rankUrl && !version.storeUrl ? "—" : ""}</div></td>
       </tr>`).join("");
+    renderPagination(elements.coveragePagination, "coverage", sorted.length, () => renderCoverage(versions), "项");
   }
 
   function trendGroups() {
@@ -793,6 +862,7 @@
 
   function render() {
     syncFacetFilters();
+    resetPaginationForFilters();
     const events = filteredEvents();
     const versions = filteredVersions();
     const rankings = buildIpRankings(events);
@@ -807,6 +877,16 @@
   }
 
   function bindControls() {
+    elements.eventPageSize.addEventListener("change", () => {
+      pagination.events.pageSize = Number(elements.eventPageSize.value) || 25;
+      pagination.events.page = 1;
+      renderEvents(filteredEvents());
+    });
+    elements.coveragePageSize.addEventListener("change", () => {
+      pagination.coverage.pageSize = Number(elements.coveragePageSize.value) || 25;
+      pagination.coverage.page = 1;
+      renderCoverage(filteredVersions());
+    });
     elements.platform.addEventListener("change", () => { state.platform = elements.platform.value; state.trendKey = ""; render(); });
     elements.region.addEventListener("change", () => { state.region = elements.region.value; state.trendKey = ""; render(); });
     elements.product.addEventListener("change", () => { state.product = elements.product.value; state.trendKey = ""; render(); });
