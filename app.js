@@ -114,6 +114,14 @@
     return String(value || "").match(/\d{4}-\d{2}-\d{2}/)?.[0] || "";
   }
 
+  function eventDateHtml(value) {
+    const text = String(value || "");
+    const date = firstIsoDate(text);
+    if (!date) return `<span class="date-pending">${escapeHtml(text || "日期待补")}</span>`;
+    const note = text.replace(date, "").trim();
+    return `<time datetime="${escapeHtml(date)}"><span class="event-date-main">${escapeHtml(date)}</span>${note ? `<span class="event-date-note">${escapeHtml(note)}</span>` : ""}</time>`;
+  }
+
   function dateToRangeValue(value) {
     if (!value || !minimumTime) return 0;
     return Math.max(0, Math.min(dateRangeDays, Math.round((Date.parse(`${value}T00:00:00Z`) - minimumTime) / dayMilliseconds)));
@@ -194,9 +202,27 @@
     if (typeof change?.delta === "number") {
       const direction = change.delta < 0 ? "up" : change.delta > 0 ? "down" : "";
       const arrow = change.delta < 0 ? "↑" : change.delta > 0 ? "↓" : "→";
-      return `<span class="rank-change ${direction}">${arrow}${Math.abs(change.delta)} 位</span><span class="table-secondary">${escapeHtml(change.display)}</span>`;
+      return `<div class="rank-metric has-value"><span class="rank-change ${direction}">${arrow}${Math.abs(change.delta)} 位</span><span class="rank-detail">${escapeHtml(change.display)}</span></div>`;
     }
-    return `<span class="rank-change missing">${escapeHtml(change?.display || "—")}</span>`;
+    const display = String(change?.display || "—");
+    const summaries = [
+      [/^未读取(?:（(.*)）)?$/, "未读取"],
+      [/^前14日未入榜\s*→\s*后14日未入榜$/, "未入榜"],
+      [/^数据源不支持该历史区间(?:（(.*)）)?$/, "历史区间不可用"],
+      [/^历史(?:榜单|人气\/热门榜)待补(?:（(.*)）)?$/, "历史数据待补"],
+      [/^数据不足(?:（(.*)）)?$/, "数据不足"],
+      [/^尚未覆盖该联动窗口(?:（(.*)）)?$/, "联动窗口未覆盖"],
+      [/^数据源不提供(?:（(.*)）)?$/, "数据源不提供"],
+      [/^未入榜(?:（(.*)）)?$/, "未入榜"],
+      [/^该地区未上架(?:（(.*)）)?$/, "未上架"],
+    ];
+    for (const [pattern, label] of summaries) {
+      const match = display.match(pattern);
+      if (!match) continue;
+      const detail = match[1] || (label === "未入榜" && display.startsWith("前14日") ? "前后14日均未进入游戏榜" : "");
+      return `<div class="rank-metric is-missing"><span class="rank-status">${label}</span>${detail ? `<span class="rank-detail">${escapeHtml(detail)}</span>` : ""}</div>`;
+    }
+    return `<div class="rank-metric is-missing"><span class="rank-status">${escapeHtml(display)}</span></div>`;
   }
 
   function populateFilters() {
@@ -492,12 +518,12 @@
       const kind = eventStatusKind(event);
       return `
         <tr>
-          <td><span class="table-primary">${escapeHtml(platformName(event.platform))} · ${escapeHtml(event.region)}</span><span class="table-secondary">${escapeHtml(event.serverVersion)}</span></td>
-          <td><span class="table-primary">${escapeHtml(event.product)}</span><span class="table-secondary">${escapeHtml(event.ip)}</span></td>
-          <td><span class="table-primary">${escapeHtml(event.start)}</span><span class="table-secondary">${event.end ? `至 ${escapeHtml(event.end)}` : "结束日待补"}</span></td>
-          <td><span class="status-chip ${kind}">${escapeHtml(event.status)}</span></td>
-          <td>${rankChangeHtml(event.free)}</td>
-          <td>${rankChangeHtml(event.grossing)}</td>
+          <td class="event-location"><span class="cell-eyebrow">${escapeHtml(platformName(event.platform))}</span><span class="table-primary">${escapeHtml(event.region)}</span><span class="table-secondary">${escapeHtml(event.serverVersion)}</span></td>
+          <td class="event-title"><span class="table-primary">${escapeHtml(event.product)}</span><span class="table-secondary">${escapeHtml(event.ip)}</span></td>
+          <td class="event-period">${eventDateHtml(event.start)}<span class="date-divider">至</span>${event.end ? eventDateHtml(event.end) : '<span class="date-pending">结束日待补</span>'}</td>
+          <td class="event-status"><span class="status-chip ${kind}">${escapeHtml(event.status)}</span></td>
+          <td class="event-metric">${rankChangeHtml(event.free)}</td>
+          <td class="event-metric">${rankChangeHtml(event.grossing)}</td>
         </tr>`;
     }).join("");
   }
