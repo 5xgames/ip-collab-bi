@@ -69,6 +69,7 @@
     coveragePageSize: $("#coverage-page-size"),
     coveragePagination: $("#coverage-pagination"),
     impactList: $("#impact-list"),
+    impactScope: $("#impact-scope"),
     ipRankingList: $("#ip-ranking-list"),
     rankingScope: $("#ranking-scope"),
     trendProductSelector: $("#trend-product-selector"),
@@ -107,8 +108,8 @@
     startDate: defaultStartDate, endDate: defaultEndDate,
   };
   const pagination = {
-    events: { page: 1, pageSize: 25 },
-    coverage: { page: 1, pageSize: 25 },
+    events: { page: 1, pageSize: 10 },
+    coverage: { page: 1, pageSize: 10 },
   };
   let paginationFilterSignature = "";
   const numberFormat = new Intl.NumberFormat("zh-CN");
@@ -495,12 +496,16 @@
   }
 
   function renderImpact(events) {
-    const ranked = events
+    const matching = events
       .filter((event) => typeof event.grossing?.delta === "number")
-      .sort((a, b) => a.grossing.delta - b.grossing.delta)
-      .slice(0, 7);
+      .sort((a, b) => a.grossing.delta - b.grossing.delta);
+    const ranked = matching.slice(0, 7);
+    const platformScope = state.platform === "all" ? "全部平台" : platformName(state.platform);
+    const productScope = state.product === "all" ? "全部产品" : (productByKey.get(state.product) || state.product);
+    const ipScope = state.ip === "all" ? "全部IP" : state.ip;
+    elements.impactScope.textContent = `${platformScope} · ${productScope} · ${ipScope} · ${matching.length} 条符合条件的可计算记录`;
     if (!ranked.length) {
-      elements.impactList.innerHTML = '<div class="empty-state">当前范围没有可计算的畅销榜差值。</div>';
+      elements.impactList.innerHTML = '<div class="empty-state">当前平台、产品和联动IP筛选下没有可计算的畅销榜差值。</div>';
       return;
     }
     const max = Math.max(...ranked.map((event) => Math.abs(event.grossing.delta)), 1);
@@ -878,12 +883,12 @@
 
   function bindControls() {
     elements.eventPageSize.addEventListener("change", () => {
-      pagination.events.pageSize = Number(elements.eventPageSize.value) || 25;
+      pagination.events.pageSize = Number(elements.eventPageSize.value) || 10;
       pagination.events.page = 1;
       renderEvents(filteredEvents());
     });
     elements.coveragePageSize.addEventListener("change", () => {
-      pagination.coverage.pageSize = Number(elements.coveragePageSize.value) || 25;
+      pagination.coverage.pageSize = Number(elements.coveragePageSize.value) || 10;
       pagination.coverage.page = 1;
       renderCoverage(filteredVersions());
     });

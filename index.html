@@ -6,7 +6,7 @@
   <meta name="description" content="日本娱乐 IP 与手游联动地区表现 BI">
   <title>日本 IP × 手游联动 BI</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260907-pagination1">
+  <link rel="stylesheet" href="styles.css?v=20260908-sticky-date1">
 </head>
 <body>
   <header class="topbar">
@@ -26,6 +26,37 @@
       <span id="generated-at">正在读取数据…</span>
     </div>
   </header>
+
+  <section class="sticky-date-shell" aria-label="固定日期筛选">
+    <div class="date-range-panel sticky-date-panel" role="group" aria-labelledby="date-range-title">
+      <div class="date-range-header">
+        <div>
+          <span id="date-range-title">筛选日期范围</span>
+          <strong id="date-range-label">—</strong>
+        </div>
+        <div class="date-range-fields">
+          <label>
+            <span>开始</span>
+            <input id="start-date-filter" type="date">
+          </label>
+          <span class="date-range-separator" aria-hidden="true">—</span>
+          <label>
+            <span>结束</span>
+            <input id="end-date-filter" type="date">
+          </label>
+        </div>
+      </div>
+      <div class="range-slider">
+        <div id="date-range-track" class="range-slider-track" aria-hidden="true"></div>
+        <input id="start-date-range" type="range" aria-label="筛选开始日期">
+        <input id="end-date-range" type="range" aria-label="筛选结束日期">
+      </div>
+      <div class="range-extents" aria-hidden="true">
+        <span id="date-range-min">—</span>
+        <span id="date-range-max">—</span>
+      </div>
+    </div>
+  </section>
 
   <main>
     <section class="intro" aria-labelledby="page-title">
@@ -48,34 +79,6 @@
           <h2 id="filter-title">筛选条件</h2>
         </div>
         <button id="reset-filters" class="button secondary" type="button">重置</button>
-      </div>
-      <div class="date-range-panel" role="group" aria-labelledby="date-range-title">
-        <div class="date-range-header">
-          <div>
-            <span id="date-range-title">筛选日期范围</span>
-            <strong id="date-range-label">—</strong>
-          </div>
-          <div class="date-range-fields">
-            <label>
-              <span>开始</span>
-              <input id="start-date-filter" type="date">
-            </label>
-            <span class="date-range-separator" aria-hidden="true">—</span>
-            <label>
-              <span>结束</span>
-              <input id="end-date-filter" type="date">
-            </label>
-          </div>
-        </div>
-        <div class="range-slider">
-          <div id="date-range-track" class="range-slider-track" aria-hidden="true"></div>
-          <input id="start-date-range" type="range" aria-label="筛选开始日期">
-          <input id="end-date-range" type="range" aria-label="筛选结束日期">
-        </div>
-        <div class="range-extents" aria-hidden="true">
-          <span id="date-range-min">—</span>
-          <span id="date-range-max">—</span>
-        </div>
       </div>
       <div class="filters">
         <label>
@@ -198,7 +201,7 @@
           <div>
             <p class="section-kicker">COLLAB IMPACT</p>
             <h2 id="impact-title">畅销榜变化排行</h2>
-            <p class="section-note">差值越负，代表联动后排名提升越明显</p>
+            <p id="impact-scope" class="section-note">随平台、产品和联动IP筛选联动</p>
           </div>
         </div>
         <div id="impact-list" class="impact-list" aria-live="polite"></div>
@@ -215,8 +218,8 @@
           <label class="page-size-control">
             <span>每页</span>
             <select id="event-page-size" aria-label="联动项目每页显示数量">
-              <option value="10">10</option>
-              <option value="25" selected>25</option>
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
             </select>
@@ -263,8 +266,8 @@
           <label class="page-size-control">
             <span>每页</span>
             <select id="coverage-page-size" aria-label="地区版本每页显示数量">
-              <option value="10">10</option>
-              <option value="25" selected>25</option>
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
             </select>
@@ -301,6 +304,6 @@
   </footer>
 
   <script src="data/dashboard.js?v=aab77719275c"></script>
-  <script src="app.js?v=20260907-pagination1"></script>
+  <script src="app.js?v=20260908-filter-sync1"></script>
 </body>
 </html>
