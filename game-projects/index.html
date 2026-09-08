@@ -7,7 +7,7 @@
   <title>日本 IP 游戏化项目 BI</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20260907-site-tabs1">
-  <link rel="stylesheet" href="styles.css?v=20260908-phase3">
+  <link rel="stylesheet" href="styles.css?v=20260908-performance-viz1">
 </head>
 <body>
   <header class="topbar">
@@ -157,6 +157,33 @@
             <select id="performance-product-filter"><option value="all">筛选期全部产品</option></select>
           </label>
         </div>
+        <div class="performance-visual-grid">
+          <section class="performance-chart-block" aria-labelledby="steam-peak-title">
+            <div class="performance-chart-heading">
+              <div>
+                <h3 id="steam-peak-title">Steam 历史在线峰值</h3>
+                <p>当前筛选内峰值最高的 8 个产品 · 单位：人</p>
+              </div>
+              <span class="chart-scale-badge">对数刻度</span>
+            </div>
+            <div id="steam-peak-chart" class="steam-peak-chart" role="img" aria-label="Steam 历史同时在线峰值横向排行榜"></div>
+            <div id="steam-peak-empty" class="chart-empty" hidden>当前筛选范围没有可比较的 Steam 在线峰值。</div>
+          </section>
+          <section class="performance-chart-block tier-chart-block" aria-labelledby="performance-tier-title">
+            <div class="performance-chart-heading">
+              <div>
+                <h3 id="performance-tier-title">表现等级分布</h3>
+                <p>按产品最佳已核验等级去重</p>
+              </div>
+            </div>
+            <div id="performance-tier-chart" class="performance-tier-chart" role="img" aria-label="产品表现等级分布"></div>
+            <div id="performance-tier-empty" class="chart-empty" hidden>当前筛选范围没有已分级的产品。</div>
+          </section>
+        </div>
+        <div class="performance-detail-heading">
+          <strong>原始指标明细</strong>
+          <span>展示当前筛选内最近核验的 6 条记录</span>
+        </div>
         <div id="performance-list" class="performance-list" aria-live="polite"></div>
         <div id="performance-empty" class="empty-state" hidden>榜单数据正在建库，尚无可展示的产品表现。</div>
         <p class="performance-method"><strong>当前 Steam 分级口径：</strong>历史同时在线峰值 ≥100,000 为“现象级”，≥20,000 为“强势”，≥5,000 为“表现良好”，其余为“一般”。该门槛仅用于 Steam；手游、主机与商店奖项保留各自原始口径，不与 Steam 数值直接比较。</p>
@@ -196,10 +223,10 @@
   <footer>
     <strong>收录边界</strong>
     <span>以日本娱乐 IP 为核心开发的独立游戏项目；短期联动不在本页重复统计。</span>
-    <span class="footer-source">第三阶段：已收录 23 个真实项目；历史批次使用 Steam 官方地区商店核验上线日期，并以 SteamCharts / SteamDB 补充公开峰值。</span>
+    <span class="footer-source">第四阶段：产品表现已增加 Steam 峰值排行与等级分布；当前收录 23 个真实项目，原始数据口径仍按平台分别保留。</span>
   </footer>
 
   <script src="data/projects.js?v=20260908-phase3"></script>
-  <script src="app.js?v=20260908-phase3"></script>
+  <script src="app.js?v=20260908-performance-viz1"></script>
 </body>
 </html>

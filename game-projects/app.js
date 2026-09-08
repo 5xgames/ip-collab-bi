@@ -56,6 +56,10 @@
     schedule: $("#release-schedule"),
     scheduleEmpty: $("#schedule-empty"),
     performanceProduct: $("#performance-product-filter"),
+    steamPeakChart: $("#steam-peak-chart"),
+    steamPeakEmpty: $("#steam-peak-empty"),
+    performanceTierChart: $("#performance-tier-chart"),
+    performanceTierEmpty: $("#performance-tier-empty"),
     performanceList: $("#performance-list"),
     performanceEmpty: $("#performance-empty"),
     tableBody: $("#project-table-body"),
@@ -298,6 +302,73 @@
     return `${name} 数据待补`;
   }
 
+  const performanceLevels = ["phenomenon", "strong", "good", "ordinary"];
+  const performanceWeights = { phenomenon: 4, strong: 3, good: 2, ordinary: 1, insufficient: 0 };
+
+  function renderSteamPeakChart(entries) {
+    const peakByProject = new Map();
+    for (const entry of entries) {
+      const value = Number(entry.snapshot.value);
+      if (entry.snapshot.metricType !== "concurrent_users" || !Number.isFinite(value) || value <= 0) continue;
+      const previous = peakByProject.get(entry.project.id);
+      if (!previous || value > Number(previous.snapshot.value)) peakByProject.set(entry.project.id, entry);
+    }
+    const peaks = [...peakByProject.values()]
+      .sort((a, b) => Number(b.snapshot.value) - Number(a.snapshot.value))
+      .slice(0, 8);
+    elements.steamPeakEmpty.hidden = peaks.length > 0;
+    elements.steamPeakChart.hidden = peaks.length === 0;
+    if (!peaks.length) {
+      elements.steamPeakChart.innerHTML = "";
+      elements.steamPeakChart.setAttribute("aria-label", "当前筛选范围没有可比较的 Steam 历史同时在线峰值");
+      return;
+    }
+    const maximum = Math.max(...peaks.map(({ snapshot }) => Number(snapshot.value)));
+    const chartLabel = peaks.map(({ project, snapshot }) => `${project.productName} ${numberFormat.format(Number(snapshot.value))} 人`).join("；");
+    elements.steamPeakChart.setAttribute("aria-label", `Steam 历史同时在线峰值排行榜：${chartLabel}`);
+    elements.steamPeakChart.innerHTML = `${peaks.map(({ project, snapshot }) => {
+      const value = Number(snapshot.value);
+      const width = Math.max(8, Math.log10(value + 1) / Math.log10(maximum + 1) * 100);
+      const level = performanceLevels.includes(snapshot.performanceLevel) ? snapshot.performanceLevel : "ordinary";
+      return `<div class="steam-peak-row">
+        <div class="steam-peak-label"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(project.ipName)}</span></div>
+        <div class="steam-peak-track" aria-hidden="true"><span class="steam-peak-fill level-${escapeHtml(level)}" style="width:${width.toFixed(2)}%"></span></div>
+        <strong class="steam-peak-value">${escapeHtml(numberFormat.format(value))}</strong>
+      </div>`;
+    }).join("")}
+      <div class="steam-peak-axis" aria-hidden="true"><span>1</span><span>条长为对数比例</span><span>${escapeHtml(numberFormat.format(maximum))}</span></div>`;
+  }
+
+  function renderPerformanceTierChart(entries) {
+    const bestByProject = new Map();
+    for (const entry of entries) {
+      const level = entry.snapshot.performanceLevel || "insufficient";
+      if (!performanceLevels.includes(level)) continue;
+      const previous = bestByProject.get(entry.project.id);
+      if (!previous || performanceWeights[level] > performanceWeights[previous.snapshot.performanceLevel || "insufficient"]) {
+        bestByProject.set(entry.project.id, entry);
+      }
+    }
+    const counts = Object.fromEntries(performanceLevels.map((level) => [level, 0]));
+    for (const { snapshot } of bestByProject.values()) counts[snapshot.performanceLevel] += 1;
+    const total = bestByProject.size;
+    elements.performanceTierEmpty.hidden = total > 0;
+    elements.performanceTierChart.hidden = total === 0;
+    if (!total) {
+      elements.performanceTierChart.innerHTML = "";
+      elements.performanceTierChart.setAttribute("aria-label", "当前筛选范围没有已分级的产品");
+      return;
+    }
+    elements.performanceTierChart.setAttribute("aria-label", `产品表现等级分布，共 ${total} 项：${performanceLevels.map((level) => `${levelNames[level]} ${counts[level]} 项`).join("；")}`);
+    elements.performanceTierChart.innerHTML = `<div class="performance-tier-stack" aria-hidden="true">
+      ${performanceLevels.filter((level) => counts[level] > 0).map((level) => `<span class="tier-segment level-${escapeHtml(level)}" style="flex-grow:${counts[level]}"></span>`).join("")}
+    </div>
+    <div class="performance-tier-total"><strong>${escapeHtml(numberFormat.format(total))}</strong><span>个有公开表现的产品</span></div>
+    <div class="performance-tier-legend">
+      ${performanceLevels.map((level) => `<div><span class="tier-dot level-${escapeHtml(level)}" aria-hidden="true"></span><span>${escapeHtml(levelNames[level])}</span><strong>${escapeHtml(numberFormat.format(counts[level]))}</strong></div>`).join("")}
+    </div>`;
+  }
+
   function renderPerformance(rows) {
     const visibleReleaseIds = new Set(rows.map(({ release }) => release?.id).filter(Boolean));
     const visibleProjectIds = [...new Set(rows.map(({ project }) => project.id))];
@@ -313,10 +384,11 @@
         return { snapshot, release, project: projectById.get(release?.projectId) };
       })
       .filter(({ project }) => project && (state.performanceProduct === "all" || project.id === state.performanceProduct))
-      .sort((a, b) => String(b.snapshot.date).localeCompare(String(a.snapshot.date)))
-      .slice(0, 12);
+      .sort((a, b) => String(b.snapshot.date).localeCompare(String(a.snapshot.date)));
+    renderSteamPeakChart(snapshots);
+    renderPerformanceTierChart(snapshots);
     elements.performanceEmpty.hidden = snapshots.length > 0;
-    elements.performanceList.innerHTML = snapshots.map(({ snapshot, release, project }) => {
+    elements.performanceList.innerHTML = snapshots.slice(0, 6).map(({ snapshot, release, project }) => {
       const level = snapshot.performanceLevel || "insufficient";
       return `<div class="performance-row">
         <div class="performance-product"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(platformNames[release.platform] || release.platform)} · ${escapeHtml(regionNames[release.region] || release.region)}</span></div>
