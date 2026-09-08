@@ -7,7 +7,7 @@
   <title>日本 IP 游戏化项目 BI</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20260907-site-tabs1">
-  <link rel="stylesheet" href="styles.css?v=20260908-phase6">
+  <link rel="stylesheet" href="styles.css?v=20260908-phase8">
 </head>
 <body>
   <header class="topbar">
@@ -50,20 +50,21 @@
         </div>
         <button id="reset-filters" class="button secondary" type="button">重置</button>
       </div>
-      <div class="project-date-panel">
+      <div class="project-date-panel" role="group" aria-label="项目公布与上线时间范围">
         <div>
-          <span>项目动态期间</span>
-          <strong id="date-range-label">—</strong>
+          <span>项目公布 / 上线时间范围</span>
+          <strong id="project-date-range-label">—</strong>
+          <small>用于查询过去与未来项目；选择单一产品时展示其完整生命周期</small>
         </div>
         <div class="date-range-fields">
           <label>
             <span>开始</span>
-            <input id="start-date-filter" type="date">
+            <input id="project-start-date-filter" type="date">
           </label>
           <span class="date-range-separator" aria-hidden="true">—</span>
           <label>
             <span>结束</span>
-            <input id="end-date-filter" type="date">
+            <input id="project-end-date-filter" type="date">
           </label>
         </div>
       </div>
@@ -98,7 +99,7 @@
 
     <section class="kpi-grid" aria-label="项目关键指标">
       <article class="kpi-card">
-        <span>筛选期项目动态</span>
+        <span>筛选结果项目</span>
         <strong id="kpi-projects">—</strong>
         <small>同一项目跨平台与地区只计一次</small>
       </article>
@@ -110,7 +111,7 @@
       <article class="kpi-card">
         <span>未来计划上线</span>
         <strong id="kpi-upcoming">—</strong>
-        <small id="kpi-upcoming-detail">含年份窗口与日期待定的已公布项目；跨动态期间</small>
+        <small id="kpi-upcoming-detail">含年份窗口与日期待定的已公布项目</small>
       </article>
       <article class="kpi-card accent">
         <span>已记录平台版本</span>
@@ -132,13 +133,43 @@
       <div id="recent-project-empty" class="empty-state" hidden>项目数据正在建库，完成核验后将在这里展示最近动态。</div>
     </section>
 
+    <section class="panel ip-activity-panel" aria-labelledby="ip-activity-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">IP GAME ACTIVITY</p>
+          <h2 id="ip-activity-title">IP 游戏化活跃度</h2>
+          <p class="section-note">同时对照全库项目量、筛选期项目、未来计划与最近一次上线，识别高频游戏化 IP 和长期空窗 IP。</p>
+        </div>
+        <span id="ip-activity-count" class="count-badge">0 个 IP</span>
+      </div>
+      <div id="ip-activity-summary" class="ip-activity-summary" aria-live="polite"></div>
+      <div class="table-wrap ip-activity-table-wrap">
+        <table class="ip-activity-table">
+          <thead>
+            <tr>
+              <th>IP</th>
+              <th>全库项目</th>
+              <th>筛选期项目</th>
+              <th>已上线</th>
+              <th>未来计划</th>
+              <th>最近上线 / 空窗</th>
+              <th>下一款</th>
+            </tr>
+          </thead>
+          <tbody id="ip-activity-table-body"></tbody>
+        </table>
+      </div>
+      <div id="ip-activity-empty" class="empty-state" hidden>当前筛选条件下没有可比较的 IP 游戏化项目。</div>
+      <p class="ip-activity-method">“全库项目”及“空窗期”基于当前数据库已收录项目计算，不代表该 IP 历史上从未推出其他游戏；项目时间范围只影响“筛选期项目”。</p>
+    </section>
+
     <section class="project-dashboard-grid">
       <article class="panel schedule-panel" aria-labelledby="schedule-title">
         <div class="section-heading">
           <div>
             <p class="section-kicker">RELEASE SCHEDULE</p>
             <h2 id="schedule-title">上线时间表</h2>
-            <p class="section-note">计划日期、年份窗口与“时间待定”均保留；同一项目的多个平台合并展示。</p>
+            <p class="section-note">受项目时间范围影响、不受表现数据期间影响；计划日期、年份窗口与“时间待定”均保留。</p>
           </div>
         </div>
         <div id="release-schedule" class="release-schedule" aria-live="polite"></div>
@@ -156,6 +187,24 @@
             <span>产品</span>
             <select id="performance-product-filter"><option value="all">筛选期全部产品</option></select>
           </label>
+        </div>
+        <div class="project-date-panel performance-date-panel" role="group" aria-label="表现数据期间">
+          <div>
+            <span>表现数据期间</span>
+            <strong id="performance-date-range-label">—</strong>
+            <small>只影响本区域的榜单、收入、销量、在线人数与用户反馈</small>
+          </div>
+          <div class="date-range-fields">
+            <label>
+              <span>开始</span>
+              <input id="performance-start-date-filter" type="date">
+            </label>
+            <span class="date-range-separator" aria-hidden="true">—</span>
+            <label>
+              <span>结束</span>
+              <input id="performance-end-date-filter" type="date">
+            </label>
+          </div>
         </div>
         <div class="performance-visual-grid">
           <section class="performance-chart-block" aria-labelledby="steam-peak-title">
@@ -192,7 +241,7 @@
           <div id="mobile-market-empty" class="chart-empty" hidden>当前筛选范围没有可比较的手游市场估算。</div>
         </section>
         <div class="performance-detail-heading">
-          <strong>原始指标明细</strong>
+          <strong>市场、销量与用户反馈原始指标</strong>
           <span>展示当前筛选内最近核验的 6 条记录</span>
         </div>
         <div id="performance-list" class="performance-list" aria-live="polite"></div>
@@ -206,7 +255,7 @@
         <div>
           <p class="section-kicker">PROJECT DATABASE</p>
           <h2 id="project-table-title">游戏化项目明细</h2>
-          <p class="section-note">一个项目可对应多个地区和平台版本，每条版本均保留独立上线日期。</p>
+          <p class="section-note">受项目时间范围影响、不受表现数据期间影响；每个地区与平台版本均保留独立上线日期。</p>
         </div>
         <span id="project-count" class="count-badge">0 条</span>
       </div>
@@ -238,6 +287,6 @@
   </footer>
 
   <script src="data/projects.js?v=20260908-phase6"></script>
-  <script src="app.js?v=20260908-phase6"></script>
+  <script src="app.js?v=20260908-phase8"></script>
 </body>
 </html>

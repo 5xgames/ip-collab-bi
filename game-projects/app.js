@@ -32,14 +32,20 @@
     phenomenon: "现象级", strong: "强势", good: "表现良好",
     ordinary: "一般", insufficient: "数据不足",
   };
+  const ipNameAliases = new Map([
+    ["DRAGON BALL Z / 龙珠Z", "DRAGON BALL / 龙珠"],
+  ]);
 
   const $ = (selector) => document.querySelector(selector);
   const elements = {
     generatedAt: $("#generated-at"),
     latestProjectDate: $("#latest-project-date"),
-    startDate: $("#start-date-filter"),
-    endDate: $("#end-date-filter"),
-    dateRangeLabel: $("#date-range-label"),
+    projectStartDate: $("#project-start-date-filter"),
+    projectEndDate: $("#project-end-date-filter"),
+    projectDateRangeLabel: $("#project-date-range-label"),
+    performanceStartDate: $("#performance-start-date-filter"),
+    performanceEndDate: $("#performance-end-date-filter"),
+    performanceDateRangeLabel: $("#performance-date-range-label"),
     platform: $("#platform-filter"),
     region: $("#region-filter"),
     status: $("#status-filter"),
@@ -56,6 +62,10 @@
     recentList: $("#recent-project-list"),
     recentEmpty: $("#recent-project-empty"),
     recentCount: $("#recent-project-count"),
+    ipActivitySummary: $("#ip-activity-summary"),
+    ipActivityBody: $("#ip-activity-table-body"),
+    ipActivityEmpty: $("#ip-activity-empty"),
+    ipActivityCount: $("#ip-activity-count"),
     schedule: $("#release-schedule"),
     scheduleEmpty: $("#schedule-empty"),
     performanceProduct: $("#performance-product-filter"),
@@ -73,30 +83,52 @@
   };
 
   const isoDate = (value) => String(value || "").match(/\d{4}-\d{2}-\d{2}/)?.[0] || "";
+  const dateBounds = (value) => {
+    const exactDate = isoDate(value);
+    if (exactDate) return { start: exactDate, end: exactDate };
+    const textValue = String(value || "");
+    const year = textValue.match(/20\d{2}/)?.[0];
+    if (!year) return null;
+    if (/上半年/.test(textValue)) return { start: `${year}-01-01`, end: `${year}-06-30` };
+    if (/下半年/.test(textValue)) return { start: `${year}-07-01`, end: `${year}-12-31` };
+    if (/春/.test(textValue)) return { start: `${year}-03-01`, end: `${year}-05-31` };
+    if (/夏/.test(textValue)) return { start: `${year}-06-01`, end: `${year}-08-31` };
+    if (/秋/.test(textValue)) return { start: `${year}-09-01`, end: `${year}-11-30` };
+    if (/冬|年末/.test(textValue)) return { start: `${year}-12-01`, end: `${year}-12-31` };
+    return { start: `${year}-01-01`, end: `${year}-12-31` };
+  };
   const generatedDate = isoDate(meta.generatedAt) || new Date().toISOString().slice(0, 10);
-  const observedDates = [
+  const projectDateValues = [
     ...projects.flatMap((project) => [project.announcementDate, project.latestUpdateDate, project.verifiedAt]),
     ...releases.flatMap((release) => [
       release.testStartDate, release.preregisterDate, release.plannedLaunchDate,
       release.actualLaunchDate, release.serviceEndDate, release.verifiedAt,
     ]),
-    ...rankSnapshots.map((snapshot) => snapshot.date),
-  ].map(isoDate).filter(Boolean).sort();
-  const minimumDate = meta.coverageStart || observedDates[0] || "2018-01-01";
-  const maximumDate = observedDates.at(-1) || generatedDate;
+  ];
+  const projectObservedDates = projectDateValues.flatMap((value) => {
+    const bounds = dateBounds(value);
+    return bounds ? [bounds.start, bounds.end] : [];
+  }).sort();
+  const performanceObservedDates = rankSnapshots.map((snapshot) => isoDate(snapshot.date)).filter(Boolean).sort();
+  const projectMinimumDate = meta.coverageStart || projectObservedDates[0] || "2018-01-01";
+  const projectMaximumDate = projectObservedDates.at(-1) || generatedDate;
+  const performanceMinimumDate = performanceObservedDates[0] || projectMinimumDate;
+  const performanceMaximumDate = performanceObservedDates.at(-1) || generatedDate;
   const latestProjectDate = isoDate(meta.latestProjectDate) || generatedDate;
-  const defaultEndDate = latestProjectDate > maximumDate ? maximumDate : latestProjectDate;
-  const defaultStartObject = new Date(`${defaultEndDate}T00:00:00Z`);
-  defaultStartObject.setUTCDate(defaultStartObject.getUTCDate() - Math.max(1, Number(meta.defaultWindowDays) || 90) + 1);
-  const defaultStartDate = defaultStartObject.toISOString().slice(0, 10) < minimumDate
-    ? minimumDate
-    : defaultStartObject.toISOString().slice(0, 10);
+  const defaultPerformanceEndDate = latestProjectDate > performanceMaximumDate ? performanceMaximumDate : latestProjectDate;
+  const defaultPerformanceStartObject = new Date(`${defaultPerformanceEndDate}T00:00:00Z`);
+  defaultPerformanceStartObject.setUTCDate(defaultPerformanceStartObject.getUTCDate() - Math.max(1, Number(meta.defaultWindowDays) || 90) + 1);
+  const defaultPerformanceStartDate = defaultPerformanceStartObject.toISOString().slice(0, 10) < performanceMinimumDate
+    ? performanceMinimumDate
+    : defaultPerformanceStartObject.toISOString().slice(0, 10);
   const today = generatedDate;
   const numberFormat = new Intl.NumberFormat("zh-CN");
 
   const state = {
-    startDate: defaultStartDate,
-    endDate: defaultEndDate,
+    projectStartDate: projectMinimumDate,
+    projectEndDate: projectMaximumDate,
+    performanceStartDate: defaultPerformanceStartDate,
+    performanceEndDate: defaultPerformanceEndDate,
     platform: "all",
     region: "all",
     status: "all",
@@ -156,10 +188,24 @@
     return milestones.sort((a, b) => a.date.localeCompare(b.date));
   }
 
-  function milestoneInPeriod(project, projectReleases) {
-    const milestones = allMilestones(project, projectReleases);
-    if (!milestones.length) return true;
-    return milestones.some(({ date }) => (!state.startDate || date >= state.startDate) && (!state.endDate || date <= state.endDate));
+  function projectDateMatches(project, projectReleases) {
+    if (state.product !== "all") return true;
+    const values = [project.announcementDate, project.latestUpdateDate];
+    for (const release of projectReleases) {
+      values.push(
+        release.testStartDate,
+        release.preregisterDate,
+        release.plannedLaunchDate,
+        release.actualLaunchDate,
+        release.serviceEndDate,
+      );
+    }
+    const ranges = values.map(dateBounds).filter(Boolean);
+    if (!ranges.length) return true;
+    return ranges.some(({ start, end }) => (
+      (!state.projectStartDate || end >= state.projectStartDate)
+      && (!state.projectEndDate || start <= state.projectEndDate)
+    ));
   }
 
   function textMatches(project, release) {
@@ -182,17 +228,21 @@
   }
 
   function filteredRows() {
+    return collectFilteredRows(false);
+  }
+
+  function collectFilteredRows(ignoreProjectDate) {
     const rows = [];
     for (const project of projects) {
       const projectReleases = releases.filter((release) => release.projectId === project.id);
       if (!projectReleases.length) {
-        if (milestoneInPeriod(project, []) && baseReleaseMatches(project, null) && state.platform === "all" && state.region === "all") {
+        if ((ignoreProjectDate || projectDateMatches(project, [])) && baseReleaseMatches(project, null) && state.platform === "all" && state.region === "all") {
           rows.push({ project, release: null });
         }
         continue;
       }
       for (const release of projectReleases) {
-        if (milestoneInPeriod(project, [release]) && baseReleaseMatches(project, release)) rows.push({ project, release });
+        if ((ignoreProjectDate || projectDateMatches(project, [release])) && baseReleaseMatches(project, release)) rows.push({ project, release });
       }
     }
     return rows;
@@ -227,28 +277,35 @@
       .slice()
       .sort((a, b) => String(a.productName).localeCompare(String(b.productName), "zh-CN"))
       .map((project) => [project.id, project.productName]));
-    elements.startDate.min = minimumDate;
-    elements.startDate.max = maximumDate;
-    elements.endDate.min = minimumDate;
-    elements.endDate.max = maximumDate;
+    elements.projectStartDate.min = projectMinimumDate;
+    elements.projectStartDate.max = projectMaximumDate;
+    elements.projectEndDate.min = projectMinimumDate;
+    elements.projectEndDate.max = projectMaximumDate;
+    elements.performanceStartDate.min = performanceMinimumDate;
+    elements.performanceStartDate.max = performanceMaximumDate;
+    elements.performanceEndDate.min = performanceMinimumDate;
+    elements.performanceEndDate.max = performanceMaximumDate;
   }
 
   function syncControls() {
-    elements.startDate.value = state.startDate;
-    elements.endDate.value = state.endDate;
+    elements.projectStartDate.value = state.projectStartDate;
+    elements.projectEndDate.value = state.projectEndDate;
+    elements.performanceStartDate.value = state.performanceStartDate;
+    elements.performanceEndDate.value = state.performanceEndDate;
     elements.platform.value = state.platform;
     elements.region.value = state.region;
     elements.status.value = state.status;
     elements.ipType.value = state.ipType;
     elements.product.value = state.product;
     elements.search.value = state.search;
-    elements.dateRangeLabel.textContent = `${state.startDate || "最早"} — ${state.endDate || "最新"}`;
+    elements.projectDateRangeLabel.textContent = state.product === "all"
+      ? `${state.projectStartDate || "最早"} — ${state.projectEndDate || "最晚计划"}`
+      : "已选产品 · 完整生命周期";
+    elements.performanceDateRangeLabel.textContent = `${state.performanceStartDate || "最早"} — ${state.performanceEndDate || "最新"}`;
   }
 
   function latestMilestone(project, projectReleases) {
-    return allMilestones(project, projectReleases)
-      .filter(({ date }) => (!state.startDate || date >= state.startDate) && (!state.endDate || date <= state.endDate))
-      .at(-1) || null;
+    return allMilestones(project, projectReleases).at(-1) || null;
   }
 
   function renderRecentProjects(rows) {
@@ -277,6 +334,115 @@
         <div class="recent-card-footer"><span>${escapeHtml(platformLabel)} · ${escapeHtml(regionLabel)}</span><span>${escapeHtml(milestone?.label || "最近核验")} <time>${escapeHtml(milestone?.date || "待确认")}</time></span></div>
       </article>`;
     }).join("");
+  }
+
+  function canonicalIpName(project) {
+    return ipNameAliases.get(project.ipName) || project.ipName || "IP 待确认";
+  }
+
+  function gapFromDate(date) {
+    if (!date) return { days: Number.POSITIVE_INFINITY, label: "上线日期待补" };
+    const start = new Date(`${date}T00:00:00Z`);
+    const end = new Date(`${today}T00:00:00Z`);
+    const days = Math.max(0, Math.floor((end - start) / 86400000));
+    if (days < 31) return { days, label: `${Math.max(1, days)} 天` };
+    if (days < 365) return { days, label: `${Math.floor(days / 30)} 个月` };
+    return { days, label: `${(days / 365.25).toFixed(1)} 年` };
+  }
+
+  function renderIpActivity(periodRows, lifecycleRows) {
+    const activeFutureStatuses = new Set(["announced", "testing", "preregister", "upcoming"]);
+    const groups = new Map();
+    const ensureGroup = (project) => {
+      const ipName = canonicalIpName(project);
+      if (!groups.has(ipName)) groups.set(ipName, {
+        ipName, projects: new Map(), releases: new Map(), periodProjects: new Set(),
+      });
+      return groups.get(ipName);
+    };
+    for (const { project, release } of lifecycleRows) {
+      const group = ensureGroup(project);
+      group.projects.set(project.id, project);
+      if (release) group.releases.set(release.id, release);
+    }
+    for (const { project } of periodRows) ensureGroup(project).periodProjects.add(project.id);
+
+    const activityRows = [...groups.values()].map((group) => {
+      const groupProjects = [...group.projects.values()];
+      const groupReleases = [...group.releases.values()];
+      const launchedProjects = new Set();
+      const upcomingProjects = new Map();
+      const launchMoments = [];
+      for (const project of groupProjects) {
+        if (["launched", "ended"].includes(project.status)) launchedProjects.add(project.id);
+      }
+      for (const release of groupReleases) {
+        const project = projectById.get(release.projectId);
+        const actualDate = isoDate(release.actualLaunchDate);
+        if (actualDate && actualDate <= today) {
+          launchedProjects.add(release.projectId);
+          launchMoments.push({ date: actualDate, productName: project?.productName || release.projectId });
+        }
+        const status = release.status || project?.status || "announced";
+        if (actualDate || !activeFutureStatuses.has(status)) continue;
+        const plannedTiming = String(release.plannedLaunchDate || "").trim();
+        const bounds = dateBounds(plannedTiming);
+        if (bounds && bounds.end < today) continue;
+        const previous = upcomingProjects.get(release.projectId);
+        const candidate = {
+          productName: project?.productName || release.projectId,
+          timing: plannedTiming || "时间待定",
+          sortKey: bounds?.start || "9999-12-31",
+        };
+        if (!previous || candidate.sortKey < previous.sortKey) upcomingProjects.set(release.projectId, candidate);
+      }
+      launchMoments.sort((a, b) => b.date.localeCompare(a.date));
+      const nextProjects = [...upcomingProjects.values()].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+      const lastLaunch = launchMoments[0] || null;
+      const gap = gapFromDate(lastLaunch?.date);
+      return {
+        ...group,
+        totalCount: group.projects.size,
+        periodCount: group.periodProjects.size,
+        launchedCount: launchedProjects.size,
+        upcomingCount: upcomingProjects.size,
+        lastLaunch,
+        gap,
+        nextProject: nextProjects[0] || null,
+        inactive: Boolean(lastLaunch) && gap.days >= 365 * 3 && upcomingProjects.size === 0,
+      };
+    }).sort((a, b) => b.periodCount - a.periodCount
+      || b.totalCount - a.totalCount
+      || b.upcomingCount - a.upcomingCount
+      || a.ipName.localeCompare(b.ipName, "zh-CN"));
+
+    elements.ipActivityCount.textContent = `${numberFormat.format(activityRows.length)} 个 IP`;
+    elements.ipActivityEmpty.hidden = activityRows.length > 0;
+    elements.ipActivityBody.innerHTML = activityRows.map((row) => `<tr>
+      <td><span class="table-primary">${escapeHtml(row.ipName)}</span>${row.inactive ? '<span class="ip-activity-flag">近 3 年无新作计划</span>' : ""}</td>
+      <td><strong class="ip-activity-number">${escapeHtml(numberFormat.format(row.totalCount))}</strong></td>
+      <td><strong class="ip-activity-number${row.periodCount ? " active" : ""}">${escapeHtml(numberFormat.format(row.periodCount))}</strong></td>
+      <td>${escapeHtml(numberFormat.format(row.launchedCount))}</td>
+      <td>${row.upcomingCount ? `<span class="status-chip active">${escapeHtml(numberFormat.format(row.upcomingCount))} 项</span>` : '<span class="table-secondary">暂无</span>'}</td>
+      <td>${row.lastLaunch
+        ? `<time class="project-date" datetime="${escapeHtml(row.lastLaunch.date)}">${escapeHtml(row.lastLaunch.date)}</time><span class="table-secondary">${escapeHtml(row.lastLaunch.productName)} · 距今 ${escapeHtml(row.gap.label)}</span>`
+        : '<span class="table-secondary">尚无已核验上线日期</span>'}</td>
+      <td>${row.nextProject
+        ? `<span class="table-primary">${escapeHtml(row.nextProject.productName)}</span><span class="table-secondary">${escapeHtml(row.nextProject.timing)}</span>`
+        : '<span class="table-secondary">暂无已公布项目</span>'}</td>
+    </tr>`).join("");
+
+    const top = activityRows[0];
+    const upcomingIpCount = activityRows.filter((row) => row.upcomingCount > 0).length;
+    const upcomingProjectCount = activityRows.reduce((total, row) => total + row.upcomingCount, 0);
+    const longestInactive = activityRows.filter((row) => row.inactive).sort((a, b) => b.gap.days - a.gap.days)[0];
+    elements.ipActivitySummary.innerHTML = activityRows.length ? `<div>
+      <span>项目收录最多</span><strong>${escapeHtml(top.ipName)}</strong><small>${escapeHtml(numberFormat.format(top.totalCount))} 个项目</small>
+    </div><div>
+      <span>未来已有计划</span><strong>${escapeHtml(numberFormat.format(upcomingIpCount))} 个 IP</strong><small>${escapeHtml(numberFormat.format(upcomingProjectCount))} 个已公布项目</small>
+    </div><div>
+      <span>最长空窗且无新作</span><strong>${escapeHtml(longestInactive?.ipName || "暂无可判定 IP")}</strong><small>${longestInactive ? `距最近上线 ${escapeHtml(longestInactive.gap.label)}` : "需补充更多历史上线日期"}</small>
+    </div>` : "";
   }
 
   function renderSchedule(rows) {
@@ -341,8 +507,8 @@
   function dateInPerformancePeriod(value) {
     const date = isoDate(value);
     return Boolean(date)
-      && (!state.startDate || date >= state.startDate)
-      && (!state.endDate || date <= state.endDate);
+      && (!state.performanceStartDate || date >= state.performanceStartDate)
+      && (!state.performanceEndDate || date <= state.performanceEndDate);
   }
 
   function aggregateSnapshotMatches(snapshot, project) {
@@ -519,7 +685,7 @@
     const byDateAndLevel = (a, b) => String(b.date).localeCompare(String(a.date))
       || (performanceWeights[b.performanceLevel] || 0) - (performanceWeights[a.performanceLevel] || 0);
     const exact = rankSnapshots
-      .filter((snapshot) => snapshot.releaseId === release.id && dateInPerformancePeriod(snapshot.date))
+      .filter((snapshot) => snapshot.releaseId === release.id)
       .sort(byDateAndLevel)[0];
     if (exact) return exact;
     if (release.region !== "GLOBAL" || !["ios", "android"].includes(release.platform)) return null;
@@ -527,8 +693,7 @@
       .filter((snapshot) => snapshot.projectId === release.projectId
         && snapshot.region === "GLOBAL"
         && Array.isArray(snapshot.platforms)
-        && snapshot.platforms.includes(release.platform)
-        && dateInPerformancePeriod(snapshot.date))
+        && snapshot.platforms.includes(release.platform))
       .sort(byDateAndLevel)[0] || null;
   }
 
@@ -564,11 +729,11 @@
     }).length;
     const activeFutureStatuses = new Set(["announced", "testing", "preregister", "upcoming"]);
     const upcomingProjects = new Map();
-    for (const release of releases) {
-      const project = projectById.get(release.projectId);
+    for (const { project, release } of rows) {
+      if (!release) continue;
       const plannedDate = isoDate(release.plannedLaunchDate);
-      const effectiveStatus = release.status || project?.status || "announced";
-      if (!project || !baseReleaseMatches(project, release) || isoDate(release.actualLaunchDate) || !activeFutureStatuses.has(effectiveStatus)) continue;
+      const effectiveStatus = release.status || project.status || "announced";
+      if (isoDate(release.actualLaunchDate) || !activeFutureStatuses.has(effectiveStatus)) continue;
       const previous = upcomingProjects.get(project.id);
       const candidate = { project, release, plannedDate, plannedTiming: String(release.plannedLaunchDate || "").trim() };
       if (!previous
@@ -586,29 +751,37 @@
     elements.kpiLaunched.textContent = numberFormat.format(launched);
     elements.kpiUpcoming.textContent = numberFormat.format(upcomingProjects.size);
     elements.kpiUpcomingDetail.textContent = nextUpcoming
-      ? `${nextUpcoming.project.productName} · ${nextUpcoming.plannedDate}${undatedUpcoming ? `；另有 ${undatedUpcoming} 项日期待定` : ""}（跨动态期间）`
-      : `含年份窗口及日期待定的已公布项目${undatedUpcoming ? `（${undatedUpcoming} 项日期待定）` : ""}；跨动态期间`;
+      ? `${nextUpcoming.project.productName} · ${nextUpcoming.plannedDate}${undatedUpcoming ? `；另有 ${undatedUpcoming} 项日期待定` : ""}`
+      : `含年份窗口及日期待定的已公布项目${undatedUpcoming ? `（${undatedUpcoming} 项日期待定）` : ""}`;
     elements.kpiReleases.textContent = numberFormat.format(rows.filter(({ release }) => release).length);
   }
 
   function render() {
     const rows = filteredRows();
+    const lifecycleRows = collectFilteredRows(true);
     renderKpis(rows);
     renderRecentProjects(rows);
+    renderIpActivity(rows, lifecycleRows);
     renderSchedule(rows);
     renderPerformance();
     renderTable(rows);
-    elements.summary.textContent = projects.length
-      ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台版本。`
-      : "当前筛选条件下没有可展示的项目；可调整项目动态期间或其他筛选条件。";
+    elements.summary.textContent = rows.length
+      ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台版本。${state.product === "all" ? "" : " 已选择单一产品，项目时间范围不限制其完整生命周期。"}`
+      : "当前筛选条件下没有可展示的项目；可调整产品、平台、地区或其他项目筛选条件。";
   }
 
   function updateStateAndRender() {
-    state.startDate = elements.startDate.value;
-    state.endDate = elements.endDate.value;
-    if (state.startDate && state.endDate && state.startDate > state.endDate) {
-      state.startDate = state.endDate;
-      elements.startDate.value = state.startDate;
+    state.projectStartDate = elements.projectStartDate.value;
+    state.projectEndDate = elements.projectEndDate.value;
+    if (state.projectStartDate && state.projectEndDate && state.projectStartDate > state.projectEndDate) {
+      state.projectStartDate = state.projectEndDate;
+      elements.projectStartDate.value = state.projectStartDate;
+    }
+    state.performanceStartDate = elements.performanceStartDate.value;
+    state.performanceEndDate = elements.performanceEndDate.value;
+    if (state.performanceStartDate && state.performanceEndDate && state.performanceStartDate > state.performanceEndDate) {
+      state.performanceStartDate = state.performanceEndDate;
+      elements.performanceStartDate.value = state.performanceStartDate;
     }
     state.platform = elements.platform.value;
     state.region = elements.region.value;
@@ -617,7 +790,10 @@
     state.product = elements.product.value;
     state.search = elements.search.value.trim();
     state.performanceProduct = elements.performanceProduct.value;
-    elements.dateRangeLabel.textContent = `${state.startDate || "最早"} — ${state.endDate || "最新"}`;
+    elements.projectDateRangeLabel.textContent = state.product === "all"
+      ? `${state.projectStartDate || "最早"} — ${state.projectEndDate || "最晚计划"}`
+      : "已选产品 · 完整生命周期";
+    elements.performanceDateRangeLabel.textContent = `${state.performanceStartDate || "最早"} — ${state.performanceEndDate || "最新"}`;
     render();
   }
 
@@ -628,13 +804,17 @@
   render();
 
   for (const element of [
-    elements.startDate, elements.endDate, elements.platform, elements.region,
+    elements.projectStartDate, elements.projectEndDate,
+    elements.performanceStartDate, elements.performanceEndDate,
+    elements.platform, elements.region,
     elements.status, elements.ipType, elements.product, elements.performanceProduct,
   ]) element.addEventListener("change", updateStateAndRender);
   elements.search.addEventListener("input", updateStateAndRender);
   elements.reset.addEventListener("click", () => {
     Object.assign(state, {
-      startDate: defaultStartDate, endDate: defaultEndDate, platform: "all", region: "all",
+      projectStartDate: projectMinimumDate, projectEndDate: projectMaximumDate,
+      performanceStartDate: defaultPerformanceStartDate, performanceEndDate: defaultPerformanceEndDate,
+      platform: "all", region: "all",
       status: "all", ipType: "all", product: "all", search: "", performanceProduct: "all",
     });
     syncControls();
