@@ -32,10 +32,10 @@
 
 ## rankSnapshots
 
-每条记录保存一个平台原生指标：
+每条记录保存一个平台原生指标，或一个明确标注汇总范围的跨平台估算：
 
-- `releaseId`、`date`
-- `metricType`：free_rank、grossing_rank、top_seller_rank、concurrent_users、download_rank、physical_sales、review_count、review_score 等
+- `releaseId`、`date`；跨平台汇总记录改用 `projectId`，并通过 `platforms` 和 `region` 保存适用范围
+- `metricType`：free_rank、grossing_rank、top_seller_rank、concurrent_users、download_rank、physical_sales、review_count、review_score、estimated_downloads、estimated_revenue 等
 - `rank`：榜单名次
 - `value`：销量、在线人数或评价数值
 - `display`：需要保留原始文本口径时使用，例如商店奖项或“Steam 历史同时在线峰值”
@@ -46,5 +46,7 @@
 不同平台的原始指标不直接混算。产品级表现应先在各平台内部标准化，再汇总为表现等级。
 
 当前 Steam 历史同时在线峰值分级：≥100,000 为 phenomenon，≥20,000 为 strong，≥5,000 为 good，其余为 ordinary；该阈值不得套用于手游、主机销量或商店奖项。
+
+当前 AppMagic 手游生命周期估算分级：收入 ≥US$50,000,000 为 phenomenon、≥US$20,000,000 为 strong、≥US$5,000,000 为 good，其余为 ordinary；下载量 ≥10,000,000 为 phenomenon、≥5,000,000 为 strong、≥1,000,000 为 good，其余为 ordinary。免费版只公开数值区间时，`value` 保存公开下限、`lowerBound` 设为 true，并在 `display` 中保留“>”标记；该口径仅用于同类手游规模分级。
 
 历史 Steam 批次分别查询美国与日本商店。商店接口当前无法核验的地区不建立 release，不根据其他地区日期反推；全历史同时在线峰值通过 SteamCharts 或 SteamDB 记录，并在 `scope` 中保留核验截至日期。

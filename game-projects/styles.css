@@ -167,6 +167,47 @@
 .tier-dot { width: 8px; height: 8px; border-radius: 50%; }
 .chart-empty { padding: 18px 0; color: var(--muted); font-size: 11px; text-align: center; }
 
+.mobile-market-block {
+  margin-bottom: 18px;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-market-chart { display: grid; gap: 10px; }
+
+.mobile-market-product {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.72fr) minmax(300px, 1.65fr);
+  gap: 16px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #fafbfe);
+}
+
+.mobile-market-product-title,
+.mobile-market-product-title strong,
+.mobile-market-product-title span { min-width: 0; }
+.mobile-market-product-title strong,
+.mobile-market-product-title span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mobile-market-product-title strong { font-size: 12px; }
+.mobile-market-product-title span { margin-top: 3px; color: var(--muted); font-size: 11px; }
+.mobile-market-metrics { display: grid; gap: 8px; }
+
+.mobile-market-metric {
+  display: grid;
+  grid-template-columns: 42px minmax(90px, 1fr) minmax(178px, auto);
+  gap: 9px;
+  align-items: center;
+}
+
+.mobile-market-metric > span { color: var(--muted); font-size: 11px; font-weight: 750; }
+.mobile-market-metric > strong { font-size: 11px; font-variant-numeric: tabular-nums; text-align: right; }
+.mobile-market-metric.muted { opacity: 0.62; }
+.mobile-market-track { height: 9px; overflow: hidden; border-radius: 999px; background: var(--surface-soft); }
+.mobile-market-track i { display: block; height: 100%; border-radius: inherit; }
+
 .performance-detail-heading {
   display: flex;
   align-items: baseline;
@@ -285,6 +326,11 @@
   .steam-peak-value { grid-column: 2; grid-row: 1; }
   .steam-peak-axis { margin-left: 0; }
   .performance-tier-legend { grid-template-columns: 1fr; }
+  .mobile-market-product { grid-template-columns: 1fr; gap: 10px; }
+  .mobile-market-product-title strong,
+  .mobile-market-product-title span { white-space: normal; }
+  .mobile-market-metric { grid-template-columns: 42px minmax(80px, 1fr); }
+  .mobile-market-metric > strong { grid-column: 1 / -1; text-align: left; }
   .performance-detail-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
   .performance-detail-heading span { text-align: left; }
   .performance-row { grid-template-columns: 1fr; gap: 7px; }

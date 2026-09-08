@@ -1,8 +1,8 @@
 window.GAME_PROJECTS_DATA = {
   "meta": {
-    "schemaVersion": "1.2",
-    "phase": 3,
-    "generatedAt": "2026-09-08T11:00:00+09:00",
+    "schemaVersion": "1.3",
+    "phase": 5,
+    "generatedAt": "2026-09-08T12:02:00+09:00",
     "latestProjectDate": "2026-09-08",
     "coverageStart": "2018-01-01",
     "defaultWindowDays": 90,
@@ -1449,6 +1449,108 @@ window.GAME_PROJECTS_DATA = {
       "source": "SteamCharts",
       "sourceUrl": "https://steamcharts.com/app/3002850",
       "performanceLevel": "ordinary"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-08",
+      "metricType": "estimated_downloads",
+      "value": 2000000,
+      "lowerBound": true,
+      "display": "AppMagic 生命周期下载量 >2,000,000",
+      "scope": "全球 iOS + Android、2 件应用汇总估算",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/iphone/%E6%80%AA%E7%8D%A3%EF%BC%98%E5%8F%B7-the-game/6742088839",
+      "performanceLevel": "good"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-08",
+      "metricType": "estimated_revenue",
+      "value": 20000000,
+      "lowerBound": true,
+      "display": "AppMagic 生命周期收入 >US$20,000,000",
+      "scope": "全球 iOS + Android、2 件应用汇总估算",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/iphone/%E6%80%AA%E7%8D%A3%EF%BC%98%E5%8F%B7-the-game/6742088839",
+      "performanceLevel": "strong"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-08",
+      "metricType": "estimated_downloads",
+      "value": 2000000,
+      "lowerBound": true,
+      "display": "AppMagic 生命周期下载量 >2,000,000",
+      "scope": "全球 iOS + Android、4 件应用汇总估算",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/iphone/p5x-%E3%83%9A%E3%83%AB%E3%82%BD%E3%83%8A%EF%BC%95-the-phantom-x/6502942931",
+      "performanceLevel": "good"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-08",
+      "metricType": "estimated_revenue",
+      "value": 20000000,
+      "lowerBound": true,
+      "display": "AppMagic 生命周期收入 >US$20,000,000",
+      "scope": "全球 iOS + Android、4 件应用汇总估算",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/iphone/p5x-%E3%83%9A%E3%83%AB%E3%82%BD%E3%83%8A%EF%BC%95-the-phantom-x/6502942931",
+      "performanceLevel": "strong"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-08",
+      "metricType": "estimated_downloads",
+      "value": 5000000,
+      "lowerBound": true,
+      "display": "AppMagic 生命周期下载量 >5,000,000",
+      "scope": "全球 iOS + Android、4 件应用汇总估算",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/google-play/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB-%E3%82%B2%E3%82%AD%E3%82%B7%E3%83%B3-%E3%82%B9%E3%82%AF%E3%82%A2%E3%83%89%E3%83%A9/com.bandainamcoent.dbgekishinsquadra",
+      "performanceLevel": "strong"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-08",
+      "metricType": "estimated_revenue",
+      "value": 5000000,
+      "lowerBound": true,
+      "display": "AppMagic 生命周期收入 >US$5,000,000",
+      "scope": "全球 iOS + Android、4 件应用汇总估算",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/google-play/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB-%E3%82%B2%E3%82%AD%E3%82%B7%E3%83%B3-%E3%82%B9%E3%82%AF%E3%82%A2%E3%83%89%E3%83%A9/com.bandainamcoent.dbgekishinsquadra",
+      "performanceLevel": "good"
     }
   ]
 };

@@ -7,6 +7,7 @@
   const releases = Array.isArray(data.releases) ? data.releases : [];
   const rankSnapshots = Array.isArray(data.rankSnapshots) ? data.rankSnapshots : [];
   const projectById = new Map(projects.map((project) => [project.id, project]));
+  const releaseById = new Map(releases.map((release) => [release.id, release]));
 
   const platformNames = {
     ios: "iOS", android: "Android", steam: "Steam", windows: "Windows PC",
@@ -25,6 +26,7 @@
     free_rank: "免费游戏榜", grossing_rank: "畅销游戏榜", top_seller_rank: "畅销榜",
     concurrent_users: "同时在线", download_rank: "下载榜", physical_sales: "实体销量",
     review_count: "评价数", review_score: "好评率", revenue: "公开收入", store_award: "商店奖项",
+    estimated_downloads: "生命周期下载量估算", estimated_revenue: "生命周期收入估算",
   };
   const levelNames = {
     phenomenon: "现象级", strong: "强势", good: "表现良好",
@@ -49,6 +51,7 @@
     kpiProjects: $("#kpi-projects"),
     kpiLaunched: $("#kpi-launched"),
     kpiUpcoming: $("#kpi-upcoming"),
+    kpiUpcomingDetail: $("#kpi-upcoming-detail"),
     kpiReleases: $("#kpi-releases"),
     recentList: $("#recent-project-list"),
     recentEmpty: $("#recent-project-empty"),
@@ -60,6 +63,8 @@
     steamPeakEmpty: $("#steam-peak-empty"),
     performanceTierChart: $("#performance-tier-chart"),
     performanceTierEmpty: $("#performance-tier-empty"),
+    mobileMarketChart: $("#mobile-market-chart"),
+    mobileMarketEmpty: $("#mobile-market-empty"),
     performanceList: $("#performance-list"),
     performanceEmpty: $("#performance-empty"),
     tableBody: $("#project-table-body"),
@@ -305,6 +310,41 @@
   const performanceLevels = ["phenomenon", "strong", "good", "ordinary"];
   const performanceWeights = { phenomenon: 4, strong: 3, good: 2, ordinary: 1, insufficient: 0 };
 
+  function dateInPerformancePeriod(value) {
+    const date = isoDate(value);
+    return Boolean(date)
+      && (!state.startDate || date >= state.startDate)
+      && (!state.endDate || date <= state.endDate);
+  }
+
+  function aggregateSnapshotMatches(snapshot, project) {
+    const applicablePlatforms = Array.isArray(snapshot.platforms) ? snapshot.platforms : [];
+    return dateInPerformancePeriod(snapshot.date)
+      && (state.platform === "all" || applicablePlatforms.includes(state.platform))
+      && (state.region === "all" || snapshot.region === state.region)
+      && (state.status === "all" || (project.status || "announced") === state.status)
+      && (state.ipType === "all" || project.ipType === state.ipType)
+      && (state.product === "all" || project.id === state.product)
+      && textMatches(project, null);
+  }
+
+  function performanceEntries() {
+    return rankSnapshots.map((snapshot) => {
+      if (snapshot.releaseId) {
+        const release = releaseById.get(snapshot.releaseId);
+        const project = projectById.get(release?.projectId);
+        if (!release || !project || !dateInPerformancePeriod(snapshot.date) || !baseReleaseMatches(project, release)) return null;
+        return { snapshot, release, project, aggregate: false };
+      }
+      if (snapshot.projectId) {
+        const project = projectById.get(snapshot.projectId);
+        if (!project || !aggregateSnapshotMatches(snapshot, project)) return null;
+        return { snapshot, release: null, project, aggregate: true };
+      }
+      return null;
+    }).filter(Boolean);
+  }
+
   function renderSteamPeakChart(entries) {
     const peakByProject = new Map();
     for (const entry of entries) {
@@ -369,39 +409,99 @@
     </div>`;
   }
 
-  function renderPerformance(rows) {
-    const visibleReleaseIds = new Set(rows.map(({ release }) => release?.id).filter(Boolean));
-    const visibleProjectIds = [...new Set(rows.map(({ project }) => project.id))];
-    appendOptions(elements.performanceProduct, visibleProjectIds.map((id) => [id, projectById.get(id)?.productName || id]));
+  function renderMobileMarketChart(entries) {
+    const mobileMetrics = new Set(["estimated_downloads", "estimated_revenue"]);
+    const latestByProjectMetric = new Map();
+    for (const entry of entries) {
+      if (!entry.aggregate || !mobileMetrics.has(entry.snapshot.metricType)) continue;
+      const key = `${entry.project.id}:${entry.snapshot.metricType}`;
+      const previous = latestByProjectMetric.get(key);
+      if (!previous || String(entry.snapshot.date).localeCompare(String(previous.snapshot.date)) > 0) {
+        latestByProjectMetric.set(key, entry);
+      }
+    }
+    const grouped = new Map();
+    for (const entry of latestByProjectMetric.values()) {
+      if (!grouped.has(entry.project.id)) grouped.set(entry.project.id, { project: entry.project, metrics: {} });
+      grouped.get(entry.project.id).metrics[entry.snapshot.metricType] = entry.snapshot;
+    }
+    const products = [...grouped.values()].sort((a, b) => {
+      const aBest = Math.max(...Object.values(a.metrics).map((snapshot) => performanceWeights[snapshot.performanceLevel] || 0));
+      const bBest = Math.max(...Object.values(b.metrics).map((snapshot) => performanceWeights[snapshot.performanceLevel] || 0));
+      return bBest - aBest || a.project.productName.localeCompare(b.project.productName, "zh-CN");
+    });
+    elements.mobileMarketEmpty.hidden = products.length > 0;
+    elements.mobileMarketChart.hidden = products.length === 0;
+    if (!products.length) {
+      elements.mobileMarketChart.innerHTML = "";
+      elements.mobileMarketChart.setAttribute("aria-label", "当前筛选范围没有可比较的手游市场估算");
+      return;
+    }
+    const labels = { estimated_downloads: "下载量", estimated_revenue: "收入" };
+    elements.mobileMarketChart.setAttribute("aria-label", `手游生命周期市场估算：${products.map(({ project, metrics }) => `${project.productName}，${Object.values(metrics).map(formatMetric).join("，")}`).join("；")}`);
+    elements.mobileMarketChart.innerHTML = products.map(({ project, metrics }) => `<article class="mobile-market-product">
+      <div class="mobile-market-product-title"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(project.ipName)}</span></div>
+      <div class="mobile-market-metrics">
+        ${["estimated_downloads", "estimated_revenue"].map((metricType) => {
+          const snapshot = metrics[metricType];
+          if (!snapshot) return `<div class="mobile-market-metric muted"><span>${escapeHtml(labels[metricType])}</span><div class="mobile-market-track" aria-hidden="true"></div><strong>待补</strong></div>`;
+          const level = performanceLevels.includes(snapshot.performanceLevel) ? snapshot.performanceLevel : "ordinary";
+          const width = (performanceWeights[level] / 4) * 100;
+          return `<div class="mobile-market-metric"><span>${escapeHtml(labels[metricType])}</span><div class="mobile-market-track" aria-hidden="true"><i class="level-${escapeHtml(level)}" style="width:${width}%"></i></div><strong>${escapeHtml(formatMetric(snapshot).replace(/^AppMagic\s*/, ""))}</strong></div>`;
+        }).join("")}
+      </div>
+    </article>`).join("");
+  }
+
+  function performancePlatformLabel(snapshot, release) {
+    if (release) return `${platformNames[release.platform] || release.platform} · ${regionNames[release.region] || release.region}`;
+    const platforms = (snapshot.platforms || []).map((platform) => platformNames[platform] || platform).join(" + ") || "跨平台";
+    const region = snapshot.region === "GLOBAL" ? "全球汇总估算" : regionNames[snapshot.region] || snapshot.region || "汇总范围";
+    return `${platforms} · ${region}`;
+  }
+
+  function renderPerformance() {
+    const allEntries = performanceEntries();
+    const visibleProjectIds = [...new Set(allEntries.map(({ project }) => project.id))];
+    appendOptions(elements.performanceProduct, visibleProjectIds
+      .sort((a, b) => (projectById.get(a)?.productName || a).localeCompare(projectById.get(b)?.productName || b, "zh-CN"))
+      .map((id) => [id, projectById.get(id)?.productName || id]));
     if (![...elements.performanceProduct.options].some((option) => option.value === state.performanceProduct)) {
       state.performanceProduct = "all";
     }
     elements.performanceProduct.value = state.performanceProduct;
-    const snapshots = rankSnapshots
-      .filter((snapshot) => visibleReleaseIds.has(snapshot.releaseId))
-      .map((snapshot) => {
-        const release = releases.find((item) => item.id === snapshot.releaseId);
-        return { snapshot, release, project: projectById.get(release?.projectId) };
-      })
-      .filter(({ project }) => project && (state.performanceProduct === "all" || project.id === state.performanceProduct))
+    const snapshots = allEntries
+      .filter(({ project }) => state.performanceProduct === "all" || project.id === state.performanceProduct)
       .sort((a, b) => String(b.snapshot.date).localeCompare(String(a.snapshot.date)));
     renderSteamPeakChart(snapshots);
     renderPerformanceTierChart(snapshots);
+    renderMobileMarketChart(snapshots);
     elements.performanceEmpty.hidden = snapshots.length > 0;
     elements.performanceList.innerHTML = snapshots.slice(0, 6).map(({ snapshot, release, project }) => {
       const level = snapshot.performanceLevel || "insufficient";
       return `<div class="performance-row">
-        <div class="performance-product"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(platformNames[release.platform] || release.platform)} · ${escapeHtml(regionNames[release.region] || release.region)}</span></div>
+        <div class="performance-product"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(performancePlatformLabel(snapshot, release))}</span></div>
         <div class="performance-metric"><strong>${escapeHtml(formatMetric(snapshot))}</strong><span>${escapeHtml(snapshot.scope || "平台公开榜单")} · ${escapeHtml(isoDate(snapshot.date) || "日期待补")}</span></div>
         <span class="status-chip ${level === "phenomenon" || level === "strong" ? "active" : level === "insufficient" ? "pending" : "ended"} performance-level">${escapeHtml(levelNames[level] || level)}</span>
       </div>`;
     }).join("");
   }
 
-  function latestPerformanceForRelease(releaseId) {
+  function latestPerformanceForRelease(release) {
+    const byDateAndLevel = (a, b) => String(b.date).localeCompare(String(a.date))
+      || (performanceWeights[b.performanceLevel] || 0) - (performanceWeights[a.performanceLevel] || 0);
+    const exact = rankSnapshots
+      .filter((snapshot) => snapshot.releaseId === release.id && dateInPerformancePeriod(snapshot.date))
+      .sort(byDateAndLevel)[0];
+    if (exact) return exact;
+    if (release.region !== "GLOBAL" || !["ios", "android"].includes(release.platform)) return null;
     return rankSnapshots
-      .filter((snapshot) => snapshot.releaseId === releaseId)
-      .sort((a, b) => String(b.date).localeCompare(String(a.date)))[0] || null;
+      .filter((snapshot) => snapshot.projectId === release.projectId
+        && snapshot.region === "GLOBAL"
+        && Array.isArray(snapshot.platforms)
+        && snapshot.platforms.includes(release.platform)
+        && dateInPerformancePeriod(snapshot.date))
+      .sort(byDateAndLevel)[0] || null;
   }
 
   function renderTable(rows) {
@@ -414,7 +514,7 @@
     elements.tableEmpty.hidden = sortedRows.length > 0;
     elements.tableBody.innerHTML = sortedRows.map(({ project, release }) => {
       const status = release?.status || project.status || "announced";
-      const performance = release ? latestPerformanceForRelease(release.id) : null;
+      const performance = release ? latestPerformanceForRelease(release) : null;
       return `<tr>
         <td><span class="table-primary">${escapeHtml(project.productName)}</span><span class="table-secondary">${escapeHtml(project.ipName)} · ${escapeHtml(project.ipType || "类型待补")}</span></td>
         <td><span class="table-primary">${escapeHtml(project.developer || "开发商待补")}</span><span class="table-secondary">发行：${escapeHtml(project.publisher || "待补")}</span></td>
@@ -434,13 +534,21 @@
       const projectReleases = rows.filter((row) => row.project.id === project.id).map((row) => row.release).filter(Boolean);
       return project.status === "launched" || projectReleases.some((release) => isoDate(release.actualLaunchDate) && isoDate(release.actualLaunchDate) <= today);
     }).length;
-    const upcoming = rows.filter(({ release }) => release
-      && !isoDate(release.actualLaunchDate)
-      && isoDate(release.plannedLaunchDate)
-      && isoDate(release.plannedLaunchDate) > today).length;
+    const upcomingProjects = new Map();
+    for (const release of releases) {
+      const project = projectById.get(release.projectId);
+      const plannedDate = isoDate(release.plannedLaunchDate);
+      if (!project || !baseReleaseMatches(project, release) || isoDate(release.actualLaunchDate) || !plannedDate || plannedDate <= today) continue;
+      const previous = upcomingProjects.get(project.id);
+      if (!previous || plannedDate < previous.plannedDate) upcomingProjects.set(project.id, { project, release, plannedDate });
+    }
+    const nextUpcoming = [...upcomingProjects.values()].sort((a, b) => a.plannedDate.localeCompare(b.plannedDate))[0];
     elements.kpiProjects.textContent = numberFormat.format(uniqueProjects.size);
     elements.kpiLaunched.textContent = numberFormat.format(launched);
-    elements.kpiUpcoming.textContent = numberFormat.format(upcoming);
+    elements.kpiUpcoming.textContent = numberFormat.format(upcomingProjects.size);
+    elements.kpiUpcomingDetail.textContent = nextUpcoming
+      ? `${nextUpcoming.project.productName} · ${nextUpcoming.plannedDate}（不受动态期间上限影响）`
+      : "已有明确日期或时间窗口（不受动态期间上限影响）";
     elements.kpiReleases.textContent = numberFormat.format(rows.filter(({ release }) => release).length);
   }
 
@@ -449,7 +557,7 @@
     renderKpis(rows);
     renderRecentProjects(rows);
     renderSchedule(rows);
-    renderPerformance(rows);
+    renderPerformance();
     renderTable(rows);
     elements.summary.textContent = projects.length
       ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台版本。`
