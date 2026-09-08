@@ -13,6 +13,7 @@
 - `genre`：游戏类型
 - `developer`、`publisher`
 - `announcementDate`：首次正式公布日期
+- `latestUpdateDate`、`latestUpdateLabel`：最近一次可核验的官网、新闻稿或媒体动态及其类型
 - `status`：announced、testing、preregister、upcoming、launched、delayed、cancelled、ended
 - `summary`：项目内容简介
 - `sourceUrl`、`verifiedAt`
@@ -44,6 +45,8 @@
 - `performanceLevel`：phenomenon、strong、good、ordinary、insufficient
 
 不同平台的原始指标不直接混算。产品级表现应先在各平台内部标准化，再汇总为表现等级。
+
+已正式公布但尚无发售日期的版本仍建立 release，`plannedLaunchDate` 留空、状态设为 `announced`；只有年份或“上半年 / 下半年”等窗口时直接保存官方原文。未来项目统计必须同时包含精确日期、时间窗口和日期待定三类，不得因为商店或榜单尚未出现而漏记。
 
 当前 Steam 历史同时在线峰值分级：≥100,000 为 phenomenon，≥20,000 为 strong，≥5,000 为 good，其余为 ordinary；该阈值不得套用于手游、主机销量或商店奖项。
 

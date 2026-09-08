@@ -75,7 +75,7 @@
   const isoDate = (value) => String(value || "").match(/\d{4}-\d{2}-\d{2}/)?.[0] || "";
   const generatedDate = isoDate(meta.generatedAt) || new Date().toISOString().slice(0, 10);
   const observedDates = [
-    ...projects.flatMap((project) => [project.announcementDate, project.verifiedAt]),
+    ...projects.flatMap((project) => [project.announcementDate, project.latestUpdateDate, project.verifiedAt]),
     ...releases.flatMap((release) => [
       release.testStartDate, release.preregisterDate, release.plannedLaunchDate,
       release.actualLaunchDate, release.serviceEndDate, release.verifiedAt,
@@ -145,6 +145,7 @@
       if (date) milestones.push({ date, label, release });
     };
     add(project.announcementDate, "首次公布", null);
+    add(project.latestUpdateDate, project.latestUpdateLabel || "最近动态", null);
     for (const release of projectReleases) {
       add(release.testStartDate, "开始测试", release);
       add(release.preregisterDate, "开放预约", release);
@@ -279,20 +280,47 @@
   }
 
   function renderSchedule(rows) {
-    const scheduleRows = rows
-      .filter(({ release }) => release && (isoDate(release.actualLaunchDate) || isoDate(release.plannedLaunchDate)))
+    const activeFutureStatuses = new Set(["announced", "testing", "preregister", "upcoming"]);
+    const timingSortKey = (value) => {
+      const exactDate = isoDate(value);
+      if (exactDate) return exactDate;
+      const textValue = String(value || "");
+      const year = textValue.match(/20\d{2}/)?.[0];
+      if (!year) return "9999-12-31";
+      if (/上半年|春/.test(textValue)) return `${year}-04-01`;
+      if (/下半年|秋|年末|冬/.test(textValue)) return `${year}-10-01`;
+      return `${year}-07-01`;
+    };
+    const scheduleCandidates = rows
+      .filter(({ project, release }) => release && (
+        isoDate(release.actualLaunchDate)
+        || String(release.plannedLaunchDate || "").trim()
+        || activeFutureStatuses.has(release.status || project.status)
+      ))
       .map(({ project, release }) => ({
         project,
         release,
-        date: isoDate(release.actualLaunchDate) || isoDate(release.plannedLaunchDate),
+        timing: isoDate(release.actualLaunchDate) || String(release.plannedLaunchDate || "").trim() || "时间待定",
+        sortKey: timingSortKey(release.actualLaunchDate || release.plannedLaunchDate),
         actual: Boolean(isoDate(release.actualLaunchDate)),
-      }))
-      .sort((a, b) => a.date.localeCompare(b.date))
-      .slice(0, 12);
+        future: !isoDate(release.actualLaunchDate) && activeFutureStatuses.has(release.status || project.status),
+      }));
+    const groupedSchedule = new Map();
+    for (const item of scheduleCandidates) {
+      const key = `${item.project.id}:${item.timing}:${item.actual}`;
+      if (!groupedSchedule.has(key)) groupedSchedule.set(key, { ...item, platforms: new Set(), regions: new Set() });
+      groupedSchedule.get(key).platforms.add(platformNames[item.release.platform] || item.release.platform);
+      groupedSchedule.get(key).regions.add(regionNames[item.release.region] || item.release.region);
+    }
+    const scheduleRows = [...groupedSchedule.values()]
+      .sort((a, b) => Number(b.future) - Number(a.future) || a.sortKey.localeCompare(b.sortKey) || a.project.productName.localeCompare(b.project.productName, "zh-CN"))
+      .slice(0, 16);
     elements.scheduleEmpty.hidden = scheduleRows.length > 0;
-    elements.schedule.innerHTML = scheduleRows.map(({ project, release, date, actual }) => `<div class="schedule-row">
-      <time class="schedule-date" datetime="${escapeHtml(date)}">${escapeHtml(date)}</time>
-      <div class="schedule-content"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(platformNames[release.platform] || release.platform)} · ${escapeHtml(regionNames[release.region] || release.region)} · ${actual ? "实际上线" : "计划上线"}</span></div>
+    elements.schedule.innerHTML = scheduleRows.map(({ project, platforms, regions, timing, actual }) => `<div class="schedule-row">
+      ${isoDate(timing)
+        ? `<time class="schedule-date" datetime="${escapeHtml(isoDate(timing))}">${escapeHtml(timing)}</time>`
+        : `<span class="schedule-date">${escapeHtml(timing)}</span>`}
+      <div class="schedule-content"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml([...platforms].join(" / "))} · ${escapeHtml([...regions].join(" / "))} · ${actual ? "实际上线" : "计划上线"}</span></div>
     </div>`).join("");
   }
 
@@ -520,7 +548,7 @@
         <td><span class="table-primary">${escapeHtml(project.developer || "开发商待补")}</span><span class="table-secondary">发行：${escapeHtml(project.publisher || "待补")}</span></td>
         <td><div class="project-platforms"><span class="project-chip platform">${escapeHtml(release ? platformNames[release.platform] || release.platform : "平台待公布")}</span><span class="project-chip region">${escapeHtml(release ? regionNames[release.region] || release.region : "地区待公布")}</span></div><span class="table-secondary">${escapeHtml(release?.store || "渠道待确认")}</span></td>
         <td>${displayDate(project.announcementDate)}</td>
-        <td>${displayDate(release?.plannedLaunchDate)}</td>
+        <td>${displayDate(release?.plannedLaunchDate, ["announced", "testing", "preregister", "upcoming"].includes(status) ? "时间待定" : "待确认")}</td>
         <td>${displayDate(release?.actualLaunchDate, "尚未上线")}</td>
         <td><span class="status-chip ${statusClass(status)}">${escapeHtml(statusNames[status] || status)}</span></td>
         <td>${performance ? `<span class="table-primary">${escapeHtml(formatMetric(performance))}</span><span class="table-secondary">${escapeHtml(levelNames[performance.performanceLevel] || "表现等级待评估")}</span>` : '<span class="project-chip pending">榜单待补</span>'}</td>
@@ -534,21 +562,32 @@
       const projectReleases = rows.filter((row) => row.project.id === project.id).map((row) => row.release).filter(Boolean);
       return project.status === "launched" || projectReleases.some((release) => isoDate(release.actualLaunchDate) && isoDate(release.actualLaunchDate) <= today);
     }).length;
+    const activeFutureStatuses = new Set(["announced", "testing", "preregister", "upcoming"]);
     const upcomingProjects = new Map();
     for (const release of releases) {
       const project = projectById.get(release.projectId);
       const plannedDate = isoDate(release.plannedLaunchDate);
-      if (!project || !baseReleaseMatches(project, release) || isoDate(release.actualLaunchDate) || !plannedDate || plannedDate <= today) continue;
+      const effectiveStatus = release.status || project?.status || "announced";
+      if (!project || !baseReleaseMatches(project, release) || isoDate(release.actualLaunchDate) || !activeFutureStatuses.has(effectiveStatus)) continue;
       const previous = upcomingProjects.get(project.id);
-      if (!previous || plannedDate < previous.plannedDate) upcomingProjects.set(project.id, { project, release, plannedDate });
+      const candidate = { project, release, plannedDate, plannedTiming: String(release.plannedLaunchDate || "").trim() };
+      if (!previous
+        || (plannedDate && !previous.plannedDate)
+        || (plannedDate && previous.plannedDate && plannedDate < previous.plannedDate)
+        || (!plannedDate && candidate.plannedTiming && !previous.plannedDate && !previous.plannedTiming)) {
+        upcomingProjects.set(project.id, candidate);
+      }
     }
-    const nextUpcoming = [...upcomingProjects.values()].sort((a, b) => a.plannedDate.localeCompare(b.plannedDate))[0];
+    const nextUpcoming = [...upcomingProjects.values()]
+      .filter(({ plannedDate }) => plannedDate && plannedDate >= today)
+      .sort((a, b) => a.plannedDate.localeCompare(b.plannedDate))[0];
+    const undatedUpcoming = [...upcomingProjects.values()].filter(({ plannedTiming }) => !plannedTiming).length;
     elements.kpiProjects.textContent = numberFormat.format(uniqueProjects.size);
     elements.kpiLaunched.textContent = numberFormat.format(launched);
     elements.kpiUpcoming.textContent = numberFormat.format(upcomingProjects.size);
     elements.kpiUpcomingDetail.textContent = nextUpcoming
-      ? `${nextUpcoming.project.productName} · ${nextUpcoming.plannedDate}（不受动态期间上限影响）`
-      : "已有明确日期或时间窗口（不受动态期间上限影响）";
+      ? `${nextUpcoming.project.productName} · ${nextUpcoming.plannedDate}${undatedUpcoming ? `；另有 ${undatedUpcoming} 项日期待定` : ""}（跨动态期间）`
+      : `含年份窗口及日期待定的已公布项目${undatedUpcoming ? `（${undatedUpcoming} 项日期待定）` : ""}；跨动态期间`;
     elements.kpiReleases.textContent = numberFormat.format(rows.filter(({ release }) => release).length);
   }
 
