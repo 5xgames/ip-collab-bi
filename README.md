@@ -1,6 +1,6 @@
 # IP Project BI
 
-日本娱乐 IP 与手游联动的地区表现仪表盘。
+日本泛娱乐 IP 游戏相关项目的地区表现仪表盘。
 
 公开网页：<https://5xgames.github.io/ip-collab-bi/>
 
