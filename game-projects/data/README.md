@@ -53,3 +53,5 @@
 当前 AppMagic 手游生命周期估算分级：收入 ≥US$50,000,000 为 phenomenon、≥US$20,000,000 为 strong、≥US$5,000,000 为 good，其余为 ordinary；下载量 ≥10,000,000 为 phenomenon、≥5,000,000 为 strong、≥1,000,000 为 good，其余为 ordinary。免费版只公开数值区间时，`value` 保存公开下限、`lowerBound` 设为 true，并在 `display` 中保留“>”标记；该口径仅用于同类手游规模分级。
 
 历史 Steam 批次分别查询美国与日本商店。商店接口当前无法核验的地区不建立 release，不根据其他地区日期反推；全历史同时在线峰值通过 SteamCharts 或 SteamDB 记录，并在 `scope` 中保留核验截至日期。
+
+地区筛选固定采用 `meta.targetRegions` 中的七个核心市场。`GLOBAL` 与 `ASIA` 不作为可选地区：选择某一核心市场时，这两类记录只能以“公告覆盖、待逐区确认”的状态出现，且不得继承全球榜单或市场表现；存在同平台逐区记录时，逐区记录优先并去除公告范围重复项。

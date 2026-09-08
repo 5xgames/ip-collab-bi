@@ -18,6 +18,10 @@
     CN: "中国大陆", HK: "香港", TW: "台湾", JP: "日本", KR: "韩国",
     SEA: "东南亚", US: "美国", GLOBAL: "全球公告范围", ASIA: "亚洲公告范围",
   };
+  const targetRegionCodes = Array.isArray(meta.targetRegions) && meta.targetRegions.length
+    ? meta.targetRegions.filter((code) => regionNames[code] && !["GLOBAL", "ASIA"].includes(code))
+    : ["JP", "CN", "HK", "TW", "KR", "SEA", "US"];
+  const asiaRegionCodes = new Set(["JP", "CN", "HK", "TW", "KR", "SEA"]);
   const statusNames = {
     announced: "已公布", testing: "测试中", preregister: "预约中", upcoming: "即将上线",
     launched: "已上线", delayed: "延期", cancelled: "已取消", ended: "停止运营",
@@ -170,6 +174,32 @@
     return "ended";
   }
 
+  function releaseRegionMatch(release) {
+    if (!release) return null;
+    if (state.region === "all") {
+      return {
+        displayRegion: release.region,
+        quality: ["GLOBAL", "ASIA"].includes(release.region) ? "announcement_scope" : "verified",
+      };
+    }
+    if (release.region === state.region) return { displayRegion: state.region, quality: "verified" };
+    if (release.region === "GLOBAL") {
+      return { displayRegion: state.region, quality: "announcement_scope", scopeLabel: "全球公告覆盖 · 待逐区确认" };
+    }
+    if (release.region === "ASIA" && asiaRegionCodes.has(state.region)) {
+      return { displayRegion: state.region, quality: "announcement_scope", scopeLabel: "亚洲公告覆盖 · 待逐区确认" };
+    }
+    return null;
+  }
+
+  function displayedRegion(release, regionMatch = releaseRegionMatch(release)) {
+    if (!release || !regionMatch) return { label: "地区待公布", scopeLabel: "" };
+    return {
+      label: regionNames[regionMatch.displayRegion] || regionMatch.displayRegion,
+      scopeLabel: regionMatch.scopeLabel || "",
+    };
+  }
+
   function allMilestones(project, projectReleases) {
     const milestones = [];
     const add = (dateValue, label, release) => {
@@ -217,10 +247,10 @@
     return haystack.includes(state.search.toLocaleLowerCase());
   }
 
-  function baseReleaseMatches(project, release) {
+  function baseReleaseMatches(project, release, { ignoreRegion = false } = {}) {
     const effectiveStatus = release?.status || project.status || "announced";
     return (state.platform === "all" || release?.platform === state.platform)
-      && (state.region === "all" || release?.region === state.region)
+      && (ignoreRegion || state.region === "all" || release?.region === state.region)
       && (state.status === "all" || effectiveStatus === state.status)
       && (state.ipType === "all" || project.ipType === state.ipType)
       && (state.product === "all" || project.id === state.product)
@@ -241,8 +271,16 @@
         }
         continue;
       }
+      const exactPlatforms = new Set(projectReleases
+        .filter((release) => state.region !== "all" && release.region === state.region)
+        .map((release) => release.platform));
       for (const release of projectReleases) {
-        if ((ignoreProjectDate || projectDateMatches(project, [release])) && baseReleaseMatches(project, release)) rows.push({ project, release });
+        const regionMatch = releaseRegionMatch(release);
+        if (!regionMatch) continue;
+        if (regionMatch.quality === "announcement_scope" && exactPlatforms.has(release.platform)) continue;
+        if ((ignoreProjectDate || projectDateMatches(project, [release])) && baseReleaseMatches(project, release, { ignoreRegion: true })) {
+          rows.push({ project, release, regionMatch });
+        }
       }
     }
     return rows;
@@ -263,14 +301,13 @@
 
   function populateFilters() {
     const platformCodes = [...new Set(releases.map((release) => release.platform).filter(Boolean))].sort();
-    const regionCodes = [...new Set(releases.map((release) => release.region).filter(Boolean))].sort();
     const statuses = [...new Set([
       ...projects.map((project) => project.status),
       ...releases.map((release) => release.status),
     ].filter(Boolean))].sort();
     const ipTypes = [...new Set(projects.map((project) => project.ipType).filter(Boolean))].sort();
     appendOptions(elements.platform, platformCodes.map((code) => [code, platformNames[code] || code]));
-    appendOptions(elements.region, regionCodes.map((code) => [code, regionNames[code] || code]));
+    appendOptions(elements.region, targetRegionCodes.map((code) => [code, regionNames[code] || code]));
     appendOptions(elements.status, statuses.map((status) => [status, statusNames[status] || status]));
     appendOptions(elements.ipType, ipTypes.map((type) => [type, type]));
     appendOptions(elements.product, projects
@@ -324,7 +361,8 @@
       const release = milestone?.release || filteredReleases[0];
       const effectiveStatus = release?.status || project.status || "announced";
       const platformLabel = release ? platformNames[release.platform] || release.platform : "平台待公布";
-      const regionLabel = release ? regionNames[release.region] || release.region : "地区待公布";
+      const regionInfo = displayedRegion(release);
+      const regionLabel = regionInfo.scopeLabel ? `${regionInfo.label}（${regionInfo.scopeLabel}）` : regionInfo.label;
       return `<article class="recent-project-card">
         <div class="recent-card-top">
           <div class="recent-card-title"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(project.ipName)} · ${escapeHtml(project.ipType || "IP类型待核验")}</span></div>
@@ -476,7 +514,8 @@
       const key = `${item.project.id}:${item.timing}:${item.actual}`;
       if (!groupedSchedule.has(key)) groupedSchedule.set(key, { ...item, platforms: new Set(), regions: new Set() });
       groupedSchedule.get(key).platforms.add(platformNames[item.release.platform] || item.release.platform);
-      groupedSchedule.get(key).regions.add(regionNames[item.release.region] || item.release.region);
+      const regionInfo = displayedRegion(item.release);
+      groupedSchedule.get(key).regions.add(regionInfo.scopeLabel ? `${regionInfo.label}（${regionInfo.scopeLabel}）` : regionInfo.label);
     }
     const scheduleRows = [...groupedSchedule.values()]
       .sort((a, b) => Number(b.future) - Number(a.future) || a.sortKey.localeCompare(b.sortKey) || a.project.productName.localeCompare(b.project.productName, "zh-CN"))
@@ -705,13 +744,15 @@
     });
     elements.tableCount.textContent = `${numberFormat.format(sortedRows.length)} 条`;
     elements.tableEmpty.hidden = sortedRows.length > 0;
-    elements.tableBody.innerHTML = sortedRows.map(({ project, release }) => {
+    elements.tableBody.innerHTML = sortedRows.map(({ project, release, regionMatch }) => {
       const status = release?.status || project.status || "announced";
-      const performance = release ? latestPerformanceForRelease(release) : null;
+      const scopedOnly = state.region !== "all" && regionMatch?.quality === "announcement_scope";
+      const performance = release && !scopedOnly ? latestPerformanceForRelease(release) : null;
+      const regionInfo = displayedRegion(release, regionMatch);
       return `<tr>
         <td><span class="table-primary">${escapeHtml(project.productName)}</span><span class="table-secondary">${escapeHtml(project.ipName)} · ${escapeHtml(project.ipType || "类型待补")}</span></td>
         <td><span class="table-primary">${escapeHtml(project.developer || "开发商待补")}</span><span class="table-secondary">发行：${escapeHtml(project.publisher || "待补")}</span></td>
-        <td><div class="project-platforms"><span class="project-chip platform">${escapeHtml(release ? platformNames[release.platform] || release.platform : "平台待公布")}</span><span class="project-chip region">${escapeHtml(release ? regionNames[release.region] || release.region : "地区待公布")}</span></div><span class="table-secondary">${escapeHtml(release?.store || "渠道待确认")}</span></td>
+        <td><div class="project-platforms"><span class="project-chip platform">${escapeHtml(release ? platformNames[release.platform] || release.platform : "平台待公布")}</span><span class="project-chip region">${escapeHtml(regionInfo.label)}</span>${regionInfo.scopeLabel ? `<span class="project-chip pending">${escapeHtml(regionInfo.scopeLabel)}</span>` : ""}</div><span class="table-secondary">${escapeHtml(release?.store || "渠道待确认")}</span></td>
         <td>${displayDate(project.announcementDate)}</td>
         <td>${displayDate(release?.plannedLaunchDate, ["announced", "testing", "preregister", "upcoming"].includes(status) ? "时间待定" : "待确认")}</td>
         <td>${displayDate(release?.actualLaunchDate, "尚未上线")}</td>
@@ -766,7 +807,7 @@
     renderPerformance();
     renderTable(rows);
     elements.summary.textContent = rows.length
-      ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台版本。${state.product === "all" ? "" : " 已选择单一产品，项目时间范围不限制其完整生命周期。"}`
+      ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台记录。${state.region === "all" ? "“全球/亚洲”仅表示公告范围。" : `其中 ${rows.filter(({ regionMatch }) => regionMatch?.quality === "verified").length} 条已逐区核验，${rows.filter(({ regionMatch }) => regionMatch?.quality === "announcement_scope").length} 条为公告覆盖待逐区确认。`}${state.product === "all" ? "" : " 已选择单一产品，项目时间范围不限制其完整生命周期。"}`
       : "当前筛选条件下没有可展示的项目；可调整产品、平台、地区或其他项目筛选条件。";
   }
 
