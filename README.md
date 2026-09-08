@@ -1,4 +1,4 @@
-# IP Collab BI
+# IP Project BI
 
 日本娱乐 IP 与手游联动的地区表现仪表盘。
 
