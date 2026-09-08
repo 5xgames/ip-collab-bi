@@ -6,6 +6,7 @@
   const projects = Array.isArray(data.projects) ? data.projects : [];
   const releases = Array.isArray(data.releases) ? data.releases : [];
   const rankSnapshots = Array.isArray(data.rankSnapshots) ? data.rankSnapshots : [];
+  const regionChecks = Array.isArray(data.regionChecks) ? data.regionChecks : [];
   const projectById = new Map(projects.map((project) => [project.id, project]));
   const releaseById = new Map(releases.map((release) => [release.id, release]));
 
@@ -58,6 +59,7 @@
     search: $("#search-filter"),
     reset: $("#reset-filters"),
     summary: $("#filter-summary"),
+    regionAudit: $("#region-audit-summary"),
     kpiProjects: $("#kpi-projects"),
     kpiLaunched: $("#kpi-launched"),
     kpiUpcoming: $("#kpi-upcoming"),
@@ -797,10 +799,34 @@
     elements.kpiReleases.textContent = numberFormat.format(rows.filter(({ release }) => release).length);
   }
 
+  function renderRegionAudit() {
+    const checks = regionChecks.filter((check) => {
+      const project = projectById.get(check.projectId);
+      if (!project) return false;
+      return (state.platform === "all" || check.platform === state.platform)
+        && (state.region === "all" || check.region === state.region)
+        && (state.product === "all" || check.projectId === state.product)
+        && (state.ipType === "all" || project.ipType === state.ipType)
+        && textMatches(project, null);
+    });
+    if (!checks.length) {
+      elements.regionAudit.innerHTML = `<div class="region-audit-empty">当前筛选范围尚无结构化地区商店核验；不等同于确认未发行。</div>`;
+      return;
+    }
+    const count = (availability) => checks.filter((check) => check.availability === availability).length;
+    const marketLabel = state.region === "all" ? "首批四地区" : regionNames[state.region] || state.region;
+    elements.regionAudit.innerHTML = `<div class="region-audit-title"><span>地区商店核验进度</span><strong>${escapeHtml(marketLabel)} · Steam</strong><small>${state.region === "SEA" || state.region === "all" ? "东南亚本批次以新加坡为代表样本" : "来自官方地区商店"}</small></div>
+      <div><span>检查记录</span><strong>${escapeHtml(numberFormat.format(checks.length))}</strong></div>
+      <div><span>当前可用</span><strong>${escapeHtml(numberFormat.format(count("available")))}</strong></div>
+      <div><span>历史已停售</span><strong>${escapeHtml(numberFormat.format(count("delisted_store_page")))}</strong></div>
+      <div><span>当前不可用</span><strong>${escapeHtml(numberFormat.format(count("not_available_currently")))}</strong></div>`;
+  }
+
   function render() {
     const rows = filteredRows();
     const lifecycleRows = collectFilteredRows(true);
     renderKpis(rows);
+    renderRegionAudit();
     renderRecentProjects(rows);
     renderIpActivity(rows, lifecycleRows);
     renderSchedule(rows);

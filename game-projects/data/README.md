@@ -46,6 +46,10 @@
 
 不同平台的原始指标不直接混算。产品级表现应先在各平台内部标准化，再汇总为表现等级。
 
+## regionChecks
+
+每条记录代表一次“项目 × 平台 × 目标地区”的官方商店检查。`availability` 区分 `available`、`delisted_store_page` 与 `not_available_currently`；后两者都不等同于游戏在所有平台从未发行。东南亚为复合地区，检查单一代表市场时必须写入 `representativeCountry` 并在页面披露样本范围。
+
 已正式公布但尚无发售日期的版本仍建立 release，`plannedLaunchDate` 留空、状态设为 `announced`；只有年份或“上半年 / 下半年”等窗口时直接保存官方原文。未来项目统计必须同时包含精确日期、时间窗口和日期待定三类，不得因为商店或榜单尚未出现而漏记。
 
 当前 Steam 历史同时在线峰值分级：≥100,000 为 phenomenon，≥20,000 为 strong，≥5,000 为 good，其余为 ordinary；该阈值不得套用于手游、主机销量或商店奖项。
