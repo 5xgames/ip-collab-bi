@@ -508,7 +508,7 @@
         release,
         timing: isoDate(release.actualLaunchDate) || String(release.plannedLaunchDate || "").trim() || "时间待定",
         sortKey: timingSortKey(release.actualLaunchDate || release.plannedLaunchDate),
-        actual: Boolean(isoDate(release.actualLaunchDate)),
+        actual: Boolean(String(release.actualLaunchDate || "").trim()),
         future: !isoDate(release.actualLaunchDate) && activeFutureStatuses.has(release.status || project.status),
       }));
     const groupedSchedule = new Map();

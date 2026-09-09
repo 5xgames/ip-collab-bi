@@ -1,8 +1,8 @@
 window.GAME_PROJECTS_DATA = {
   "meta": {
-    "schemaVersion": "1.7",
-    "phase": 12,
-    "generatedAt": "2026-09-09T12:15:00+09:00",
+    "schemaVersion": "1.8",
+    "phase": 13,
+    "generatedAt": "2026-09-09T12:16:00+09:00",
     "latestProjectDate": "2026-09-08",
     "coverageStart": "2016-02-18",
     "defaultWindowDays": 90,
@@ -52,7 +52,15 @@ window.GAME_PROJECTS_DATA = {
         "KR",
         "SEA"
       ],
-      "xboxAuditedProducts": 23
+      "xboxAuditedProducts": 23,
+      "nintendoStoreAuditDate": "2026-09-09",
+      "nintendoAuditedRegions": [
+        "HK",
+        "TW",
+        "KR",
+        "SEA"
+      ],
+      "nintendoAuditedProducts": 27
     }
   },
   "projects": [
@@ -6453,6 +6461,1663 @@ window.GAME_PROJECTS_DATA = {
       "verifiedAt": "2026-09-09",
       "storeTitle": "JUJUTSU KAISEN RUMBLE: SURVIVATON",
       "rawStoreReleaseDate": ""
+    },
+    {
+      "id": "one-piece-grand-gourmet-tw-switch",
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch / Nintendo Switch 2）",
+      "storeId": "70010000110968",
+      "storeIds": [
+        "70010000110968",
+        "70010000110986"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2026-10-22",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000110968",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=ONE%20PIECE%20%E6%B5%B7%E6%B4%8B%E7%9B%9B%E5%AE%B4&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "ONE PIECE 海洋盛宴",
+      "storeTitles": [
+        "ONE PIECE 海洋盛宴",
+        "ONE PIECE 海洋盛宴"
+      ],
+      "rawStoreReleaseDate": "2026-10-22T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-10-22T00:00:00Z",
+        "2026-10-22T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "captain-tsubasa-2-world-fighters-tw-switch",
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000113638",
+      "storeIds": [
+        "70010000113638"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2026-08-27",
+      "actualLaunchDate": "2026-08-27",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000113638",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%9A%8A%E9%95%B7%E5%B0%8F%E7%BF%BC&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "隊長小翼2 世界群星",
+      "storeTitles": [
+        "隊長小翼2 世界群星"
+      ],
+      "rawStoreReleaseDate": "2026-08-27T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-08-27T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "one-piece-grand-gourmet-hk-switch",
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch / Nintendo Switch 2）",
+      "storeId": "70010000110968",
+      "storeIds": [
+        "70010000110968",
+        "70010000110986"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2026-10-22",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000110968",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=ONE%20PIECE%20%E6%B5%B7%E6%B4%8B%E7%9B%9B%E5%AE%B4&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "ONE PIECE 海洋盛宴",
+      "storeTitles": [
+        "ONE PIECE 海洋盛宴",
+        "ONE PIECE 海洋盛宴"
+      ],
+      "rawStoreReleaseDate": "2026-10-22T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-10-22T00:00:00Z",
+        "2026-10-22T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "captain-tsubasa-2-world-fighters-hk-switch",
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000113638",
+      "storeIds": [
+        "70010000113638"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2026-08-27",
+      "actualLaunchDate": "2026-08-27",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000113638",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%9A%8A%E9%95%B7%E5%B0%8F%E7%BF%BC&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "隊長小翼2 世界群星",
+      "storeTitles": [
+        "隊長小翼2 世界群星"
+      ],
+      "rawStoreReleaseDate": "2026-08-27T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-08-27T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "my-hero-academia-alls-justice-hk-switch",
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch 2）",
+      "storeId": "70010000103758",
+      "storeIds": [
+        "70010000103758"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2026-09-03",
+      "actualLaunchDate": "2026-09-03",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000103758",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2%20%E7%84%A1%E7%9B%A1%E6%AD%A3%E7%BE%A9&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "我的英雄學院 無盡正義",
+      "storeTitles": [
+        "我的英雄學院 無盡正義"
+      ],
+      "rawStoreReleaseDate": "2026-09-03T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-09-03T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "captain-tsubasa-2-world-fighters-kr-switch",
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000113637",
+      "storeIds": [
+        "70010000113637"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2026-08-27",
+      "actualLaunchDate": "2026-08-27",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000113637",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%BA%A1%ED%8B%B4%20%EC%B8%A0%EB%B0%94%EC%82%AC%202&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "캡틴 츠바사 2 월드 파이터즈",
+      "storeTitles": [
+        "캡틴 츠바사 2 월드 파이터즈"
+      ],
+      "rawStoreReleaseDate": "2026-08-27T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-08-27T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "my-hero-academia-alls-justice-tw-switch",
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch 2）",
+      "storeId": "70010000103758",
+      "storeIds": [
+        "70010000103758"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2026-09-03",
+      "actualLaunchDate": "2026-09-03",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000103758",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2%20%E7%84%A1%E7%9B%A1%E6%AD%A3%E7%BE%A9&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "我的英雄學院 無盡正義",
+      "storeTitles": [
+        "我的英雄學院 無盡正義"
+      ],
+      "rawStoreReleaseDate": "2026-09-03T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-09-03T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "my-hero-academia-alls-justice-kr-switch",
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch 2）",
+      "storeId": "70010000103759",
+      "storeIds": [
+        "70010000103759"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2026-09-03",
+      "actualLaunchDate": "2026-09-03",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000103759",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%82%98%EC%9D%98%20%ED%9E%88%EC%96%B4%EB%A1%9C%20%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8%EC%95%84&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "나의 히어로 아카데미아 올즈 저스티스",
+      "storeTitles": [
+        "나의 히어로 아카데미아 올즈 저스티스"
+      ],
+      "rawStoreReleaseDate": "2026-09-03T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-09-03T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-2-hk-switch",
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000086955",
+      "storeIds": [
+        "70010000086955"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2025-08-01",
+      "actualLaunchDate": "2025-08-01",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000086955",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A2&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "鬼滅之刃 火之神血風譚2",
+      "storeTitles": [
+        "鬼滅之刃 火之神血風譚2"
+      ],
+      "rawStoreReleaseDate": "2025-08-01T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-08-01T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "one-piece-grand-gourmet-kr-switch",
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch / Nintendo Switch 2）",
+      "storeId": "70010000110969",
+      "storeIds": [
+        "70010000110969",
+        "70010000110987"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2026-10-22",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000110969",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%9B%90%ED%94%BC%EC%8A%A4%20%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EB%A0%88%EC%8A%A4%ED%86%A0%EB%9E%91&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "원피스 그랜드 레스토랑",
+      "storeTitles": [
+        "원피스 그랜드 레스토랑",
+        "원피스 그랜드 레스토랑"
+      ],
+      "rawStoreReleaseDate": "2026-10-22T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-10-22T00:00:00Z",
+        "2026-10-22T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-2-tw-switch",
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000086955",
+      "storeIds": [
+        "70010000086955"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-09-09",
+      "actualLaunchDate": "2025-09-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000086955",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A2&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "鬼滅之刃 火之神血風譚2",
+      "storeTitles": [
+        "鬼滅之刃 火之神血風譚2"
+      ],
+      "rawStoreReleaseDate": "2025-09-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "hunter-x-hunter-nen-impact-hk-switch",
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000084030",
+      "storeIds": [
+        "70010000084030"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2025-07-17",
+      "actualLaunchDate": "2025-07-17",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000084030",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "HUNTER×HUNTER NEN×IMPACT",
+      "storeTitles": [
+        "HUNTER×HUNTER NEN×IMPACT"
+      ],
+      "rawStoreReleaseDate": "2025-07-17T09:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-07-17T09:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "one-piece-grand-gourmet-sea-switch",
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch 2 / Nintendo Switch）",
+      "storeId": "70010000110988",
+      "storeIds": [
+        "70010000110988",
+        "70010000110970"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2026-10-22",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000110988",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=ONE%20PIECE%20Grand%20Gourmet",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "ONE PIECE: Grand Gourmet",
+      "storeTitles": [
+        "ONE PIECE: Grand Gourmet",
+        "ONE PIECE: Grand Gourmet"
+      ],
+      "rawStoreReleaseDate": "2026.10.22",
+      "rawStoreReleaseDates": [
+        "2026.10.22",
+        "2026.10.22"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "hunter-x-hunter-nen-impact-tw-switch",
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000084030",
+      "storeIds": [
+        "70010000084030"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-09-09",
+      "actualLaunchDate": "2025-09-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000084030",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "HUNTER×HUNTER NEN×IMPACT",
+      "storeTitles": [
+        "HUNTER×HUNTER NEN×IMPACT"
+      ],
+      "rawStoreReleaseDate": "2025-09-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "captain-tsubasa-2-world-fighters-sea-switch",
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch）",
+      "storeId": "70010000113641",
+      "storeIds": [
+        "70010000113641"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2026-08-27",
+      "actualLaunchDate": "2026-08-27",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000113641",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=CAPTAIN%20TSUBASA%202",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "storeTitles": [
+        "CAPTAIN TSUBASA 2: WORLD FIGHTERS"
+      ],
+      "rawStoreReleaseDate": "2026.8.27",
+      "rawStoreReleaseDates": [
+        "2026.8.27"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-2-kr-switch",
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000086958",
+      "storeIds": [
+        "70010000086958"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2025-08-01",
+      "actualLaunchDate": "2025-08-01",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000086958",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EA%B7%80%EB%A9%B8%EC%9D%98%20%EC%B9%BC%EB%82%A0%20%ED%9E%88%EB%85%B8%EC%B9%B4%EB%AF%B8%20%ED%98%88%ED%92%8D%EB%8B%B42&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "귀멸의 칼날 히노카미 혈풍담2",
+      "storeTitles": [
+        "귀멸의 칼날 히노카미 혈풍담2"
+      ],
+      "rawStoreReleaseDate": "2025-08-01T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-08-01T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "dragon-ball-gekishin-squadra-hk-switch",
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000063787",
+      "storeIds": [
+        "70010000063787"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2025-09-10",
+      "actualLaunchDate": "2025-09-10",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000063787",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=DRAGON%20BALL%20GEKISHIN%20SQUADRA&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "DRAGON BALL GEKISHIN SQUADRA",
+      "storeTitles": [
+        "DRAGON BALL GEKISHIN SQUADRA"
+      ],
+      "rawStoreReleaseDate": "2025-09-10T09:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-10T09:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "hunter-x-hunter-nen-impact-kr-switch",
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000084029",
+      "storeIds": [
+        "70010000084029"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2025-07-17",
+      "actualLaunchDate": "2025-07-17",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000084029",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "HUNTER×HUNTER NEN×IMPACT",
+      "storeTitles": [
+        "HUNTER×HUNTER NEN×IMPACT"
+      ],
+      "rawStoreReleaseDate": "2025-07-17T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-07-17T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "dragon-ball-fighterz-hk-switch",
+      "projectId": "dragon-ball-fighterz",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000012963",
+      "storeIds": [
+        "70010000012963"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2022-12-19",
+      "actualLaunchDate": "2022-12-19",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000012963",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=FighterZ&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "Dragonball FighterZ",
+      "storeTitles": [
+        "Dragonball FighterZ"
+      ],
+      "rawStoreReleaseDate": "2022-12-19T17:00:00Z",
+      "rawStoreReleaseDates": [
+        "2022-12-19T17:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-2-sea-switch",
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch）",
+      "storeId": "70010000107717",
+      "storeIds": [
+        "70010000107717"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2025-11-18",
+      "actualLaunchDate": "2025-11-18",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000107717",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Demon%20Slayer%20Hinokami%20Chronicles%202",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+      "storeTitles": [
+        "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2"
+      ],
+      "rawStoreReleaseDate": "2025.11.18",
+      "rawStoreReleaseDates": [
+        "2025.11.18"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "my-hero-academia-alls-justice-sea-switch",
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch 2）",
+      "storeId": "70010000122388",
+      "storeIds": [
+        "70010000122388"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2026-09-03",
+      "actualLaunchDate": "2026-09-03",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000122388",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=MY%20HERO%20ACADEMIA%20All's%20Justice",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "MY HERO ACADEMIA: All's Justice",
+      "storeTitles": [
+        "MY HERO ACADEMIA: All's Justice"
+      ],
+      "rawStoreReleaseDate": "2026.9.3",
+      "rawStoreReleaseDates": [
+        "2026.9.3"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "my-hero-ones-justice-hk-switch",
+      "projectId": "my-hero-ones-justice",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000012361",
+      "storeIds": [
+        "70010000012361"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2018-10-25",
+      "actualLaunchDate": "2018-10-25",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000012361",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2%20%E5%94%AF%E6%88%91%E6%AD%A3%E7%BE%A9&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "我的英雄學院 唯我正義",
+      "storeTitles": [
+        "我的英雄學院 唯我正義"
+      ],
+      "rawStoreReleaseDate": "2018-10-25T17:00:00Z",
+      "rawStoreReleaseDates": [
+        "2018-10-25T17:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "hunter-x-hunter-nen-impact-sea-switch",
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch）",
+      "storeId": "70010000108877",
+      "storeIds": [
+        "70010000108877"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2025-11-18",
+      "actualLaunchDate": "2025-11-18",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000108877",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "HUNTER×HUNTER NEN×IMPACT",
+      "storeTitles": [
+        "HUNTER×HUNTER NEN×IMPACT"
+      ],
+      "rawStoreReleaseDate": "2025.11.18",
+      "rawStoreReleaseDates": [
+        "2025.11.18"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "dragon-ball-z-kakarot-hk-switch",
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000035340",
+      "storeIds": [
+        "70010000035340"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2021-09-22",
+      "actualLaunchDate": "2021-09-22",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000035340",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E4%B8%83%E9%BE%8D%E7%8F%A0Z%20%E5%8D%A1%E5%8D%A1%E6%B4%9B%E7%89%B9&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "七龍珠Z 卡卡洛特 + 新覺醒篇",
+      "storeTitles": [
+        "七龍珠Z 卡卡洛特 + 新覺醒篇"
+      ],
+      "rawStoreReleaseDate": "2021-09-22T17:00:00Z",
+      "rawStoreReleaseDates": [
+        "2021-09-22T17:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-hk-switch",
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000048561",
+      "storeIds": [
+        "70010000048561"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2022-06-09",
+      "actualLaunchDate": "2022-06-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000048561",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "鬼滅之刃 火之神血風譚",
+      "storeTitles": [
+        "鬼滅之刃 火之神血風譚"
+      ],
+      "rawStoreReleaseDate": "2022-06-09T17:00:00Z",
+      "rawStoreReleaseDates": [
+        "2022-06-09T17:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-tw-switch",
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000048561",
+      "storeIds": [
+        "70010000048561"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-09-09",
+      "actualLaunchDate": "2025-09-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000048561",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "鬼滅之刃 火之神血風譚",
+      "storeTitles": [
+        "鬼滅之刃 火之神血風譚"
+      ],
+      "rawStoreReleaseDate": "2025-09-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "dragon-ball-z-kakarot-kr-switch",
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000035339",
+      "storeIds": [
+        "70010000035339"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2021-09-24",
+      "actualLaunchDate": "2021-09-24",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000035339",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%93%9C%EB%9E%98%EA%B3%A4%EB%B3%BC%20Z%20%EC%B9%B4%EC%B9%B4%EB%A1%9C%ED%8A%B8&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "드래곤볼 Z 카카로트 + 새로운 각성 편",
+      "storeTitles": [
+        "드래곤볼 Z 카카로트 + 새로운 각성 편"
+      ],
+      "rawStoreReleaseDate": "2021-09-24T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2021-09-24T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-kr-switch",
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000048382",
+      "storeIds": [
+        "70010000048382"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2022-06-09",
+      "actualLaunchDate": "2022-06-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000048382",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EA%B7%80%EB%A9%B8%EC%9D%98%20%EC%B9%BC%EB%82%A0%20%ED%9E%88%EB%85%B8%EC%B9%B4%EB%AF%B8%20%ED%98%88%ED%92%8D%EB%8B%B4&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "귀멸의 칼날 히노카미 혈풍담",
+      "storeTitles": [
+        "귀멸의 칼날 히노카미 혈풍담"
+      ],
+      "rawStoreReleaseDate": "2022-06-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2022-06-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "jojo-all-star-battle-r-hk-switch",
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000054239",
+      "storeIds": [
+        "70010000054239"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2022-09-01",
+      "actualLaunchDate": "2022-09-01",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000054239",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=JOJO%E7%9A%84%E5%A5%87%E5%A6%99%E5%86%92%E9%9A%AA%20%E7%BE%A4%E6%98%9F%E4%B9%8B%E6%88%B0&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "JOJO的奇妙冒險 群星之戰 重製版",
+      "storeTitles": [
+        "JOJO的奇妙冒險 群星之戰 重製版"
+      ],
+      "rawStoreReleaseDate": "2022-09-01T17:00:00Z",
+      "rawStoreReleaseDates": [
+        "2022-09-01T17:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "jojo-all-star-battle-r-tw-switch",
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000054239",
+      "storeIds": [
+        "70010000054239"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-09-09",
+      "actualLaunchDate": "2025-09-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000054239",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=JOJO%E7%9A%84%E5%A5%87%E5%A6%99%E5%86%92%E9%9A%AA%20%E7%BE%A4%E6%98%9F%E4%B9%8B%E6%88%B0&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "JOJO的奇妙冒險 群星之戰 重製版",
+      "storeTitles": [
+        "JOJO的奇妙冒險 群星之戰 重製版"
+      ],
+      "rawStoreReleaseDate": "2025-09-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "one-piece-odyssey-hk-switch",
+      "projectId": "one-piece-odyssey",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000063984",
+      "storeIds": [
+        "70010000063984"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2024-07-25",
+      "actualLaunchDate": "2024-07-25",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000063984",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=ONE%20PIECE%20%E6%99%82%E5%85%89%E6%97%85%E8%A9%A9&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "ONE PIECE 時光旅詩 豪華版",
+      "storeTitles": [
+        "ONE PIECE 時光旅詩 豪華版"
+      ],
+      "rawStoreReleaseDate": "2024-07-25T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2024-07-25T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "jujutsu-kaisen-cursed-clash-hk-switch",
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000062526",
+      "storeIds": [
+        "70010000062526"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2024-02-01",
+      "actualLaunchDate": "2024-02-01",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000062526",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E5%92%92%E8%A1%93%E8%BF%B4%E6%88%B0%20%E9%9B%99%E8%8F%AF%E4%BA%82%E8%88%9E&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "咒術迴戰 雙華亂舞",
+      "storeTitles": [
+        "咒術迴戰 雙華亂舞"
+      ],
+      "rawStoreReleaseDate": "2024-02-01T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2024-02-01T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "jujutsu-kaisen-cursed-clash-kr-switch",
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000062525",
+      "storeIds": [
+        "70010000062525"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2024-02-01",
+      "actualLaunchDate": "2024-02-01",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000062525",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%20%EC%A0%84%ED%99%94%ED%96%A5%EB%AA%85&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "주술회전 전화향명",
+      "storeTitles": [
+        "주술회전 전화향명"
+      ],
+      "rawStoreReleaseDate": "2024-02-01T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2024-02-01T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "naruto-storm-connections-hk-switch",
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000056879",
+      "storeIds": [
+        "70010000056879"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2023-11-16",
+      "actualLaunchDate": "2023-11-16",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000056879",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=NARUTO%20%E7%B5%82%E6%A5%B5%E9%A2%A8%E6%9A%B4%E7%BE%88%E7%B5%86&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "NARUTO X BORUTO 火影忍者 終極風暴羈絆",
+      "storeTitles": [
+        "NARUTO X BORUTO 火影忍者 終極風暴羈絆"
+      ],
+      "rawStoreReleaseDate": "2023-11-16T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2023-11-16T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "naruto-storm-connections-tw-switch",
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000056879",
+      "storeIds": [
+        "70010000056879"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-09-09",
+      "actualLaunchDate": "2025-09-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000056879",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=NARUTO%20%E7%B5%82%E6%A5%B5%E9%A2%A8%E6%9A%B4%E7%BE%88%E7%B5%86&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "NARUTO X BORUTO 火影忍者 終極風暴羈絆",
+      "storeTitles": [
+        "NARUTO X BORUTO 火影忍者 終極風暴羈絆"
+      ],
+      "rawStoreReleaseDate": "2025-09-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "demon-slayer-hinokami-chronicles-sea-switch",
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch）",
+      "storeId": "70010000109446",
+      "storeIds": [
+        "70010000109446"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2025-11-18",
+      "actualLaunchDate": "2025-11-18",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000109446",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Demon%20Slayer%20Hinokami%20Chronicles",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+      "storeTitles": [
+        "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles"
+      ],
+      "rawStoreReleaseDate": "2025.11.18",
+      "rawStoreReleaseDates": [
+        "2025.11.18"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "naruto-storm-connections-kr-switch",
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000056878",
+      "storeIds": [
+        "70010000056878"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2023-11-16",
+      "actualLaunchDate": "2023-11-16",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000056878",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%82%98%EB%A3%A8%ED%8B%B0%EB%B0%8B%20%EC%8A%A4%ED%86%B0%20%EC%BB%A4%EB%84%A5%EC%85%98%EC%A6%88&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "나루토 X 보루토 나루티밋 스톰 커넥션즈",
+      "storeTitles": [
+        "나루토 X 보루토 나루티밋 스톰 커넥션즈"
+      ],
+      "rawStoreReleaseDate": "2023-11-16T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2023-11-16T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "dragon-ball-sparking-zero-hk-switch",
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch / Nintendo Switch 2）",
+      "storeId": "70010000092463",
+      "storeIds": [
+        "70010000092463",
+        "70010000102647"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2025-11-13",
+      "actualLaunchDate": "2025-11-13",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000092463",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Sparking!%20ZERO&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "七龍珠 電光炸裂！ZERO (DRAGON BALL: Sparking! ZERO)",
+      "storeTitles": [
+        "七龍珠 電光炸裂！ZERO (DRAGON BALL: Sparking! ZERO)",
+        "七龍珠 電光炸裂！ZERO (DRAGON BALL: Sparking! ZERO)"
+      ],
+      "rawStoreReleaseDate": "2025-11-13T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-11-13T00:00:00Z",
+        "2025-11-13T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "fairy-tail-2-hk-switch",
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000082888",
+      "storeIds": [
+        "70010000082888"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2024-12-12",
+      "actualLaunchDate": "2024-12-12",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000082888",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=FAIRY%20TAIL%202&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "FAIRY TAIL 2",
+      "storeTitles": [
+        "FAIRY TAIL 2"
+      ],
+      "rawStoreReleaseDate": "2024-12-12T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2024-12-12T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "jojo-all-star-battle-r-sea-switch",
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch）",
+      "storeId": "70010000107701",
+      "storeIds": [
+        "70010000107701"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2025-11-18",
+      "actualLaunchDate": "2025-11-18",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000107701",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=JoJo%20All-Star%20Battle%20R",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "JoJo's Bizarre Adventure: All-Star Battle R",
+      "storeTitles": [
+        "JoJo's Bizarre Adventure: All-Star Battle R"
+      ],
+      "rawStoreReleaseDate": "2025.11.18",
+      "rawStoreReleaseDates": [
+        "2025.11.18"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "naruto-storm-connections-sea-switch",
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch）",
+      "storeId": "70010000107974",
+      "storeIds": [
+        "70010000107974"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2025-11-18",
+      "actualLaunchDate": "2025-11-18",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000107974",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=NARUTO%20STORM%20CONNECTIONS",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+      "storeTitles": [
+        "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS"
+      ],
+      "rawStoreReleaseDate": "2025.11.18",
+      "rawStoreReleaseDates": [
+        "2025.11.18"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "dragon-ball-sparking-zero-kr-switch",
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch 2 / Nintendo Switch）",
+      "storeId": "70010000102735",
+      "storeIds": [
+        "70010000102735",
+        "70010000092462"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2025-11-13",
+      "actualLaunchDate": "2025-11-13",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000102735",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%93%9C%EB%9E%98%EA%B3%A4%EB%B3%BC%20%EC%8A%A4%ED%8C%8C%ED%82%B9%20%EC%A0%9C%EB%A1%9C&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "드래곤볼 스파킹! 제로 (DRAGON BALL: Sparking! ZERO)",
+      "storeTitles": [
+        "드래곤볼 스파킹! 제로 (DRAGON BALL: Sparking! ZERO)",
+        "드래곤볼 스파킹! 제로 (DRAGON BALL: Sparking! ZERO)"
+      ],
+      "rawStoreReleaseDate": "2025-11-13T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-11-13T00:00:00Z",
+        "2025-11-13T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "dragon-ball-sparking-zero-tw-switch",
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch / Nintendo Switch 2）",
+      "storeId": "70010000092463",
+      "storeIds": [
+        "70010000092463",
+        "70010000102647"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-11-13",
+      "actualLaunchDate": "2025-11-13",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000092463",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Sparking!%20ZERO&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "七龍珠 電光炸裂！ZERO (DRAGON BALL: Sparking! ZERO)",
+      "storeTitles": [
+        "七龍珠 電光炸裂！ZERO (DRAGON BALL: Sparking! ZERO)",
+        "七龍珠 電光炸裂！ZERO (DRAGON BALL: Sparking! ZERO)"
+      ],
+      "rawStoreReleaseDate": "2025-11-13T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-11-13T00:00:00Z",
+        "2025-11-13T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "fairy-tail-2-tw-switch",
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000082888",
+      "storeIds": [
+        "70010000082888"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-09-09",
+      "actualLaunchDate": "2025-09-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000082888",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=FAIRY%20TAIL%202&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "FAIRY TAIL 2",
+      "storeTitles": [
+        "FAIRY TAIL 2"
+      ],
+      "rawStoreReleaseDate": "2025-09-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "kingdom-hearts-iv-hk-switch",
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch 2）",
+      "storeId": "70010000126664",
+      "storeIds": [
+        "70010000126664"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2027年下半年",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000126664",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=KINGDOM%20HEARTS%20IV&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "KINGDOM HEARTS IV",
+      "storeTitles": [
+        "KINGDOM HEARTS IV"
+      ],
+      "rawStoreReleaseDate": "2027-12-31T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2027-12-31T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "dragon-ball-sparking-zero-sea-switch",
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch 2 / Nintendo Switch）",
+      "storeId": "70010000111935",
+      "storeIds": [
+        "70010000111935",
+        "70010000112350"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2026-05-27",
+      "actualLaunchDate": "2026-05-27",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000111935",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=DRAGON%20BALL%20Sparking%20ZERO",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "DRAGON BALL: Sparking! ZERO",
+      "storeTitles": [
+        "DRAGON BALL: Sparking! ZERO",
+        "DRAGON BALL: Sparking! ZERO"
+      ],
+      "rawStoreReleaseDate": "2026.5.27",
+      "rawStoreReleaseDates": [
+        "2026.5.27",
+        "2026.5.27"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "kingdom-hearts-iv-tw-switch",
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch 2）",
+      "storeId": "70010000126664",
+      "storeIds": [
+        "70010000126664"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2027年下半年",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000126664",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=KINGDOM%20HEARTS%20IV&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "KINGDOM HEARTS IV",
+      "storeTitles": [
+        "KINGDOM HEARTS IV"
+      ],
+      "rawStoreReleaseDate": "2027-12-31T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2027-12-31T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "fairy-tail-2-sea-switch",
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch）",
+      "storeId": "70010000124063",
+      "storeIds": [
+        "70010000124063"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2026-08-27",
+      "actualLaunchDate": "2026-08-27",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000124063",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=FAIRY%20TAIL%202",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "FAIRY TAIL 2",
+      "storeTitles": [
+        "FAIRY TAIL 2"
+      ],
+      "rawStoreReleaseDate": "2026.8.27",
+      "rawStoreReleaseDates": [
+        "2026.8.27"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "attack-on-titan-2-hk-switch",
+      "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch）",
+      "storeId": "70010000009751",
+      "storeIds": [
+        "70010000009751"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2019-07-04",
+      "actualLaunchDate": "2019-07-04",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000009751",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%80%B2%E6%93%8A%E7%9A%84%E5%B7%A8%E4%BA%BA%EF%BC%92&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "進擊的巨人２",
+      "storeTitles": [
+        "進擊的巨人２"
+      ],
+      "rawStoreReleaseDate": "2019-07-04T17:00:00Z",
+      "rawStoreReleaseDates": [
+        "2019-07-04T17:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "attack-on-titan-2-tw-switch",
+      "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch）",
+      "storeId": "70010000103959",
+      "storeIds": [
+        "70010000103959"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2025-09-09",
+      "actualLaunchDate": "2025-09-09",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000103959",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%80%B2%E6%93%8A%E7%9A%84%E5%B7%A8%E4%BA%BA%EF%BC%92&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "進擊的巨人２",
+      "storeTitles": [
+        "進擊的巨人２"
+      ],
+      "rawStoreReleaseDate": "2025-09-09T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2025-09-09T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "attack-on-titan-2-kr-switch",
+      "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70070000006284",
+      "storeIds": [
+        "70070000006284"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "已上线（当地基础版首发日期待核验）",
+      "actualLaunchDate": "已上线（当地基础版首发日期待核验）",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70070000006284",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A7%84%EA%B2%A9%EC%9D%98%20%EA%B1%B0%EC%9D%B8%202&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "진격의 거인 2 -Final Battle-",
+      "storeTitles": [
+        "진격의 거인 2 -Final Battle-"
+      ],
+      "rawStoreReleaseDate": "2019-07-04T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2019-07-04T00:00:00Z"
+      ],
+      "note": "韩国当前条目为包含本体的 Final Battle 版本；仅用于确认当前可用，不以版本日期反推本体首发日期。"
+    },
+    {
+      "id": "another-eden-begins-hk-switch",
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "HK",
+      "store": "Nintendo 香港官方目录（Nintendo Switch 2 / Nintendo Switch）",
+      "storeId": "70010000128639",
+      "storeIds": [
+        "70010000128639",
+        "70010000105773"
+      ],
+      "representativeCountry": "HK",
+      "plannedLaunchDate": "2026-09-16",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000128639",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Another%20Eden%20Begins&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "Another Eden Begins Nintendo Switch 2 Edition",
+      "storeTitles": [
+        "Another Eden Begins Nintendo Switch 2 Edition",
+        "Another Eden Begins"
+      ],
+      "rawStoreReleaseDate": "2026-09-16T23:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-09-16T23:00:00Z",
+        "2026-09-16T23:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "another-eden-begins-tw-switch",
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "TW",
+      "store": "Nintendo 台湾官方目录（Nintendo Switch / Nintendo Switch 2）",
+      "storeId": "70010000105773",
+      "storeIds": [
+        "70010000105773",
+        "70010000128639"
+      ],
+      "representativeCountry": "TW",
+      "plannedLaunchDate": "2026-09-16",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000105773",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Another%20Eden%20Begins&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "Another Eden Begins",
+      "storeTitles": [
+        "Another Eden Begins",
+        "Another Eden Begins Nintendo Switch 2 Edition"
+      ],
+      "rawStoreReleaseDate": "2026-09-16T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-09-16T00:00:00Z",
+        "2026-09-16T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "kingdom-hearts-iv-sea-switch",
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch 2）",
+      "storeId": "70010000126833",
+      "storeIds": [
+        "70010000126833"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2027年下半年",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000126833",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=KINGDOM%20HEARTS%20IV",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "KINGDOM HEARTS IV",
+      "storeTitles": [
+        "KINGDOM HEARTS IV"
+      ],
+      "rawStoreReleaseDate": "2027",
+      "rawStoreReleaseDates": [
+        "2027"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "another-eden-begins-sea-switch",
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "SEA",
+      "store": "Nintendo 东南亚官方目录（Nintendo Switch 2 / Nintendo Switch）",
+      "storeId": "70010000128641",
+      "storeIds": [
+        "70010000128641",
+        "70010000121182"
+      ],
+      "representativeCountry": "SG",
+      "plannedLaunchDate": "2026-09-16",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000128641",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Another%20Eden%20Begins",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "Another Eden Begins Nintendo Switch 2 Edition",
+      "storeTitles": [
+        "Another Eden Begins Nintendo Switch 2 Edition",
+        "Another Eden Begins"
+      ],
+      "rawStoreReleaseDate": "2026.9.16",
+      "rawStoreReleaseDates": [
+        "2026.9.16",
+        "2026.9.16"
+      ],
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "id": "another-eden-begins-kr-switch",
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "KR",
+      "store": "Nintendo 韩国官方目录（Nintendo Switch）",
+      "storeId": "70010000105774",
+      "storeIds": [
+        "70010000105774"
+      ],
+      "representativeCountry": "KR",
+      "plannedLaunchDate": "2026-09-17",
+      "actualLaunchDate": "",
+      "status": "upcoming",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000105774",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=Another%20Eden%20Begins&sftab=all",
+      "verifiedAt": "2026-09-09",
+      "storeTitle": "Another Eden Begins",
+      "storeTitles": [
+        "Another Eden Begins"
+      ],
+      "rawStoreReleaseDate": "2026-09-17T00:00:00Z",
+      "rawStoreReleaseDates": [
+        "2026-09-17T00:00:00Z"
+      ],
+      "note": "Nintendo 官方地区目录与商品页核验。"
     }
   ],
   "rankSnapshots": [
@@ -6868,6 +8533,73 @@ window.GAME_PROJECTS_DATA = {
   ],
   "regionChecks": [
     {
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000128639",
+      "storeIds": [
+        "70010000128639",
+        "70010000105773"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000128639",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Another%20Eden%20Begins&sftab=all",
+      "searchQuery": "Another Eden Begins",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000105774",
+      "storeIds": [
+        "70010000105774"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000105774",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=Another%20Eden%20Begins&sftab=all",
+      "searchQuery": "Another Eden Begins",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000128641",
+      "storeIds": [
+        "70010000128641",
+        "70010000121182"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000128641",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Another%20Eden%20Begins",
+      "searchQuery": "Another Eden Begins",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000105773",
+      "storeIds": [
+        "70010000105773",
+        "70010000128639"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000105773",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Another%20Eden%20Begins&sftab=all",
+      "searchQuery": "Another Eden Begins",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
       "projectId": "attack-on-titan-2",
       "platform": "steam",
       "region": "HK",
@@ -6913,6 +8645,65 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000009751",
+      "storeIds": [
+        "70010000009751"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000009751",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%80%B2%E6%93%8A%E7%9A%84%E5%B7%A8%E4%BA%BA%EF%BC%92&sftab=all",
+      "searchQuery": "進擊的巨人２",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70070000006284",
+      "storeIds": [
+        "70070000006284"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70070000006284",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A7%84%EA%B2%A9%EC%9D%98%20%EA%B1%B0%EC%9D%B8%202&sftab=all",
+      "searchQuery": "진격의 거인 2",
+      "note": "Nintendo 官方地区目录与商品页核验。 韩国当前条目为包含本体的 Final Battle 版本；仅用于确认当前可用，不以版本日期反推本体首发日期。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Attack%20on%20Titan%202",
+      "searchQuery": "Attack on Titan 2",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000103959",
+      "storeIds": [
+        "70010000103959"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000103959",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%80%B2%E6%93%8A%E7%9A%84%E5%B7%A8%E4%BA%BA%EF%BC%92&sftab=all",
+      "searchQuery": "進擊的巨人２",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -6954,6 +8745,50 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/C596V0P64DD6",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Attack%20on%20Titan%203&sftab=all",
+      "searchQuery": "Attack on Titan 3",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A7%84%EA%B2%A9%EC%9D%98%20%EA%B1%B0%EC%9D%B8%203&sftab=all",
+      "searchQuery": "진격의 거인 3",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Attack%20on%20Titan%203",
+      "searchQuery": "Attack on Titan 3",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Attack%20on%20Titan%203&sftab=all",
+      "searchQuery": "Attack on Titan 3",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "attack-on-titan-3",
@@ -7309,6 +9144,70 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000113638",
+      "storeIds": [
+        "70010000113638"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000113638",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%9A%8A%E9%95%B7%E5%B0%8F%E7%BF%BC&sftab=all",
+      "searchQuery": "隊長小翼",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000113637",
+      "storeIds": [
+        "70010000113637"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000113637",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%BA%A1%ED%8B%B4%20%EC%B8%A0%EB%B0%94%EC%82%AC%202&sftab=all",
+      "searchQuery": "캡틴 츠바사 2",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000113641",
+      "storeIds": [
+        "70010000113641"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000113641",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=CAPTAIN%20TSUBASA%202",
+      "searchQuery": "CAPTAIN TSUBASA 2",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000113638",
+      "storeIds": [
+        "70010000113638"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000113638",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%9A%8A%E9%95%B7%E5%B0%8F%E7%BF%BC&sftab=all",
+      "searchQuery": "隊長小翼",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -7438,6 +9337,70 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1490890/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000048561",
+      "storeIds": [
+        "70010000048561"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000048561",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A&sftab=all",
+      "searchQuery": "鬼滅之刃 火之神血風譚",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000048382",
+      "storeIds": [
+        "70010000048382"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000048382",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EA%B7%80%EB%A9%B8%EC%9D%98%20%EC%B9%BC%EB%82%A0%20%ED%9E%88%EB%85%B8%EC%B9%B4%EB%AF%B8%20%ED%98%88%ED%92%8D%EB%8B%B4&sftab=all",
+      "searchQuery": "귀멸의 칼날 히노카미 혈풍담",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000109446",
+      "storeIds": [
+        "70010000109446"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000109446",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Demon%20Slayer%20Hinokami%20Chronicles",
+      "searchQuery": "Demon Slayer Hinokami Chronicles",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000048561",
+      "storeIds": [
+        "70010000048561"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000048561",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A&sftab=all",
+      "searchQuery": "鬼滅之刃 火之神血風譚",
+      "note": "Nintendo 官方地区目录与商品页核验。"
     },
     {
       "projectId": "demon-slayer-hinokami-chronicles",
@@ -7573,6 +9536,70 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000086955",
+      "storeIds": [
+        "70010000086955"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000086955",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A2&sftab=all",
+      "searchQuery": "鬼滅之刃 火之神血風譚2",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000086958",
+      "storeIds": [
+        "70010000086958"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000086958",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EA%B7%80%EB%A9%B8%EC%9D%98%20%EC%B9%BC%EB%82%A0%20%ED%9E%88%EB%85%B8%EC%B9%B4%EB%AF%B8%20%ED%98%88%ED%92%8D%EB%8B%B42&sftab=all",
+      "searchQuery": "귀멸의 칼날 히노카미 혈풍담2",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000107717",
+      "storeIds": [
+        "70010000107717"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000107717",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Demon%20Slayer%20Hinokami%20Chronicles%202",
+      "searchQuery": "Demon Slayer Hinokami Chronicles 2",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000086955",
+      "storeIds": [
+        "70010000086955"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000086955",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E9%AC%BC%E6%BB%85%E4%B9%8B%E5%88%83%20%E7%81%AB%E4%B9%8B%E7%A5%9E%E8%A1%80%E9%A2%A8%E8%AD%9A2&sftab=all",
+      "searchQuery": "鬼滅之刃 火之神血風譚2",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -7658,6 +9685,55 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/678950/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000012963",
+      "storeIds": [
+        "70010000012963"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000012963",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=FighterZ&sftab=all",
+      "searchQuery": "FighterZ",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%93%9C%EB%9E%98%EA%B3%A4%EB%B3%BC%20%ED%8C%8C%EC%9D%B4%ED%84%B0%EC%A6%88&sftab=all",
+      "searchQuery": "드래곤볼 파이터즈",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=DRAGON%20BALL%20FighterZ",
+      "searchQuery": "DRAGON BALL FighterZ",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=FighterZ&sftab=all",
+      "searchQuery": "FighterZ",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "dragon-ball-fighterz",
@@ -7748,6 +9824,55 @@ window.GAME_PROJECTS_DATA = {
       "note": "Steam 官方地区商店接口核验。"
     },
     {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000063787",
+      "storeIds": [
+        "70010000063787"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000063787",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=DRAGON%20BALL%20GEKISHIN%20SQUADRA&sftab=all",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EA%B2%A9%EC%8B%A0%20%EC%8A%A4%EC%BF%BC%EB%93%9C%EB%9D%BC&sftab=all",
+      "searchQuery": "격신 스쿼드라",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=DRAGON%20BALL%20GEKISHIN%20SQUADRA",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=DRAGON%20BALL%20GEKISHIN%20SQUADRA&sftab=all",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
       "projectId": "dragon-ball-sparking-zero",
       "platform": "playstation",
       "region": "HK",
@@ -7834,6 +9959,74 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1790600/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000092463",
+      "storeIds": [
+        "70010000092463",
+        "70010000102647"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000092463",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Sparking!%20ZERO&sftab=all",
+      "searchQuery": "Sparking! ZERO",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000102735",
+      "storeIds": [
+        "70010000102735",
+        "70010000092462"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000102735",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%93%9C%EB%9E%98%EA%B3%A4%EB%B3%BC%20%EC%8A%A4%ED%8C%8C%ED%82%B9%20%EC%A0%9C%EB%A1%9C&sftab=all",
+      "searchQuery": "드래곤볼 스파킹 제로",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000111935",
+      "storeIds": [
+        "70010000111935",
+        "70010000112350"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000111935",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=DRAGON%20BALL%20Sparking%20ZERO",
+      "searchQuery": "DRAGON BALL Sparking ZERO",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000092463",
+      "storeIds": [
+        "70010000092463",
+        "70010000102647"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000092463",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Sparking!%20ZERO&sftab=all",
+      "searchQuery": "Sparking! ZERO",
+      "note": "Nintendo 官方地区目录与商品页核验。"
     },
     {
       "projectId": "dragon-ball-sparking-zero",
@@ -7966,6 +10159,60 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/851850/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000035340",
+      "storeIds": [
+        "70010000035340"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000035340",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E4%B8%83%E9%BE%8D%E7%8F%A0Z%20%E5%8D%A1%E5%8D%A1%E6%B4%9B%E7%89%B9&sftab=all",
+      "searchQuery": "七龍珠Z 卡卡洛特",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000035339",
+      "storeIds": [
+        "70010000035339"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000035339",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%93%9C%EB%9E%98%EA%B3%A4%EB%B3%BC%20Z%20%EC%B9%B4%EC%B9%B4%EB%A1%9C%ED%8A%B8&sftab=all",
+      "searchQuery": "드래곤볼 Z 카카로트",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=DRAGON%20BALL%20Z%20KAKAROT",
+      "searchQuery": "DRAGON BALL Z KAKAROT",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E4%B8%83%E9%BE%8D%E7%8F%A0Z%20%E5%8D%A1%E5%8D%A1%E6%B4%9B%E7%89%B9&sftab=all",
+      "searchQuery": "七龍珠Z 卡卡洛特",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "dragon-ball-z-kakarot",
@@ -8144,6 +10391,50 @@ window.GAME_PROJECTS_DATA = {
       "note": "Xbox 官方地区商品页核验。"
     },
     {
+      "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=The%20Eminence%20in%20Shadow%20Phantom%20Echoes&sftab=all",
+      "searchQuery": "The Eminence in Shadow Phantom Echoes",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%84%80%EB%8F%84%EC%9A%B0%20%EA%B0%80%EB%93%A0%20%ED%8C%AC%ED%85%80%20%EC%97%90%EC%BD%94%EC%A6%88&sftab=all",
+      "searchQuery": "섀도우 가든 팬텀 에코즈",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=The%20Eminence%20in%20Shadow%20Phantom%20Echoes",
+      "searchQuery": "The Eminence in Shadow Phantom Echoes",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=The%20Eminence%20in%20Shadow%20Phantom%20Echoes&sftab=all",
+      "searchQuery": "The Eminence in Shadow Phantom Echoes",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
       "projectId": "fairy-tail-2",
       "platform": "playstation",
       "region": "HK",
@@ -8232,6 +10523,109 @@ window.GAME_PROJECTS_DATA = {
       "note": "Steam 官方地区商店接口核验。"
     },
     {
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000082888",
+      "storeIds": [
+        "70010000082888"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000082888",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=FAIRY%20TAIL%202&sftab=all",
+      "searchQuery": "FAIRY TAIL 2",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=FAIRY%20TAIL%202&sftab=all",
+      "searchQuery": "FAIRY TAIL 2",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000124063",
+      "storeIds": [
+        "70010000124063"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000124063",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=FAIRY%20TAIL%202",
+      "searchQuery": "FAIRY TAIL 2",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000082888",
+      "storeIds": [
+        "70010000082888"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000082888",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=FAIRY%20TAIL%202&sftab=all",
+      "searchQuery": "FAIRY TAIL 2",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "fate-extra-record",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Fate%20EXTRA%20Record&sftab=all",
+      "searchQuery": "Fate EXTRA Record",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "fate-extra-record",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=Fate%20EXTRA%20Record&sftab=all",
+      "searchQuery": "Fate EXTRA Record",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "fate-extra-record",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Fate%20EXTRA%20Record",
+      "searchQuery": "Fate EXTRA Record",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "fate-extra-record",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Fate%20EXTRA%20Record&sftab=all",
+      "searchQuery": "Fate EXTRA Record",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
       "projectId": "gundam-rogue-orbit",
       "platform": "xbox",
       "region": "HK",
@@ -8274,6 +10668,50 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9PND4CGSV9SX",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "hatsune-miku-starry-party",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Hatsune%20Miku%20Starry%20Party&sftab=all",
+      "searchQuery": "Hatsune Miku Starry Party",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "hatsune-miku-starry-party",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%ED%95%98%EC%B8%A0%EB%84%A4%20%EB%AF%B8%EC%BF%A0%20%EC%8A%A4%ED%83%80%EB%A6%AC%20%ED%8C%8C%ED%8B%B0&sftab=all",
+      "searchQuery": "하츠네 미쿠 스타리 파티",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "hatsune-miku-starry-party",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Hatsune%20Miku%20Starry%20Party",
+      "searchQuery": "Hatsune Miku Starry Party",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "hatsune-miku-starry-party",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Hatsune%20Miku%20Starry%20Party&sftab=all",
+      "searchQuery": "Hatsune Miku Starry Party",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "hunter-x-hunter-nen-impact",
@@ -8364,6 +10802,70 @@ window.GAME_PROJECTS_DATA = {
       "note": "Steam 官方地区商店接口核验。"
     },
     {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000084030",
+      "storeIds": [
+        "70010000084030"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000084030",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT&sftab=all",
+      "searchQuery": "HUNTER×HUNTER NEN×IMPACT",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000084029",
+      "storeIds": [
+        "70010000084029"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000084029",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT&sftab=all",
+      "searchQuery": "HUNTER×HUNTER NEN×IMPACT",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000108877",
+      "storeIds": [
+        "70010000108877"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000108877",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT",
+      "searchQuery": "HUNTER×HUNTER NEN×IMPACT",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000084030",
+      "storeIds": [
+        "70010000084030"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000084030",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT&sftab=all",
+      "searchQuery": "HUNTER×HUNTER NEN×IMPACT",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
       "projectId": "jojo-all-star-battle-r",
       "platform": "playstation",
       "region": "HK",
@@ -8450,6 +10952,65 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1372110/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000054239",
+      "storeIds": [
+        "70010000054239"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000054239",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=JOJO%E7%9A%84%E5%A5%87%E5%A6%99%E5%86%92%E9%9A%AA%20%E7%BE%A4%E6%98%9F%E4%B9%8B%E6%88%B0&sftab=all",
+      "searchQuery": "JOJO的奇妙冒險 群星之戰",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A3%A0%EC%A3%A0%20%EC%98%AC%20%EC%8A%A4%ED%83%80%20%EB%B0%B0%ED%8B%80&sftab=all",
+      "searchQuery": "죠죠 올 스타 배틀",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000107701",
+      "storeIds": [
+        "70010000107701"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000107701",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=JoJo%20All-Star%20Battle%20R",
+      "searchQuery": "JoJo All-Star Battle R",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000054239",
+      "storeIds": [
+        "70010000054239"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000054239",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=JOJO%E7%9A%84%E5%A5%87%E5%A6%99%E5%86%92%E9%9A%AA%20%E7%BE%A4%E6%98%9F%E4%B9%8B%E6%88%B0&sftab=all",
+      "searchQuery": "JOJO的奇妙冒險 群星之戰",
+      "note": "Nintendo 官方地区目录与商品页核验。"
     },
     {
       "projectId": "jojo-all-star-battle-r",
@@ -8585,6 +11146,60 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000062526",
+      "storeIds": [
+        "70010000062526"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000062526",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E5%92%92%E8%A1%93%E8%BF%B4%E6%88%B0%20%E9%9B%99%E8%8F%AF%E4%BA%82%E8%88%9E&sftab=all",
+      "searchQuery": "咒術迴戰 雙華亂舞",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000062525",
+      "storeIds": [
+        "70010000062525"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000062525",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%20%EC%A0%84%ED%99%94%ED%96%A5%EB%AA%85&sftab=all",
+      "searchQuery": "주술회전 전화향명",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Jujutsu%20Kaisen%20Cursed%20Clash",
+      "searchQuery": "Jujutsu Kaisen Cursed Clash",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E5%92%92%E8%A1%93%E8%BF%B4%E6%88%B0%20%E9%9B%99%E8%8F%AF%E4%BA%82%E8%88%9E&sftab=all",
+      "searchQuery": "咒術迴戰 雙華亂舞",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -8626,6 +11241,50 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9N1T03Q2J6NH",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Jujutsu%20Kaisen%20RUMBLE%20SURVIVATON&sftab=all",
+      "searchQuery": "Jujutsu Kaisen RUMBLE SURVIVATON",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A3%BC%EC%88%A0%ED%9A%8C%EC%A0%84%20%EB%9F%BC%EB%B8%94%20%EC%84%9C%EB%B0%94%EC%9D%B4%EB%B0%94%ED%86%A4&sftab=all",
+      "searchQuery": "주술회전 럼블 서바이바톤",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Jujutsu%20Kaisen%20RUMBLE%20SURVIVATON",
+      "searchQuery": "Jujutsu Kaisen RUMBLE SURVIVATON",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Jujutsu%20Kaisen%20RUMBLE%20SURVIVATON&sftab=all",
+      "searchQuery": "Jujutsu Kaisen RUMBLE SURVIVATON",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "jujutsu-kaisen-rumble-survivaton",
@@ -8716,6 +11375,50 @@ window.GAME_PROJECTS_DATA = {
       "note": "Steam 官方地区商店接口核验。"
     },
     {
+      "projectId": "jump-force",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=JUMP%20FORCE&sftab=all",
+      "searchQuery": "JUMP FORCE",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "jump-force",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%A0%90%ED%94%84%20%ED%8F%AC%EC%8A%A4&sftab=all",
+      "searchQuery": "점프 포스",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "jump-force",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=JUMP%20FORCE",
+      "searchQuery": "JUMP FORCE",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "jump-force",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=JUMP%20FORCE&sftab=all",
+      "searchQuery": "JUMP FORCE",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
       "projectId": "kaiju-no-8-the-game",
       "platform": "steam",
       "region": "HK",
@@ -8758,6 +11461,65 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/3393070/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000126664",
+      "storeIds": [
+        "70010000126664"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000126664",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=KINGDOM%20HEARTS%20IV&sftab=all",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%ED%82%B9%EB%8D%A4%20%ED%95%98%EC%B8%A0%20IV&sftab=all",
+      "searchQuery": "킹덤 하츠 IV",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000126833",
+      "storeIds": [
+        "70010000126833"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000126833",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=KINGDOM%20HEARTS%20IV",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000126664",
+      "storeIds": [
+        "70010000126664"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000126664",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=KINGDOM%20HEARTS%20IV&sftab=all",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "Nintendo 官方地区目录与商品页核验。"
     },
     {
       "projectId": "kingdom-hearts-iv",
@@ -8893,6 +11655,70 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000103758",
+      "storeIds": [
+        "70010000103758"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000103758",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2%20%E7%84%A1%E7%9B%A1%E6%AD%A3%E7%BE%A9&sftab=all",
+      "searchQuery": "我的英雄學院 無盡正義",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000103759",
+      "storeIds": [
+        "70010000103759"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000103759",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%82%98%EC%9D%98%20%ED%9E%88%EC%96%B4%EB%A1%9C%20%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8%EC%95%84&sftab=all",
+      "searchQuery": "나의 히어로 아카데미아",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000122388",
+      "storeIds": [
+        "70010000122388"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000122388",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=MY%20HERO%20ACADEMIA%20All's%20Justice",
+      "searchQuery": "MY HERO ACADEMIA All's Justice",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000103758",
+      "storeIds": [
+        "70010000103758"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000103758",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2%20%E7%84%A1%E7%9B%A1%E6%AD%A3%E7%BE%A9&sftab=all",
+      "searchQuery": "我的英雄學院 無盡正義",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -9022,6 +11848,55 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/748360/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000012361",
+      "storeIds": [
+        "70010000012361"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000012361",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2%20%E5%94%AF%E6%88%91%E6%AD%A3%E7%BE%A9&sftab=all",
+      "searchQuery": "我的英雄學院 唯我正義",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%82%98%EC%9D%98%20%ED%9E%88%EC%96%B4%EB%A1%9C%20%EC%9B%90%EC%A6%88%20%EC%A0%80%EC%8A%A4%ED%8B%B0%EC%8A%A4&sftab=all",
+      "searchQuery": "나의 히어로 원즈 저스티스",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=MY%20HERO%20ONE'S%20JUSTICE",
+      "searchQuery": "MY HERO ONE'S JUSTICE",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2%20%E5%94%AF%E6%88%91%E6%AD%A3%E7%BE%A9&sftab=all",
+      "searchQuery": "我的英雄學院 唯我正義",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "my-hero-ones-justice",
@@ -9157,6 +12032,70 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000056879",
+      "storeIds": [
+        "70010000056879"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000056879",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=NARUTO%20%E7%B5%82%E6%A5%B5%E9%A2%A8%E6%9A%B4%E7%BE%88%E7%B5%86&sftab=all",
+      "searchQuery": "NARUTO 終極風暴羈絆",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000056878",
+      "storeIds": [
+        "70010000056878"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000056878",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%82%98%EB%A3%A8%ED%8B%B0%EB%B0%8B%20%EC%8A%A4%ED%86%B0%20%EC%BB%A4%EB%84%A5%EC%85%98%EC%A6%88&sftab=all",
+      "searchQuery": "나루티밋 스톰 커넥션즈",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000107974",
+      "storeIds": [
+        "70010000107974"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000107974",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=NARUTO%20STORM%20CONNECTIONS",
+      "searchQuery": "NARUTO STORM CONNECTIONS",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000056879",
+      "storeIds": [
+        "70010000056879"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000056879",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=NARUTO%20%E7%B5%82%E6%A5%B5%E9%A2%A8%E6%9A%B4%E7%BE%88%E7%B5%86&sftab=all",
+      "searchQuery": "NARUTO 終極風暴羈絆",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -9198,6 +12137,74 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9NM8JFMGVCVB",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000110968",
+      "storeIds": [
+        "70010000110968",
+        "70010000110986"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000110968",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=ONE%20PIECE%20%E6%B5%B7%E6%B4%8B%E7%9B%9B%E5%AE%B4&sftab=all",
+      "searchQuery": "ONE PIECE 海洋盛宴",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "storeId": "70010000110969",
+      "storeIds": [
+        "70010000110969",
+        "70010000110987"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://store.nintendo.co.kr/70010000110969",
+      "searchSourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%9B%90%ED%94%BC%EC%8A%A4%20%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EB%A0%88%EC%8A%A4%ED%86%A0%EB%9E%91&sftab=all",
+      "searchQuery": "원피스 그랜드 레스토랑",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "storeId": "70010000110988",
+      "storeIds": [
+        "70010000110988",
+        "70010000110970"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/SG/en/titles/70010000110988",
+      "searchSourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=ONE%20PIECE%20Grand%20Gourmet",
+      "searchQuery": "ONE PIECE Grand Gourmet",
+      "note": "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "storeId": "70010000110968",
+      "storeIds": [
+        "70010000110968",
+        "70010000110986"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/TW/zh/titles/70010000110968",
+      "searchSourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=ONE%20PIECE%20%E6%B5%B7%E6%B4%8B%E7%9B%9B%E5%AE%B4&sftab=all",
+      "searchQuery": "ONE PIECE 海洋盛宴",
+      "note": "Nintendo 官方地区目录与商品页核验。"
     },
     {
       "projectId": "one-piece-odyssey",
@@ -9242,6 +12249,55 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/814000/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "storeId": "70010000063984",
+      "storeIds": [
+        "70010000063984"
+      ],
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://ec.nintendo.com/HK/zh/titles/70010000063984",
+      "searchSourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=ONE%20PIECE%20%E6%99%82%E5%85%89%E6%97%85%E8%A9%A9&sftab=all",
+      "searchQuery": "ONE PIECE 時光旅詩",
+      "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EC%9B%90%ED%94%BC%EC%8A%A4%20%EC%98%A4%EB%94%94%EC%84%B8%EC%9D%B4&sftab=all",
+      "searchQuery": "원피스 오디세이",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=ONE%20PIECE%20ODYSSEY",
+      "searchQuery": "ONE PIECE ODYSSEY",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=ONE%20PIECE%20%E6%99%82%E5%85%89%E6%97%85%E8%A9%A9&sftab=all",
+      "searchQuery": "ONE PIECE 時光旅詩",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "one-piece-odyssey",
@@ -9462,6 +12518,94 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/3061570/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "pokemon-winds-waves",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Pok%C3%A9mon%20Winds&sftab=all",
+      "searchQuery": "Pokémon Winds",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "pokemon-winds-waves",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%ED%8F%AC%EC%BC%93%EB%AA%AC%20%EC%9C%88%EC%A6%88&sftab=all",
+      "searchQuery": "포켓몬 윈즈",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "pokemon-winds-waves",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Pokemon%20Winds",
+      "searchQuery": "Pokemon Winds",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "pokemon-winds-waves",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Pok%C3%A9mon%20Winds&sftab=all",
+      "searchQuery": "Pokémon Winds",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "professor-layton-new-world-of-steam",
+      "platform": "switch",
+      "region": "HK",
+      "representativeCountry": "HK",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/hk/software/switch?sfq=Professor%20Layton%20New%20World%20of%20Steam&sftab=all",
+      "searchQuery": "Professor Layton New World of Steam",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "professor-layton-new-world-of-steam",
+      "platform": "switch",
+      "region": "KR",
+      "representativeCountry": "KR",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/kr/software/switch?sfq=%EB%A0%88%EC%9D%B4%ED%8A%BC%20%EA%B5%90%EC%88%98%EC%99%80%20%EC%A6%9D%EA%B8%B0%EC%9D%98%20%EC%8B%A0%EC%84%B8%EA%B3%84&sftab=all",
+      "searchQuery": "레이튼 교수와 증기의 신세계",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "professor-layton-new-world-of-steam",
+      "platform": "switch",
+      "region": "SEA",
+      "representativeCountry": "SG",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/sg/games/switch/index.html?sfq=Professor%20Layton%20New%20World%20of%20Steam",
+      "searchQuery": "Professor Layton New World of Steam",
+      "note": "以新加坡 Nintendo 官方目录作为东南亚代表样本；当前未检索到已确认的基础游戏条目。商品页不存在不等于从未发行。"
+    },
+    {
+      "projectId": "professor-layton-new-world-of-steam",
+      "platform": "switch",
+      "region": "TW",
+      "representativeCountry": "TW",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Professor%20Layton%20New%20World%20of%20Steam&sftab=all",
+      "searchQuery": "Professor Layton New World of Steam",
+      "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
     },
     {
       "projectId": "sand-land",
