@@ -48,7 +48,7 @@
 
 ## regionChecks
 
-每条记录代表一次“项目 × 平台 × 目标地区”的官方商店检查。`availability` 区分 `available`、`delisted_store_page` 与 `not_available_currently`；后两者都不等同于游戏在所有平台从未发行。东南亚为复合地区，检查单一代表市场时必须写入 `representativeCountry` 并在页面披露样本范围。
+每条记录代表一次“项目 × 平台 × 目标地区”的官方商店检查。`availability` 区分 `available`、`delisted_store_page`、`not_available_currently`、`not_listed_currently` 与 `check_failed`；后四者都不等同于游戏在所有平台从未发行。东南亚为复合地区，检查单一代表市场时必须写入 `representativeCountry` 并在页面披露样本范围。
 
 已正式公布但尚无发售日期的版本仍建立 release，`plannedLaunchDate` 留空、状态设为 `announced`；只有年份或“上半年 / 下半年”等窗口时直接保存官方原文。未来项目统计必须同时包含精确日期、时间窗口和日期待定三类，不得因为商店或榜单尚未出现而漏记。
 
@@ -57,5 +57,7 @@
 当前 AppMagic 手游生命周期估算分级：收入 ≥US$50,000,000 为 phenomenon、≥US$20,000,000 为 strong、≥US$5,000,000 为 good，其余为 ordinary；下载量 ≥10,000,000 为 phenomenon、≥5,000,000 为 strong、≥1,000,000 为 good，其余为 ordinary。免费版只公开数值区间时，`value` 保存公开下限、`lowerBound` 设为 true，并在 `display` 中保留“>”标记；该口径仅用于同类手游规模分级。
 
 历史 Steam 批次分别查询美国与日本商店。商店接口当前无法核验的地区不建立 release，不根据其他地区日期反推；全历史同时在线峰值通过 SteamCharts 或 SteamDB 记录，并在 `scope` 中保留核验截至日期。
+
+PlayStation 地区核验使用香港、台湾、韩国、新加坡官方商品页。同一产品在英文与中韩文商店使用不同 Product ID 时，按地区分别保存；上线日期直接采用当地商品页展示值。只有在版本包含基础游戏且与基础版同日上线时才允许使用版本页作为发行证据，扩展包或后续升级版不用于反推基础游戏上线日期。
 
 地区筛选固定采用 `meta.targetRegions` 中的七个核心市场。`GLOBAL` 与 `ASIA` 不作为可选地区：选择某一核心市场时，这两类记录只能以“公告覆盖、待逐区确认”的状态出现，且不得继承全球榜单或市场表现；存在同平台逐区记录时，逐区记录优先并去除公告范围重复项。

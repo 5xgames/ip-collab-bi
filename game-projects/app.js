@@ -813,13 +813,15 @@
       elements.regionAudit.innerHTML = `<div class="region-audit-empty">当前筛选范围尚无结构化地区商店核验；不等同于确认未发行。</div>`;
       return;
     }
-    const count = (availability) => checks.filter((check) => check.availability === availability).length;
-    const marketLabel = state.region === "all" ? "首批四地区" : regionNames[state.region] || state.region;
-    elements.regionAudit.innerHTML = `<div class="region-audit-title"><span>地区商店核验进度</span><strong>${escapeHtml(marketLabel)} · Steam</strong><small>${state.region === "SEA" || state.region === "all" ? "东南亚本批次以新加坡为代表样本" : "来自官方地区商店"}</small></div>
+    const count = (...availability) => checks.filter((check) => availability.includes(check.availability)).length;
+    const marketLabel = state.region === "all" ? "四个亚洲地区" : regionNames[state.region] || state.region;
+    const auditedPlatforms = [...new Set(checks.map((check) => platformNames[check.platform] || check.platform))].sort();
+    const platformLabel = auditedPlatforms.join(" / ");
+    elements.regionAudit.innerHTML = `<div class="region-audit-title"><span>地区商店核验进度</span><strong>${escapeHtml(marketLabel)} · ${escapeHtml(platformLabel)}</strong><small>${state.region === "SEA" || state.region === "all" ? "东南亚目前以新加坡为代表样本" : "来自官方地区商店"}</small></div>
       <div><span>检查记录</span><strong>${escapeHtml(numberFormat.format(checks.length))}</strong></div>
       <div><span>当前可用</span><strong>${escapeHtml(numberFormat.format(count("available")))}</strong></div>
       <div><span>历史已停售</span><strong>${escapeHtml(numberFormat.format(count("delisted_store_page")))}</strong></div>
-      <div><span>当前不可用</span><strong>${escapeHtml(numberFormat.format(count("not_available_currently")))}</strong></div>`;
+      <div><span>当前未上架 / 未检索到</span><strong>${escapeHtml(numberFormat.format(count("not_available_currently", "not_listed_currently", "check_failed")))}</strong></div>`;
   }
 
   function render() {
