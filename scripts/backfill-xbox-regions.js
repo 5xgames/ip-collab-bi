@@ -8,6 +8,8 @@ const data = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
 const checkedAt = "2026-09-09";
 const regions = {
+  JP: { locale: "ja-jp", label: "日本", timeZone: "Asia/Tokyo" },
+  US: { locale: "en-us", label: "美国", timeZone: "America/Los_Angeles" },
   HK: { locale: "en-hk", label: "香港", timeZone: "Asia/Hong_Kong" },
   TW: { locale: "zh-tw", label: "台湾", timeZone: "Asia/Taipei" },
   KR: { locale: "ko-kr", label: "韩国", timeZone: "Asia/Seoul" },
@@ -203,6 +205,12 @@ async function main() {
   await Promise.all(Array.from({ length: 8 }, worker));
 
   const releaseById = new Map(data.releases.map((release) => [release.id, release]));
+  const xboxByComposite = new Map();
+  for (const release of data.releases) {
+    if (release.platform !== "xbox") continue;
+    const key = `${release.projectId}:${release.region}`;
+    if (!xboxByComposite.has(key)) xboxByComposite.set(key, release);
+  }
   const checkByKey = new Map((data.regionChecks || []).map((check) => [
     `${check.projectId}:${check.platform}:${check.region}:${check.checkedAt}`,
     check,
@@ -210,7 +218,26 @@ async function main() {
   for (const result of results) {
     const check = result.check;
     checkByKey.set(`${check.projectId}:${check.platform}:${check.region}:${check.checkedAt}`, check);
-    if (result.release) releaseById.set(result.release.id, result.release);
+    if (result.release) {
+      const compositeKey = `${result.release.projectId}:${result.release.region}`;
+      const current = xboxByComposite.get(compositeKey);
+      if (current) {
+        for (const [id, release] of releaseById) {
+          if (release.platform === "xbox"
+            && release.projectId === result.release.projectId
+            && release.region === result.release.region) releaseById.delete(id);
+        }
+        result.release = {
+          ...current,
+          ...result.release,
+          id: current.id,
+          plannedLaunchDate: current.plannedLaunchDate || result.release.plannedLaunchDate,
+          actualLaunchDate: current.actualLaunchDate || result.release.actualLaunchDate,
+        };
+      }
+      releaseById.set(result.release.id, result.release);
+      xboxByComposite.set(compositeKey, result.release);
+    }
   }
   data.releases = [...releaseById.values()];
   data.regionChecks = [...checkByKey.values()].sort((a, b) =>
@@ -218,9 +245,9 @@ async function main() {
     || a.platform.localeCompare(b.platform)
     || a.region.localeCompare(b.region)
     || a.checkedAt.localeCompare(b.checkedAt));
-  data.meta.schemaVersion = "1.7";
-  data.meta.phase = 12;
-  data.meta.generatedAt = "2026-09-09T12:15:00+09:00";
+  data.meta.schemaVersion = "2.1";
+  data.meta.phase = 16;
+  data.meta.generatedAt = "2026-09-09T17:40:00+09:00";
   data.meta.regionCoverage = {
     ...(data.meta.regionCoverage || {}),
     xboxStoreAuditDate: checkedAt,

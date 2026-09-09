@@ -6,8 +6,10 @@ const jsonPath = path.join(root, "game-projects/data/projects.json");
 const jsPath = path.join(root, "game-projects/data/projects.js");
 const data = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
-const checkedAt = "2026-09-08";
+const checkedAt = "2026-09-09";
 const regionDefinitions = {
+  JP: { cc: "jp", label: "日本", storeLabel: "Steam 日本商店" },
+  US: { cc: "us", label: "美国", storeLabel: "Steam 美国商店" },
   HK: { cc: "hk", label: "香港", storeLabel: "Steam 香港商店" },
   TW: { cc: "tw", label: "台湾", storeLabel: "Steam 台湾商店" },
   KR: { cc: "kr", label: "韩国", storeLabel: "Steam 韩国商店" },
@@ -42,10 +44,11 @@ const products = [
 ];
 
 const unavailable = new Set([
+  "449800:JP", "748360:JP", "755500:JP", "816020:JP", "1020790:JP",
   "449800:KR",
   "3061570:HK", "3061570:TW", "3061570:KR", "3061570:SEA",
 ]);
-const delisted = new Set(["816020:HK", "816020:TW", "816020:KR", "816020:SEA"]);
+const delisted = new Set(["816020:US", "816020:HK", "816020:TW", "816020:KR", "816020:SEA"]);
 const free = new Set([
   "2072560:HK", "2072560:TW", "2072560:KR", "2072560:SEA",
   "3393070:HK", "3393070:TW", "3393070:KR", "3393070:SEA",
@@ -106,13 +109,15 @@ data.regionChecks = [...checksByKey.values()].sort((a, b) =>
   || a.platform.localeCompare(b.platform)
   || a.region.localeCompare(b.region)
   || a.checkedAt.localeCompare(b.checkedAt));
-data.meta.schemaVersion = "1.5";
-data.meta.phase = 10;
-data.meta.generatedAt = "2026-09-08T19:10:00+09:00";
+data.meta.schemaVersion = "2.0";
+data.meta.phase = 15;
+data.meta.generatedAt = "2026-09-09T17:15:00+09:00";
 data.meta.regionCoverage = {
+  ...(data.meta.regionCoverage || {}),
   model: "seven_core_markets",
   steamStoreAuditDate: checkedAt,
-  steamAuditedRegions: ["HK", "TW", "KR", "SEA"],
+  steamAuditedRegions: Object.keys(regionDefinitions),
+  steamAuditedProducts: products.length,
   seaRepresentativeCountry: "SG",
 };
 

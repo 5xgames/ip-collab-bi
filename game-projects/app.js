@@ -86,6 +86,7 @@
     tableBody: $("#project-table-body"),
     tableEmpty: $("#project-table-empty"),
     tableCount: $("#project-count"),
+    footerSource: $("#footer-source"),
   };
 
   const isoDate = (value) => String(value || "").match(/\d{4}-\d{2}-\d{2}/)?.[0] || "";
@@ -877,6 +878,7 @@
 
   elements.generatedAt.textContent = formatGeneratedAt(meta.generatedAt);
   elements.latestProjectDate.textContent = meta.latestProjectDate || "等待首次导入";
+  elements.footerSource.textContent = `持续补全历史与未来项目：当前收录 ${numberFormat.format(projects.length)} 个真实项目、${numberFormat.format(releases.length)} 个地区平台版本；地区采用七市场口径，公告覆盖、官方商店检查与逐区核验数据严格区分。`;
   populateFilters();
   syncControls();
   render();

@@ -8,6 +8,21 @@ const data = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
 const checkedAt = "2026-09-09";
 const regions = {
+  JP: {
+    label: "日本",
+    kind: "legacy",
+    locale: "jp",
+    country: "JP",
+    language: "ja",
+    searchIndex: "nintendo_soft",
+  },
+  US: {
+    label: "美国",
+    kind: "algolia",
+    locale: "us",
+    country: "US",
+    language: "en",
+  },
   HK: {
     label: "香港",
     kind: "modern",
@@ -36,6 +51,7 @@ const regions = {
     country: "SG",
     language: "en",
     representativeCountry: "SG",
+    searchIndex: "nintendo_soft_sg",
   },
 };
 
@@ -198,14 +214,143 @@ const products = [
   },
 ];
 
+const jpUsOverrides = {
+  "captain-tsubasa-2-world-fighters": {
+    JP: ["キャプテン翼2 WORLD FIGHTERS", ["70010000089930"]],
+    US: ["CAPTAIN TSUBASA 2: WORLD FIGHTERS", ["70010000113635"]],
+  },
+  "one-piece-grand-gourmet": {
+    JP: ["ONE PIECE 海のごちそうレストラン", ["70010000110985", "70010000110967"]],
+    US: ["ONE PIECE Grand Gourmet", []],
+  },
+  "my-hero-academia-alls-justice": {
+    JP: ["僕のヒーローアカデミア All's Justice", ["70010000103757"]],
+    US: ["MY HERO ACADEMIA All's Justice", ["70010000103755"]],
+  },
+  "demon-slayer-hinokami-chronicles-2": {
+    JP: ["鬼滅の刃 ヒノカミ血風譚2", ["70010000068873"]],
+    US: ["Demon Slayer The Hinokami Chronicles 2", ["70010000086956"]],
+  },
+  "hunter-x-hunter-nen-impact": {
+    JP: ["HUNTER×HUNTER NEN×IMPACT", ["70070000027530"]],
+    US: ["HUNTER×HUNTER NEN×IMPACT", ["70010000084027"]],
+  },
+  "dragon-ball-gekishin-squadra": {
+    JP: ["ドラゴンボール ゲキシン スクアドラ", ["70010000063788"]],
+    US: ["DRAGON BALL GEKISHIN SQUADRA", ["70010000063789"]],
+  },
+  "dragon-ball-fighterz": {
+    JP: ["ドラゴンボール ファイターズ", ["70010000006226"]],
+    US: ["DRAGON BALL FighterZ", ["70010000006225"]],
+  },
+  "my-hero-ones-justice": {
+    JP: ["僕のヒーローアカデミア One's Justice", ["70010000004649"]],
+    US: ["MY HERO ONE'S JUSTICE", ["70010000012362"]],
+  },
+  "jump-force": {
+    JP: ["JUMP FORCE デラックスエディション", []],
+    US: ["JUMP FORCE Deluxe Edition", []],
+  },
+  "dragon-ball-z-kakarot": {
+    JP: ["ドラゴンボールZ KAKAROT", ["70010000035336"]],
+    US: ["DRAGON BALL Z KAKAROT", ["70010000035337"]],
+  },
+  "demon-slayer-hinokami-chronicles": {
+    JP: ["鬼滅の刃 ヒノカミ血風譚", ["70010000045041"]],
+    US: ["Demon Slayer The Hinokami Chronicles", ["70010000048562"]],
+  },
+  "jojo-all-star-battle-r": {
+    JP: ["ジョジョの奇妙な冒険 オールスターバトル R", ["70010000033002"]],
+    US: ["JoJo's Bizarre Adventure All-Star Battle R", ["70010000033003"]],
+  },
+  "one-piece-odyssey": {
+    JP: ["ONE PIECE ODYSSEY デラックスエディション", ["70010000063979"]],
+    US: ["ONE PIECE ODYSSEY DELUXE EDITION", ["70010000072498"]],
+  },
+  "jujutsu-kaisen-cursed-clash": {
+    JP: ["呪術廻戦 戦華双乱", ["70010000032191"]],
+    US: ["Jujutsu Kaisen Cursed Clash", ["70010000062523"]],
+  },
+  "naruto-storm-connections": {
+    JP: ["NARUTO X BORUTO ナルティメットストームコネクションズ", ["70010000056875"]],
+    US: ["NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS", ["70010000056876"]],
+  },
+  "dragon-ball-sparking-zero": {
+    JP: ["ドラゴンボール Sparking! ZERO", ["70010000102644", "70010000092461"]],
+    US: ["DRAGON BALL Sparking! ZERO", ["70010000102127", "70010000102645"]],
+  },
+  "fairy-tail-2": {
+    JP: ["FAIRY TAIL２", ["70010000082837"]],
+    US: ["FAIRY TAIL 2", ["70010000082891"]],
+  },
+  "fate-extra-record": {
+    JP: ["Fate EXTRA Record", []],
+    US: ["Fate EXTRA Record", []],
+  },
+  "eminence-in-shadow-phantom-echoes": {
+    JP: ["陰の実力者 Phantom Echoes", []],
+    US: ["The Eminence in Shadow Phantom Echoes", []],
+  },
+  "kingdom-hearts-iv": {
+    JP: ["キングダム ハーツ IV", ["70010000126810"]],
+    US: ["KINGDOM HEARTS IV", ["70010000126811"]],
+  },
+  "jujutsu-kaisen-rumble-survivaton": {
+    JP: ["呪術廻戦 RUMBLE SURVIVATON", []],
+    US: ["Jujutsu Kaisen RUMBLE SURVIVATON", []],
+  },
+  "attack-on-titan-2": {
+    JP: ["進撃の巨人２", ["70010000000765"]],
+    US: ["Attack on Titan 2", ["70010000001597"]],
+  },
+  "attack-on-titan-3": {
+    JP: ["進撃の巨人3", []],
+    US: ["Attack on Titan 3", []],
+  },
+  "hatsune-miku-starry-party": {
+    JP: ["初音ミク Starry Party", []],
+    US: ["Hatsune Miku Starry Party", []],
+  },
+  "another-eden-begins": {
+    JP: ["アナザーエデン ビギンズ", ["70010000105772", "70010000128638"]],
+    US: ["Another Eden Begins", ["70010000105770", "70010000128636"]],
+  },
+  "professor-layton-new-world-of-steam": {
+    JP: ["レイトン教授と蒸気の新世界", ["70010000064277", "70010000096951"]],
+    US: ["Professor Layton and The New World of Steam", []],
+  },
+  "pokemon-winds-waves": {
+    JP: ["Pokémon Winds", []],
+    US: ["Pokémon Winds", ["70010000122035"]],
+  },
+};
+
+for (const product of products) {
+  const overrides = jpUsOverrides[product.projectId];
+  if (!overrides) continue;
+  for (const region of ["JP", "US"]) {
+    const [query, ids] = overrides[region];
+    product.query[region] = query;
+    product.ids[region] = ids;
+  }
+}
+
 function visibleSearchUrl(region, definition, query) {
+  if (region === "JP") {
+    return `https://www.nintendo.com/jp/search/index.html?q=${encodeURIComponent(query)}`;
+  }
+  if (region === "US") {
+    return `https://www.nintendo.com/us/search/#q=${encodeURIComponent(query)}`;
+  }
   if (definition.kind === "legacy") {
     return `https://www.nintendo.com/sg/games/switch/index.html?sfq=${encodeURIComponent(query)}`;
   }
   return `https://www.nintendo.com/${definition.locale}/software/switch?sfq=${encodeURIComponent(query)}&sftab=all`;
 }
 
-function productUrl(region, definition, storeId) {
+function productUrl(region, definition, storeId, item) {
+  if (region === "JP") return `https://store-jp.nintendo.com/item/software/D${storeId}`;
+  if (region === "US" && item?.url) return new URL(item.url, "https://www.nintendo.com").href;
   if (region === "HK") return `https://ec.nintendo.com/HK/zh/titles/${storeId}`;
   if (region === "TW") return `https://ec.nintendo.com/TW/zh/titles/${storeId}`;
   if (region === "KR") return `https://store.nintendo.co.kr/${storeId}`;
@@ -226,8 +371,8 @@ async function fetchModern(definition, query) {
   return Array.isArray(payload.items) ? payload.items : [];
 }
 
-async function fetchLegacy(query) {
-  const apiUrl = `https://search.nintendo.jp/nintendo_soft_sg/search.json?${new URLSearchParams({
+async function fetchLegacy(definition, query) {
+  const apiUrl = `https://search.nintendo.jp/${definition.searchIndex}/search.json?${new URLSearchParams({
     q: query,
     limit: "400",
     page: "1",
@@ -238,6 +383,21 @@ async function fetchLegacy(query) {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const payload = await response.json();
   return Array.isArray(payload.result?.items) ? payload.result.items : [];
+}
+
+async function fetchAlgolia(query) {
+  const response = await fetch("https://u3b6gr4ua3-dsn.algolia.net/1/indexes/store_game_en_us/query", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "x-algolia-application-id": "U3B6GR4UA3",
+      "x-algolia-api-key": "a29c6927638bfd8cee23993e51e721c9",
+    },
+    body: JSON.stringify({ query, hitsPerPage: 100 }),
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const payload = await response.json();
+  return (payload.hits || []).filter((item) => item.eshopDetails?.productType === "TITLE" && !item.isUpgrade);
 }
 
 function itemId(item) {
@@ -252,6 +412,9 @@ function itemHardware(item, definition) {
   if (definition.kind === "legacy") {
     return item.hard === "05_BEE" ? "Nintendo Switch 2" : "Nintendo Switch";
   }
+  if (definition.kind === "algolia") {
+    return [...new Set(item.corePlatforms || [item.platform])].filter(Boolean).join(" / ") || "Nintendo Switch";
+  }
   return String(item.hardwareCategory || "Nintendo Switch").replace(" Edition", "");
 }
 
@@ -260,6 +423,9 @@ function itemReleaseDate(item, definition) {
     const match = String(item.sdate || "").match(/^(\d{4})\.(\d{1,2})\.(\d{1,2})$/);
     if (match) return `${match[1]}-${match[2].padStart(2, "0")}-${match[3].padStart(2, "0")}`;
     return "";
+  }
+  if (definition.kind === "algolia") {
+    return String(item.releaseDate || "").match(/^\d{4}-\d{2}-\d{2}/)?.[0] || "";
   }
   if (item.releaseDateUndecided) return "";
   return String(item.releaseDate || "").match(/^\d{4}-\d{2}-\d{2}/)?.[0] || "";
@@ -283,8 +449,10 @@ async function auditProduct(product, region, definition) {
   const sourceUrl = visibleSearchUrl(region, definition, query);
   try {
     const items = definition.kind === "legacy"
-      ? await fetchLegacy(query)
-      : await fetchModern(definition, query);
+      ? await fetchLegacy(definition, query)
+      : definition.kind === "algolia"
+        ? await fetchAlgolia(query)
+        : await fetchModern(definition, query);
     const expected = new Set(expectedIds);
     const matched = items.filter((item) => expected.has(itemId(item)));
     const listed = definition.kind === "legacy"
@@ -325,7 +493,7 @@ async function auditProduct(product, region, definition) {
       ? (launchDate || "已上线（当地基础版首发日期待核验）")
       : "";
     const status = launched ? "launched" : (plannedLaunchDate ? "upcoming" : "announced");
-    const directSourceUrl = productUrl(region, definition, storeIds[0]);
+    const directSourceUrl = productUrl(region, definition, storeIds[0], listed[0]);
     const regionalNote = region === "SEA"
       ? "以新加坡 Nintendo 官方目录及 eShop 作为东南亚代表样本。"
       : "Nintendo 官方地区目录与商品页核验。";
@@ -406,6 +574,12 @@ async function main() {
   await Promise.all(Array.from({ length: 8 }, worker));
 
   const releaseById = new Map(data.releases.map((release) => [release.id, release]));
+  const switchByComposite = new Map();
+  for (const release of data.releases) {
+    if (release.platform !== "switch" || ["GLOBAL", "ASIA"].includes(release.region)) continue;
+    const key = `${release.projectId}:${release.region}`;
+    if (!switchByComposite.has(key)) switchByComposite.set(key, release);
+  }
   const checkByKey = new Map((data.regionChecks || []).map((check) => [
     `${check.projectId}:${check.platform}:${check.region}:${check.checkedAt}`,
     check,
@@ -413,7 +587,26 @@ async function main() {
   for (const result of results) {
     const check = result.check;
     checkByKey.set(`${check.projectId}:${check.platform}:${check.region}:${check.checkedAt}`, check);
-    if (result.release) releaseById.set(result.release.id, result.release);
+    if (result.release) {
+      const compositeKey = `${result.release.projectId}:${result.release.region}`;
+      const current = switchByComposite.get(compositeKey);
+      if (current) {
+        for (const [id, release] of releaseById) {
+          if (release.platform === "switch"
+            && release.projectId === result.release.projectId
+            && release.region === result.release.region) releaseById.delete(id);
+        }
+        result.release = {
+          ...current,
+          ...result.release,
+          id: current.id,
+          plannedLaunchDate: current.plannedLaunchDate || result.release.plannedLaunchDate,
+          actualLaunchDate: current.actualLaunchDate || result.release.actualLaunchDate,
+        };
+      }
+      releaseById.set(result.release.id, result.release);
+      switchByComposite.set(compositeKey, result.release);
+    }
   }
   data.releases = [...releaseById.values()];
   data.regionChecks = [...checkByKey.values()].sort((a, b) =>
@@ -421,9 +614,9 @@ async function main() {
     || a.platform.localeCompare(b.platform)
     || a.region.localeCompare(b.region)
     || a.checkedAt.localeCompare(b.checkedAt));
-  data.meta.schemaVersion = "1.8";
-  data.meta.phase = 13;
-  data.meta.generatedAt = "2026-09-09T12:16:00+09:00";
+  data.meta.schemaVersion = "2.2";
+  data.meta.phase = 17;
+  data.meta.generatedAt = "2026-09-09T18:20:00+09:00";
   data.meta.regionCoverage = {
     ...(data.meta.regionCoverage || {}),
     nintendoStoreAuditDate: checkedAt,
