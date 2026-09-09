@@ -120,8 +120,7 @@
   const projectMaximumDate = projectObservedDates.at(-1) || generatedDate;
   const performanceMinimumDate = performanceObservedDates[0] || projectMinimumDate;
   const performanceMaximumDate = performanceObservedDates.at(-1) || generatedDate;
-  const latestProjectDate = isoDate(meta.latestProjectDate) || generatedDate;
-  const defaultPerformanceEndDate = latestProjectDate > performanceMaximumDate ? performanceMaximumDate : latestProjectDate;
+  const defaultPerformanceEndDate = performanceMaximumDate;
   const defaultPerformanceStartObject = new Date(`${defaultPerformanceEndDate}T00:00:00Z`);
   defaultPerformanceStartObject.setUTCDate(defaultPerformanceStartObject.getUTCDate() - Math.max(1, Number(meta.defaultWindowDays) || 90) + 1);
   const defaultPerformanceStartDate = defaultPerformanceStartObject.toISOString().slice(0, 10) < performanceMinimumDate
@@ -814,10 +813,20 @@
       return;
     }
     const count = (...availability) => checks.filter((check) => availability.includes(check.availability)).length;
-    const marketLabel = state.region === "all" ? "四个亚洲地区" : regionNames[state.region] || state.region;
+    const auditedRegions = new Set(checks.map((check) => check.region));
+    const marketLabel = state.region === "all"
+      ? `已核验 ${auditedRegions.size} 个地区`
+      : regionNames[state.region] || state.region;
     const auditedPlatforms = [...new Set(checks.map((check) => platformNames[check.platform] || check.platform))].sort();
     const platformLabel = auditedPlatforms.join(" / ");
-    elements.regionAudit.innerHTML = `<div class="region-audit-title"><span>地区商店核验进度</span><strong>${escapeHtml(marketLabel)} · ${escapeHtml(platformLabel)}</strong><small>${state.region === "SEA" || state.region === "all" ? "东南亚目前以新加坡为代表样本" : "来自官方地区商店"}</small></div>
+    const auditScopeLabel = state.region === "CN"
+      ? "版号、国服 / 国行与大陆官方发行渠道"
+      : state.region === "SEA"
+        ? "东南亚目前以新加坡为代表样本"
+        : state.region === "all"
+          ? "含大陆版号 / 国行核验；东南亚以新加坡为代表样本"
+          : "来自官方地区商店";
+    elements.regionAudit.innerHTML = `<div class="region-audit-title"><span>地区商店核验进度</span><strong>${escapeHtml(marketLabel)} · ${escapeHtml(platformLabel)}</strong><small>${escapeHtml(auditScopeLabel)}</small></div>
       <div><span>检查记录</span><strong>${escapeHtml(numberFormat.format(checks.length))}</strong></div>
       <div><span>当前可用</span><strong>${escapeHtml(numberFormat.format(count("available")))}</strong></div>
       <div><span>历史已停售</span><strong>${escapeHtml(numberFormat.format(count("delisted_store_page")))}</strong></div>

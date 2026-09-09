@@ -1,8 +1,8 @@
 window.GAME_PROJECTS_DATA = {
   "meta": {
-    "schemaVersion": "1.8",
-    "phase": 13,
-    "generatedAt": "2026-09-09T12:16:00+09:00",
+    "schemaVersion": "1.9",
+    "phase": 14,
+    "generatedAt": "2026-09-09T15:40:00+09:00",
     "latestProjectDate": "2026-09-08",
     "coverageStart": "2016-02-18",
     "defaultWindowDays": 90,
@@ -60,7 +60,17 @@ window.GAME_PROJECTS_DATA = {
         "KR",
         "SEA"
       ],
-      "nintendoAuditedProducts": 27
+      "nintendoAuditedProducts": 27,
+      "chinaMainlandAuditDate": "2026-09-09",
+      "chinaMainlandAuditedProducts": 43,
+      "chinaMainlandAuditedProjectPlatforms": 137,
+      "chinaMainlandConfirmedProducts": 1,
+      "chinaMainlandSources": [
+        "国家新闻出版署游戏审批与变更公示",
+        "中国大陆 App Store",
+        "蒸汽平台",
+        "游戏官方中国大陆运营网站与发行公告"
+      ]
     }
   },
   "projects": [
@@ -196,13 +206,14 @@ window.GAME_PROJECTS_DATA = {
       "ipName": "Persona 5 / 女神异闻录5",
       "ipType": "游戏",
       "genre": "角色扮演",
-      "developer": "",
-      "publisher": "",
-      "announcementDate": "",
+      "developer": "Perfect World Games（黑羽工作室）",
+      "publisher": "Perfect World Games",
+      "announcementDate": "2023-03-21",
       "status": "launched",
       "summary": "基于《女神异闻录5》世界观开发的免费角色扮演游戏全球版。",
       "sourceUrl": "https://persona5x.com/news/",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "cnSourceUrl": "https://www.wanmei.com/radionews/gamevideo/game/gameanimation/20240412/249861.shtml"
     },
     {
       "id": "dragon-ball-fighterz",
@@ -8118,6 +8129,92 @@ window.GAME_PROJECTS_DATA = {
         "2026-09-17T00:00:00Z"
       ],
       "note": "Nintendo 官方地区目录与商品页核验。"
+    },
+    {
+      "id": "p5x-cn-ios",
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "ios",
+      "region": "CN",
+      "store": "中国大陆 App Store",
+      "storeId": "6466264792",
+      "plannedLaunchDate": "2024-04-12",
+      "actualLaunchDate": "2024-04-12",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalDate": "2023-08-25",
+      "approvalCategory": "移动、客户端",
+      "isbn": "978-7-498-12586-6",
+      "rawStoreReleaseDate": "2024-04-09T07:00:00Z",
+      "sourceUrl": "https://apps.apple.com/cn/app/id6466264792",
+      "launchSourceUrl": "https://www.wanmei.com/radionews/gamevideo/game/gameanimation/20240412/249861.shtml",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "verifiedAt": "2026-09-09",
+      "note": "完美世界公告确认 2024-04-12 全平台公测；App Store 的初始上架时间为 2024-04-09，正式公测日作为实际上线口径。"
+    },
+    {
+      "id": "p5x-cn-android",
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "android",
+      "region": "CN",
+      "store": "中国大陆官方安卓客户端",
+      "plannedLaunchDate": "2024-04-12",
+      "actualLaunchDate": "2024-04-12",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalDate": "2023-08-25",
+      "approvalCategory": "移动、客户端",
+      "isbn": "978-7-498-12586-6",
+      "sourceUrl": "https://www.wanmei.com/radionews/gamevideo/game/gameanimation/20240412/249861.shtml",
+      "officialSiteUrl": "https://p5x.wanmei.com/",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "verifiedAt": "2026-09-09",
+      "note": "完美世界官方公测公告与官网安卓下载入口核验。"
+    },
+    {
+      "id": "p5x-cn-windows",
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "windows",
+      "region": "CN",
+      "store": "中国大陆官方 PC 客户端",
+      "plannedLaunchDate": "2024-04-12",
+      "actualLaunchDate": "2024-04-12",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalDate": "2023-08-25",
+      "approvalChangeDate": "2024-01-25",
+      "approvalCategory": "移动、客户端",
+      "isbn": "978-7-498-12586-6",
+      "sourceUrl": "https://www.wanmei.com/radionews/gamevideo/game/gameanimation/20240412/249861.shtml",
+      "officialSiteUrl": "https://p5x.wanmei.com/",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "verifiedAt": "2026-09-09",
+      "note": "2024-01-25 审批变更信息确认增报客户端；完美世界官方公告确认 2024-04-12 全平台公测。"
+    },
+    {
+      "id": "p5x-cn-steamchina",
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "steam",
+      "region": "CN",
+      "store": "蒸汽平台",
+      "storeId": "3604320",
+      "plannedLaunchDate": "2025-04-25",
+      "actualLaunchDate": "2025-04-25",
+      "status": "launched",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-09",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalCategory": "移动、客户端",
+      "isbn": "978-7-498-12586-6",
+      "sourceUrl": "https://store.steamchina.com/app/3604320/",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "verifiedAt": "2026-09-09",
+      "note": "蒸汽平台官方商品页确认 2025-04-25 上线；该条仅代表蒸汽平台版本，不以国际 Steam 页面替代。"
     }
   ],
   "rankSnapshots": [
@@ -8529,9 +8626,55 @@ window.GAME_PROJECTS_DATA = {
       "source": "AppMagic",
       "sourceUrl": "https://appmagic.rocks/google-play/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB-%E3%82%B2%E3%82%AD%E3%82%B7%E3%83%B3-%E3%82%B9%E3%82%AF%E3%82%A2%E3%83%89%E3%83%A9/com.bandainamcoent.dbgekishinsquadra",
       "performanceLevel": "good"
+    },
+    {
+      "releaseId": "p5x-cn-steamchina",
+      "date": "2026-09-09",
+      "metricType": "review_score",
+      "value": 38,
+      "display": "蒸汽平台好评率 38%（多半差评）",
+      "scope": "蒸汽平台用户评测（585 条）",
+      "source": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/app/3604320/",
+      "performanceLevel": "ordinary"
+    },
+    {
+      "releaseId": "p5x-cn-steamchina",
+      "date": "2026-09-09",
+      "metricType": "review_count",
+      "value": 585,
+      "display": "蒸汽平台用户评测 585 条",
+      "scope": "好评率 38%（多半差评）",
+      "source": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/app/3604320/",
+      "performanceLevel": "ordinary"
     }
   ],
   "regionChecks": [
+    {
+      "projectId": "another-eden-begins",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Another%20Eden%20Begins",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Another Eden Begins",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "another-eden-begins",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Another Eden Begins",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
     {
       "projectId": "another-eden-begins",
       "platform": "switch",
@@ -8601,6 +8744,30 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "attack-on-titan-2",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 2 / A.O.T. 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Attack%20on%20Titan%202%20%2F%20A.O.T.%202",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 2 / A.O.T. 2",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
       "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
@@ -8642,6 +8809,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/601050/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 2 / A.O.T. 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "attack-on-titan-2",
@@ -8705,6 +8884,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "attack-on-titan-2",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 2 / A.O.T. 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "attack-on-titan-2",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "C596V0P64DD6",
@@ -8745,6 +8936,42 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/C596V0P64DD6",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 3 / A.O.T. 3",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Attack%20on%20Titan%203%20%2F%20A.O.T.%203",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 3 / A.O.T. 3",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 3 / A.O.T. 3",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "attack-on-titan-3",
@@ -8793,6 +9020,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "attack-on-titan-3",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan 3 / A.O.T. 3",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9MT4F57F7CVW",
@@ -8833,6 +9072,30 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9MT4F57F7CVW",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "attack-on-titan-wings-of-freedom",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan / A.O.T. Wings of Freedom",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "attack-on-titan-wings-of-freedom",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Attack%20on%20Titan%20%2F%20A.O.T.%20Wings%20of%20Freedom",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan / A.O.T. Wings of Freedom",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
     },
     {
       "projectId": "attack-on-titan-wings-of-freedom",
@@ -8881,6 +9144,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "attack-on-titan-wings-of-freedom",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Attack on Titan / A.O.T. Wings of Freedom",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "attack-on-titan-wings-of-freedom",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "C3QWVTZ6HTCB",
@@ -8921,6 +9196,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/C3QWVTZ6HTCB",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "bleach-rebirth-of-souls",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "BLEACH Rebirth of Souls",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "bleach-rebirth-of-souls",
@@ -8969,6 +9256,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "bleach-rebirth-of-souls",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=BLEACH%20Rebirth%20of%20Souls",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "BLEACH Rebirth of Souls",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "bleach-rebirth-of-souls",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "1689620",
@@ -9009,6 +9308,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1689620/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "bleach-rebirth-of-souls",
+      "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "BLEACH Rebirth of Souls",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "bleach-rebirth-of-souls",
@@ -9057,6 +9368,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "captain-tsubasa-2-world-fighters",
       "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "playstation",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "JP0700-PPSA22728_00-MAINGAME00000000",
@@ -9101,6 +9424,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "captain-tsubasa-2-world-fighters",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=CAPTAIN%20TSUBASA%202%3A%20WORLD%20FIGHTERS",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "2172910",
@@ -9141,6 +9476,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/2172910/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "captain-tsubasa-2-world-fighters",
@@ -9209,6 +9556,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "captain-tsubasa-2-world-fighters",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9N8TN15X157T",
@@ -9249,6 +9608,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9N8TN15X157T",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "demon-slayer-hinokami-chronicles",
@@ -9297,6 +9668,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "demon-slayer-hinokami-chronicles",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Demon%20Slayer%20-Kimetsu%20no%20Yaiba-%20The%20Hinokami%20Chronicles",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "1490890",
@@ -9337,6 +9720,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1490890/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "demon-slayer-hinokami-chronicles",
@@ -9405,6 +9800,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "demon-slayer-hinokami-chronicles",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9PHW7BZS9P7Z",
@@ -9445,6 +9852,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9PHW7BZS9P7Z",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "demon-slayer-hinokami-chronicles-2",
@@ -9493,6 +9912,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "demon-slayer-hinokami-chronicles-2",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Demon%20Slayer%20-Kimetsu%20no%20Yaiba-%20The%20Hinokami%20Chronicles%202",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "2928600",
@@ -9533,6 +9964,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/2928600/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "demon-slayer-hinokami-chronicles-2",
@@ -9601,6 +10044,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "demon-slayer-hinokami-chronicles-2",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9NCV4N00N94J",
@@ -9645,6 +10100,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "dragon-ball-fighterz",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=DRAGON%20BALL%20FighterZ",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL FighterZ",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "678950",
@@ -9685,6 +10152,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/678950/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL FighterZ",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "dragon-ball-fighterz",
@@ -9738,6 +10217,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "dragon-ball-fighterz",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL FighterZ",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "BZRK5C951KK7",
@@ -9778,6 +10269,54 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/BZRK5C951KK7",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=DRAGON+BALL+GEKISHIN+SQUADRA&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=DRAGON%20BALL%20GEKISHIN%20SQUADRA",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
     },
     {
       "projectId": "dragon-ball-gekishin-squadra",
@@ -9822,6 +10361,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/2072560/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL GEKISHIN SQUADRA",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "dragon-ball-gekishin-squadra",
@@ -9875,6 +10426,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "dragon-ball-sparking-zero",
       "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL: Sparking! ZERO",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "playstation",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "HP0700-PPSA15208_00-DRAGONBALLSPARK0",
@@ -9919,6 +10482,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "dragon-ball-sparking-zero",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=DRAGON%20BALL%3A%20Sparking!%20ZERO",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL: Sparking! ZERO",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "1790600",
@@ -9959,6 +10534,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1790600/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL: Sparking! ZERO",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "dragon-ball-sparking-zero",
@@ -10031,6 +10618,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "dragon-ball-sparking-zero",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL: Sparking! ZERO",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9N7XMJJHNFC3",
@@ -10071,6 +10670,42 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9N7XMJJHNFC3",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "dragon-ball-xenoverse-3",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL XENOVERSE 3",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "dragon-ball-xenoverse-3",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=DRAGON%20BALL%20XENOVERSE%203",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL XENOVERSE 3",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "dragon-ball-xenoverse-3",
+      "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL XENOVERSE 3",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "dragon-ball-xenoverse-3",
@@ -10119,6 +10754,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "dragon-ball-z-kakarot",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=DRAGON%20BALL%20Z%3A%20KAKAROT",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL Z: KAKAROT",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "851850",
@@ -10159,6 +10806,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/851850/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL Z: KAKAROT",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "dragon-ball-z-kakarot",
@@ -10217,6 +10876,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "dragon-ball-z-kakarot",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "DRAGON BALL Z: KAKAROT",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "BT5X0XGCWGD6",
@@ -10257,6 +10928,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/BT5X0XGCWGD6",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "echoes-of-aincrad",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Echoes of Aincrad",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "echoes-of-aincrad",
@@ -10305,6 +10988,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "echoes-of-aincrad",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Echoes%20of%20Aincrad",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Echoes of Aincrad",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "echoes-of-aincrad",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "2244210",
@@ -10345,6 +11040,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/2244210/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "echoes-of-aincrad",
+      "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Echoes of Aincrad",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "echoes-of-aincrad",
@@ -10392,6 +11099,42 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "The Eminence in Shadow: Phantom Echoes",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=The%20Eminence%20in%20Shadow%3A%20Phantom%20Echoes",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "The Eminence in Shadow: Phantom Echoes",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "The Eminence in Shadow: Phantom Echoes",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "eminence-in-shadow-phantom-echoes",
       "platform": "switch",
       "region": "HK",
       "representativeCountry": "HK",
@@ -10433,6 +11176,30 @@ window.GAME_PROJECTS_DATA = {
       "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=The%20Eminence%20in%20Shadow%20Phantom%20Echoes&sftab=all",
       "searchQuery": "The Eminence in Shadow Phantom Echoes",
       "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "eminence-in-shadow-phantom-echoes",
+      "platform": "windows",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方 PC 客户端 / WeGame",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "The Eminence in Shadow: Phantom Echoes",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "fairy-tail-2",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "FAIRY TAIL 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "fairy-tail-2",
@@ -10481,6 +11248,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "fairy-tail-2",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=FAIRY%20TAIL%202",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "FAIRY TAIL 2",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "fairy-tail-2",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "3002850",
@@ -10521,6 +11300,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/3002850/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "fairy-tail-2",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "FAIRY TAIL 2",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "fairy-tail-2",
@@ -10583,6 +11374,42 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "fate-extra-record",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Fate/EXTRA Record",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "fate-extra-record",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Fate%2FEXTRA%20Record",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Fate/EXTRA Record",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "fate-extra-record",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Fate/EXTRA Record",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "fate-extra-record",
       "platform": "switch",
       "region": "HK",
       "representativeCountry": "HK",
@@ -10627,6 +11454,42 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "gundam-rogue-orbit",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "GUNDAM ROGUE ORBIT",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "gundam-rogue-orbit",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=GUNDAM%20ROGUE%20ORBIT",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "GUNDAM ROGUE ORBIT",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "gundam-rogue-orbit",
+      "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "GUNDAM ROGUE ORBIT",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "gundam-rogue-orbit",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -10668,6 +11531,30 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9PND4CGSV9SX",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "hatsune-miku-starry-party",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Hatsune%20Miku%3A%20Starry%20Party",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Hatsune Miku: Starry Party",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "hatsune-miku-starry-party",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Hatsune Miku: Starry Party",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "hatsune-miku-starry-party",
@@ -10716,6 +11603,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "hunter-x-hunter-nen-impact",
       "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "HUNTER×HUNTER NEN×IMPACT",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "playstation",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "JP0036-PPSA24274_00-0000000000000000",
@@ -10760,6 +11659,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "hunter-x-hunter-nen-impact",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=HUNTER%C3%97HUNTER%20NEN%C3%97IMPACT",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "HUNTER×HUNTER NEN×IMPACT",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "2456420",
@@ -10800,6 +11711,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/2456420/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "HUNTER×HUNTER NEN×IMPACT",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "hunter-x-hunter-nen-impact",
@@ -10866,6 +11789,42 @@ window.GAME_PROJECTS_DATA = {
       "note": "Nintendo 官方地区目录与商品页核验。"
     },
     {
+      "projectId": "inazuma-eleven-cross",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Inazuma Eleven: Cross",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "inazuma-eleven-cross",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=Inazuma+Eleven%3A+Cross&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Inazuma Eleven: Cross",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "JoJo's Bizarre Adventure: All-Star Battle R",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
       "projectId": "jojo-all-star-battle-r",
       "platform": "playstation",
       "region": "HK",
@@ -10912,6 +11871,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "jojo-all-star-battle-r",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=JoJo's%20Bizarre%20Adventure%3A%20All-Star%20Battle%20R",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "JoJo's Bizarre Adventure: All-Star Battle R",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "1372110",
@@ -10952,6 +11923,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1372110/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "JoJo's Bizarre Adventure: All-Star Battle R",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "jojo-all-star-battle-r",
@@ -11015,6 +11998,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "jojo-all-star-battle-r",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "JoJo's Bizarre Adventure: All-Star Battle R",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9P4811KBD5R9",
@@ -11055,6 +12050,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9P4811KBD5R9",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen Cursed Clash",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "jujutsu-kaisen-cursed-clash",
@@ -11103,6 +12110,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "jujutsu-kaisen-cursed-clash",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Jujutsu%20Kaisen%20Cursed%20Clash",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen Cursed Clash",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "1877020",
@@ -11143,6 +12162,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1877020/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen Cursed Clash",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "jujutsu-kaisen-cursed-clash",
@@ -11201,6 +12232,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "jujutsu-kaisen-cursed-clash",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen Cursed Clash",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9N1T03Q2J6NH",
@@ -11241,6 +12284,42 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9N1T03Q2J6NH",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen RUMBLE: SURVIVATON",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Jujutsu%20Kaisen%20RUMBLE%3A%20SURVIVATON",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen RUMBLE: SURVIVATON",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen RUMBLE: SURVIVATON",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "jujutsu-kaisen-rumble-survivaton",
@@ -11289,6 +12368,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "jujutsu-kaisen-rumble-survivaton",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Jujutsu Kaisen RUMBLE: SURVIVATON",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "jujutsu-kaisen-rumble-survivaton",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9P5R86XXRVDD",
@@ -11329,6 +12420,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9P5R86XXRVDD",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "jump-force",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=JUMP%20FORCE",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "JUMP FORCE",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
     },
     {
       "projectId": "jump-force",
@@ -11420,6 +12523,42 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "kaiju-no-8-the-game",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KAIJU NO. 8 THE GAME",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=KAIJU+NO.+8+THE+GAME&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KAIJU NO. 8 THE GAME",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=KAIJU%20NO.%208%20THE%20GAME",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KAIJU NO. 8 THE GAME",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
       "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
@@ -11461,6 +12600,42 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/3393070/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=KINGDOM%20HEARTS%20IV",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "kingdom-hearts-iv",
@@ -11523,6 +12698,30 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "kingdom-hearts-iv",
+      "platform": "windows",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方 PC 客户端 / WeGame",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
+      "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KINGDOM HEARTS IV",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "kingdom-hearts-iv",
       "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
@@ -11564,6 +12763,102 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9P8LNZ7X5GVP",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "konosuba-prosperity-beloved-town",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KONOSUBA – Prosperity to This Beloved Town!",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "konosuba-prosperity-beloved-town",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=KONOSUBA+%E2%80%93+Prosperity+to+This+Beloved+Town%21&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KONOSUBA – Prosperity to This Beloved Town!",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "konosuba-prosperity-beloved-town",
+      "platform": "windows",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方 PC 客户端 / WeGame",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "KONOSUBA – Prosperity to This Beloved Town!",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "mushoku-tensei-chronicle-of-echoes",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Mushoku Tensei: Chronicle of Echoes",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "mushoku-tensei-chronicle-of-echoes",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=Mushoku+Tensei%3A+Chronicle+of+Echoes&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Mushoku Tensei: Chronicle of Echoes",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "mushoku-tensei-chronicle-of-echoes",
+      "platform": "windows",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方 PC 客户端 / WeGame",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Mushoku Tensei: Chronicle of Echoes",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "muv-luv-tactics-kalidasa-at-nightmare",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Muv-Luv%3A%20Tactics%20%E2%80%93%20Kalidasa%20at%20Nightmare",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Muv-Luv: Tactics – Kalidasa at Nightmare",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ACADEMIA: All’s Justice",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "my-hero-academia-alls-justice",
@@ -11612,6 +12907,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "my-hero-academia-alls-justice",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=MY%20HERO%20ACADEMIA%3A%20All%E2%80%99s%20Justice",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ACADEMIA: All’s Justice",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "2362050",
@@ -11652,6 +12959,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/2362050/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ACADEMIA: All’s Justice",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "my-hero-academia-alls-justice",
@@ -11720,6 +13039,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "my-hero-academia-alls-justice",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ACADEMIA: All’s Justice",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9P183CW04582",
@@ -11760,6 +13091,54 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9P183CW04582",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "my-hero-academia-united-survival",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "My Hero Academia UNITED SURVIVAL",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "my-hero-academia-united-survival",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=My+Hero+Academia+UNITED+SURVIVAL&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "My Hero Academia UNITED SURVIVAL",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "my-hero-academia-united-survival",
+      "platform": "windows",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方 PC 客户端 / WeGame",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "My Hero Academia UNITED SURVIVAL",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ONE'S JUSTICE",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "my-hero-ones-justice",
@@ -11808,6 +13187,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "my-hero-ones-justice",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=MY%20HERO%20ONE'S%20JUSTICE",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ONE'S JUSTICE",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "748360",
@@ -11848,6 +13239,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/748360/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ONE'S JUSTICE",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "my-hero-ones-justice",
@@ -11901,6 +13304,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "my-hero-ones-justice",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "MY HERO ONE'S JUSTICE",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "BVFF56S7PXFJ",
@@ -11941,6 +13356,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/BVFF56S7PXFJ",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "naruto-storm-connections",
@@ -11989,6 +13416,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "naruto-storm-connections",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=NARUTO%20X%20BORUTO%20Ultimate%20Ninja%20STORM%20CONNECTIONS",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "1020790",
@@ -12029,6 +13468,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/1020790/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "naruto-storm-connections",
@@ -12097,6 +13548,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "naruto-storm-connections",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9NM8JFMGVCVB",
@@ -12137,6 +13600,54 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9NM8JFMGVCVB",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE: Grand Gourmet",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=ONE+PIECE%3A+Grand+Gourmet&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE: Grand Gourmet",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=ONE%20PIECE%3A%20Grand%20Gourmet",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE: Grand Gourmet",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "one-piece-grand-gourmet",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE: Grand Gourmet",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "one-piece-grand-gourmet",
@@ -12209,6 +13720,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "one-piece-odyssey",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=ONE%20PIECE%20ODYSSEY",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE ODYSSEY",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "814000",
@@ -12249,6 +13772,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/814000/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE ODYSSEY",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "one-piece-odyssey",
@@ -12302,6 +13837,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "one-piece-odyssey",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE ODYSSEY",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9PND6XZTCZWT",
@@ -12342,6 +13889,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9PND6XZTCZWT",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "one-piece-world-seeker",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE World Seeker",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "one-piece-world-seeker",
@@ -12390,6 +13949,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "one-piece-world-seeker",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=ONE%20PIECE%20World%20Seeker",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE World Seeker",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "one-piece-world-seeker",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "755500",
@@ -12430,6 +14001,18 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/755500/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "one-piece-world-seeker",
+      "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "ONE PIECE World Seeker",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "one-piece-world-seeker",
@@ -12477,6 +14060,48 @@ window.GAME_PROJECTS_DATA = {
     },
     {
       "projectId": "persona-5-the-phantom-x",
+      "platform": "android",
+      "region": "CN",
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓客户端",
+      "storeId": "",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalCategory": "移动、客户端",
+      "sourceUrl": "https://www.wanmei.com/radionews/gamevideo/game/gameanimation/20240412/249861.shtml",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "note": "完美世界官方公测公告与官网安卓下载入口核验。"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "storeId": "6466264792",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalCategory": "移动、客户端",
+      "sourceUrl": "https://apps.apple.com/cn/app/id6466264792",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "note": "完美世界公告确认 2024-04-12 全平台公测；App Store 的初始上架时间为 2024-04-09，正式公测日作为实际上线口径。"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "storeId": "3604320",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalCategory": "移动、客户端",
+      "sourceUrl": "https://store.steamchina.com/app/3604320/",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "note": "蒸汽平台官方商品页确认 2025-04-25 上线；该条仅代表蒸汽平台版本，不以国际 Steam 页面替代。"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
       "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
@@ -12518,6 +14143,32 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-08",
       "sourceUrl": "https://store.steampowered.com/app/3061570/?cc=tw",
       "note": "Steam 官方地区商店接口核验。"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "windows",
+      "region": "CN",
+      "availability": "available",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方 PC 客户端",
+      "storeId": "",
+      "approvalNumber": "国新出审[2023]1415号",
+      "approvalCategory": "移动、客户端",
+      "sourceUrl": "https://www.wanmei.com/radionews/gamevideo/game/gameanimation/20240412/249861.shtml",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202401/t20240126_830423.html",
+      "note": "2024-01-25 审批变更信息确认增报客户端；完美世界官方公告确认 2024-04-12 全平台公测。"
+    },
+    {
+      "projectId": "pokemon-winds-waves",
+      "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Pokémon Winds / Pokémon Waves",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "pokemon-winds-waves",
@@ -12566,6 +14217,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "professor-layton-new-world-of-steam",
       "platform": "switch",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Nintendo Switch",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Professor Layton and The New World of Steam",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "professor-layton-new-world-of-steam",
+      "platform": "switch",
       "region": "HK",
       "representativeCountry": "HK",
       "availability": "not_listed_currently",
@@ -12606,6 +14269,18 @@ window.GAME_PROJECTS_DATA = {
       "sourceUrl": "https://www.nintendo.com/tw/software/switch?sfq=Professor%20Layton%20New%20World%20of%20Steam&sftab=all",
       "searchQuery": "Professor Layton New World of Steam",
       "note": "Nintendo 官方地区目录当前未检索到已确认的基础游戏条目；不等于从未发行。"
+    },
+    {
+      "projectId": "sand-land",
+      "platform": "playstation",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 PlayStation",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "SAND LAND",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
     },
     {
       "projectId": "sand-land",
@@ -12654,6 +14329,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "sand-land",
       "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=SAND%20LAND",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "SAND LAND",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
+    },
+    {
+      "projectId": "sand-land",
+      "platform": "steam",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "1979440",
@@ -12698,6 +14385,18 @@ window.GAME_PROJECTS_DATA = {
     {
       "projectId": "sand-land",
       "platform": "xbox",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "国行 Xbox",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "SAND LAND",
+      "note": "已核验国家新闻出版署进口网络游戏审批公示及公开的国行发行信息，未确认该同名产品的正式国行版本；不包含海外版光盘、跨区账号或非国行商店。"
+    },
+    {
+      "projectId": "sand-land",
+      "platform": "xbox",
       "region": "HK",
       "representativeCountry": "HK",
       "storeId": "9PGCVR1C0MZH",
@@ -12738,6 +14437,78 @@ window.GAME_PROJECTS_DATA = {
       "checkedAt": "2026-09-09",
       "sourceUrl": "https://www.xbox.com/zh-tw/games/store/x/9PGCVR1C0MZH",
       "note": "Xbox 官方地区商品页核验。"
+    },
+    {
+      "projectId": "shangri-la-frontier-seven-colossi",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Shangri-La Frontier: The Seven Colossi",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "shangri-la-frontier-seven-colossi",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=Shangri-La+Frontier%3A+The+Seven+Colossi&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Shangri-La Frontier: The Seven Colossi",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "shangri-la-frontier-seven-colossi",
+      "platform": "windows",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方 PC 客户端 / WeGame",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Shangri-La Frontier: The Seven Colossi",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "suikoden-star-leap",
+      "platform": "android",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆官方安卓渠道",
+      "sourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Suikoden STAR LEAP",
+      "note": "已核验国家新闻出版署审批公示、官方产品页及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未核验到不等于从未发行。"
+    },
+    {
+      "projectId": "suikoden-star-leap",
+      "platform": "ios",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "中国大陆 App Store",
+      "sourceUrl": "https://itunes.apple.com/search?term=Suikoden+STAR+LEAP&country=cn&entity=software&limit=20",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Suikoden STAR LEAP",
+      "note": "已核验中国大陆 App Store 当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；当前未检索到不等于从未发行。"
+    },
+    {
+      "projectId": "suikoden-star-leap",
+      "platform": "steam",
+      "region": "CN",
+      "availability": "not_listed_currently",
+      "checkedAt": "2026-09-09",
+      "store": "蒸汽平台",
+      "sourceUrl": "https://store.steamchina.com/search/?term=Suikoden%20STAR%20LEAP",
+      "approvalSourceUrl": "https://www.nppa.gov.cn/bsfw/jggs/yxspjg/index.html",
+      "searchQuery": "Suikoden STAR LEAP",
+      "note": "已核验蒸汽平台当前目录、国家新闻出版署审批公示及公开的中国大陆发行信息，未确认该同名产品的正式大陆版本；商品名本地化或后续上架仍需持续复核。"
     }
   ]
 };
