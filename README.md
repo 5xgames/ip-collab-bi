@@ -2,12 +2,12 @@
 
 日本泛娱乐 IP 游戏相关项目的地区表现仪表盘。
 
-公开网页：<https://5xgames.github.io/ip-collab-bi/>
+公开网页：<https://5xgames.github.io/ip-project-bi/>
 
 网站现分为两套独立 BI：
 
 - `IP 联动雷达`：现有日本 IP 与手游联动及地区榜单效果；
-- `IP 游戏化项目`：日本 IP 独立游戏开发、地区平台上线时间与市场表现，页面路径为 <https://5xgames.github.io/ip-collab-bi/game-projects/>。
+- `IP 游戏化项目`：日本 IP 独立游戏开发、地区平台上线时间与市场表现，页面路径为 <https://5xgames.github.io/ip-project-bi/game-projects/>。
 
 游戏化项目页已经完成第一阶段框架，数据目录为 `game-projects/data/`。项目主表、地区平台版本和平台榜单快照分别保存，避免把同一产品在不同地区或平台的上线日期合并，也不会把手游、Steam和主机的原始榜单数字直接混算。
 
