@@ -29,7 +29,8 @@
   };
   const metricNames = {
     free_rank: "免费游戏榜", grossing_rank: "畅销游戏榜", top_seller_rank: "畅销榜",
-    concurrent_users: "同时在线", daily_active_users: "日活跃用户", active_users: "活跃用户",
+    concurrent_users: "历史在线峰值", average_concurrent_users: "月均同时在线",
+    daily_active_users: "日活跃用户", active_users: "活跃用户",
     download_rank: "下载榜", physical_sales: "实体销量", unit_sales: "销量", estimated_sales: "销量估算",
     review_count: "评价数", review_score: "好评率", revenue: "公开收入", store_award: "商店奖项",
     estimated_downloads: "生命周期下载量估算", estimated_revenue: "生命周期收入估算",
@@ -731,14 +732,15 @@
     {
       id: "steam", title: "Steam", note: "销量与玩家活跃度分别观察，不与其他平台换算", platforms: ["steam"],
       charts: [
-        { id: "steam-sales", title: "销量走势", note: "公开销量或可信区间估算", metrics: salesMetrics, unit: "份" },
-        { id: "steam-activity", title: "日活与在线人数", note: "DAU、活跃用户与同时在线人数分别成线", metrics: ["daily_active_users", "active_users", "concurrent_users"], unit: "人" },
+        { id: "steam-sales", title: "销量走势", note: "官方公开值与第三方累计销量估算分别成线", metrics: salesMetrics, unit: "份" },
+        { id: "steam-activity", title: "玩家活跃走势", note: "DAU、活跃用户与月均同时在线分别成线", metrics: ["daily_active_users", "active_users", "average_concurrent_users"], unit: "人" },
+        { id: "steam-peak", title: "历史在线峰值", note: "全历史最高同时在线，仅作规模参照", metrics: ["concurrent_users"], unit: "人", optional: true },
       ],
     },
     {
       id: "console", title: "主机平台", note: "Nintendo Switch、PlayStation 与 Xbox 分平台、分地区呈现", platforms: ["switch", "playstation", "xbox"],
       charts: [
-        { id: "console-sales", title: "销量走势", note: "实体及公开总销量", metrics: salesMetrics, unit: "份" },
+        { id: "console-sales", title: "销量走势", note: "官方公开值、实体销量与第三方累计估算分别成线", metrics: salesMetrics, unit: "份" },
         { id: "console-reviews", title: "用户口碑走势", note: "平台用户好评率，不跨商店合并", metrics: ["review_score"], unit: "%", percent: true },
       ],
     },
