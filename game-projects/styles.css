@@ -137,6 +137,26 @@
 .ip-activity-table td:nth-child(3),
 .ip-activity-table td:nth-child(4),
 .ip-activity-table td:nth-child(5) { text-align: center; }
+.ip-activity-table tbody tr { transition: background-color 160ms ease; }
+.ip-activity-table tbody tr.is-selected { background: var(--blue-soft); }
+.ip-activity-table tbody tr.is-selected:hover { background: var(--blue-soft); }
+.ip-activity-select {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  margin: -6px 0;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+}
+.ip-activity-select:hover { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+.ip-activity-select[aria-pressed="true"] { color: var(--blue); }
 .ip-activity-number { font-size: 15px; font-variant-numeric: tabular-nums; }
 .ip-activity-number.active { color: var(--blue); }
 .ip-activity-flag {
@@ -150,6 +170,34 @@
   font-size: 10px;
   font-weight: 750;
 }
+.ip-drilldown-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 11px 13px;
+  border: 1px solid rgba(47, 111, 237, 0.2);
+  border-radius: 11px;
+  background: var(--blue-soft);
+  color: #526075;
+  font-size: 11px;
+}
+.ip-drilldown-status[hidden] { display: none; }
+.ip-drilldown-status strong { color: var(--blue); }
+.ip-drilldown-status button {
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid rgba(47, 111, 237, 0.24);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--blue);
+  font: inherit;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ip-drilldown-status button:hover { border-color: var(--blue); }
 .ip-activity-method { margin: 12px 0 0; color: var(--muted); font-size: 10px; }
 
 .project-dashboard-grid {
@@ -408,6 +456,9 @@
   .ip-activity-summary > div:first-child { border-top: 0; }
   .ip-activity-summary strong { white-space: normal; }
   .ip-activity-table-wrap { margin-right: -17px; padding-right: 17px; }
+  .ip-activity-select { min-height: 44px; margin: -10px 0; padding: 10px 0; }
+  .ip-drilldown-status { align-items: stretch; flex-direction: column; }
+  .ip-drilldown-status button { min-height: 44px; }
   .performance-heading { align-items: stretch; }
   .performance-heading .compact-select { flex: 0 0 auto; }
   .performance-heading .compact-select select { width: 100%; min-width: 0; }

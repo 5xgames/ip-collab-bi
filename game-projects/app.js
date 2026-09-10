@@ -72,6 +72,9 @@
     ipActivityBody: $("#ip-activity-table-body"),
     ipActivityEmpty: $("#ip-activity-empty"),
     ipActivityCount: $("#ip-activity-count"),
+    ipDrilldownStatus: $("#ip-drilldown-status"),
+    ipDrilldownName: $("#ip-drilldown-name"),
+    clearIpDrilldown: $("#clear-ip-drilldown"),
     schedule: $("#release-schedule"),
     scheduleEmpty: $("#schedule-empty"),
     performanceProduct: $("#performance-product-filter"),
@@ -142,6 +145,7 @@
     product: "all",
     search: "",
     performanceProduct: "all",
+    selectedIp: "all",
   };
 
   function escapeHtml(value) {
@@ -456,10 +460,17 @@
       || b.upcomingCount - a.upcomingCount
       || a.ipName.localeCompare(b.ipName, "zh-CN"));
 
+    if (state.selectedIp !== "all" && !activityRows.some((row) => row.ipName === state.selectedIp)) {
+      state.selectedIp = "all";
+      state.performanceProduct = "all";
+    }
+
     elements.ipActivityCount.textContent = `${numberFormat.format(activityRows.length)} 个 IP`;
     elements.ipActivityEmpty.hidden = activityRows.length > 0;
-    elements.ipActivityBody.innerHTML = activityRows.map((row) => `<tr>
-      <td><span class="table-primary">${escapeHtml(row.ipName)}</span>${row.inactive ? '<span class="ip-activity-flag">近 3 年无新作计划</span>' : ""}</td>
+    elements.ipActivityBody.innerHTML = activityRows.map((row) => {
+      const selected = row.ipName === state.selectedIp;
+      return `<tr${selected ? ' class="is-selected"' : ""}>
+      <td><button type="button" class="ip-activity-select" data-ip-name="${escapeHtml(row.ipName)}" aria-pressed="${selected}">${escapeHtml(row.ipName)}</button>${row.inactive ? '<span class="ip-activity-flag">近 3 年无新作计划</span>' : ""}</td>
       <td><strong class="ip-activity-number">${escapeHtml(numberFormat.format(row.totalCount))}</strong></td>
       <td><strong class="ip-activity-number${row.periodCount ? " active" : ""}">${escapeHtml(numberFormat.format(row.periodCount))}</strong></td>
       <td>${escapeHtml(numberFormat.format(row.launchedCount))}</td>
@@ -470,7 +481,12 @@
       <td>${row.nextProject
         ? `<span class="table-primary">${escapeHtml(row.nextProject.productName)}</span><span class="table-secondary">${escapeHtml(row.nextProject.timing)}</span>`
         : '<span class="table-secondary">暂无已公布项目</span>'}</td>
-    </tr>`).join("");
+    </tr>`;
+    }).join("");
+
+    const hasSelectedIp = state.selectedIp !== "all";
+    elements.ipDrilldownStatus.hidden = !hasSelectedIp;
+    elements.ipDrilldownName.textContent = hasSelectedIp ? state.selectedIp : "";
 
     const top = activityRows[0];
     const upcomingIpCount = activityRows.filter((row) => row.upcomingCount > 0).length;
@@ -483,6 +499,7 @@
     </div><div>
       <span>最长空窗且无新作</span><strong>${escapeHtml(longestInactive?.ipName || "暂无可判定 IP")}</strong><small>${longestInactive ? `距最近上线 ${escapeHtml(longestInactive.gap.label)}` : "需补充更多历史上线日期"}</small>
     </div>` : "";
+    return activityRows;
   }
 
   function renderSchedule(rows) {
@@ -568,12 +585,14 @@
       if (snapshot.releaseId) {
         const release = releaseById.get(snapshot.releaseId);
         const project = projectById.get(release?.projectId);
-        if (!release || !project || !dateInPerformancePeriod(snapshot.date) || !baseReleaseMatches(project, release)) return null;
+        if (!release || !project || !dateInPerformancePeriod(snapshot.date) || !baseReleaseMatches(project, release)
+          || (state.selectedIp !== "all" && canonicalIpName(project) !== state.selectedIp)) return null;
         return { snapshot, release, project, aggregate: false };
       }
       if (snapshot.projectId) {
         const project = projectById.get(snapshot.projectId);
-        if (!project || !aggregateSnapshotMatches(snapshot, project)) return null;
+        if (!project || !aggregateSnapshotMatches(snapshot, project)
+          || (state.selectedIp !== "all" && canonicalIpName(project) !== state.selectedIp)) return null;
         return { snapshot, release: null, project, aggregate: true };
       }
       return null;
@@ -698,6 +717,7 @@
   function renderPerformance() {
     const allEntries = performanceEntries();
     const visibleProjectIds = [...new Set(allEntries.map(({ project }) => project.id))];
+    elements.performanceProduct.options[0].textContent = state.selectedIp === "all" ? "筛选期全部产品" : "当前 IP 全部产品";
     appendOptions(elements.performanceProduct, visibleProjectIds
       .sort((a, b) => (projectById.get(a)?.productName || a).localeCompare(projectById.get(b)?.productName || b, "zh-CN"))
       .map((id) => [id, projectById.get(id)?.productName || id]));
@@ -841,9 +861,12 @@
     renderRegionAudit();
     renderRecentProjects(rows);
     renderIpActivity(rows, lifecycleRows);
-    renderSchedule(rows);
+    const downstreamRows = state.selectedIp === "all"
+      ? rows
+      : rows.filter(({ project }) => canonicalIpName(project) === state.selectedIp);
+    renderSchedule(downstreamRows);
     renderPerformance();
-    renderTable(rows);
+    renderTable(downstreamRows);
     elements.summary.textContent = rows.length
       ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台记录。${state.region === "all" ? "“全球/亚洲”仅表示公告范围。" : `其中 ${rows.filter(({ regionMatch }) => regionMatch?.quality === "verified").length} 条已逐区核验，${rows.filter(({ regionMatch }) => regionMatch?.quality === "announcement_scope").length} 条为公告覆盖待逐区确认。`}${state.product === "all" ? "" : " 已选择单一产品，项目时间范围不限制其完整生命周期。"}`
       : "当前筛选条件下没有可展示的项目；可调整产品、平台、地区或其他项目筛选条件。";
@@ -890,12 +913,26 @@
     elements.status, elements.ipType, elements.product, elements.performanceProduct,
   ]) element.addEventListener("change", updateStateAndRender);
   elements.search.addEventListener("input", updateStateAndRender);
+  elements.ipActivityBody.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const button = event.target.closest(".ip-activity-select");
+    if (!button) return;
+    const ipName = button.dataset.ipName;
+    state.selectedIp = state.selectedIp === ipName ? "all" : ipName;
+    state.performanceProduct = "all";
+    render();
+  });
+  elements.clearIpDrilldown.addEventListener("click", () => {
+    state.selectedIp = "all";
+    state.performanceProduct = "all";
+    render();
+  });
   elements.reset.addEventListener("click", () => {
     Object.assign(state, {
       projectStartDate: projectMinimumDate, projectEndDate: projectMaximumDate,
       performanceStartDate: defaultPerformanceStartDate, performanceEndDate: defaultPerformanceEndDate,
       platform: "all", region: "all",
-      status: "all", ipType: "all", product: "all", search: "", performanceProduct: "all",
+      status: "all", ipType: "all", product: "all", search: "", performanceProduct: "all", selectedIp: "all",
     });
     syncControls();
     render();

@@ -7,7 +7,7 @@
   <title>日本 IP 游戏化项目 BI</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20260907-site-tabs1">
-  <link rel="stylesheet" href="styles.css?v=20260909-phase18-playstation-jp-us-v2">
+  <link rel="stylesheet" href="styles.css?v=20260910-ip-drilldown">
 </head>
 <body>
   <header class="topbar">
@@ -139,7 +139,7 @@
         <div>
           <p class="section-kicker">IP GAME ACTIVITY</p>
           <h2 id="ip-activity-title">IP 游戏化活跃度</h2>
-          <p class="section-note">同时对照全库项目量、筛选期项目、未来计划与最近一次上线，识别高频游戏化 IP 和长期空窗 IP。</p>
+          <p class="section-note">同时对照全库项目量、筛选期项目、未来计划与最近一次上线；点击 IP 名称可联动查看其上线时间、平台表现与项目明细。</p>
         </div>
         <span id="ip-activity-count" class="count-badge">0 个 IP</span>
       </div>
@@ -161,6 +161,10 @@
         </table>
       </div>
       <div id="ip-activity-empty" class="empty-state" hidden>当前筛选条件下没有可比较的 IP 游戏化项目。</div>
+      <div id="ip-drilldown-status" class="ip-drilldown-status" aria-live="polite" hidden>
+        <span>当前查看 <strong id="ip-drilldown-name"></strong> 的上线时间、平台表现与项目明细</span>
+        <button id="clear-ip-drilldown" type="button">查看全部 IP</button>
+      </div>
       <p class="ip-activity-method">“全库项目”及“空窗期”基于当前数据库已收录项目计算，不代表该 IP 历史上从未推出其他游戏；项目时间范围只影响“筛选期项目”。</p>
     </section>
 
@@ -288,6 +292,6 @@
   </footer>
 
   <script src="data/projects.js?v=20260909-phase18-playstation-jp-us-v2"></script>
-  <script src="app.js?v=20260909-phase18-playstation-jp-us-v2"></script>
+  <script src="app.js?v=20260910-ip-drilldown"></script>
 </body>
 </html>
