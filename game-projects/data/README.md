@@ -23,7 +23,7 @@
 每条记录代表一个“项目 × 地区 × 平台/商店”版本：
 
 - `id`、`projectId`
-- `platform`：ios、android、steam、windows、switch、playstation、xbox、web、wechat_minigame、douyin_minigame
+- `platform`：ios、android、steam、windows、switch、playstation、xbox、web、wechat_minigame、douyin_minigame；正式公布但平台尚未确认时使用 `unannounced`
 - `region`：CN、HK、TW、JP、KR、SEA、US；仅有跨地区公告时使用 GLOBAL 或 ASIA，并在页面明确标为公告范围
 - `store`、`storeId`、`storeUrl`；移动端另保存商店原始产品名与 iOS `bundleId`
 - `plannedLaunchDate`：计划上线日期或时间窗口
@@ -65,6 +65,8 @@ Video Game Insights（Sensor Tower）的 `estimated_sales` 为平台级第三方
 当前 Steam 历史同时在线峰值分级：≥100,000 为 phenomenon，≥20,000 为 strong，≥5,000 为 good，其余为 ordinary；该阈值不得套用于手游、主机销量或商店奖项。
 
 当前 AppMagic 手游生命周期估算分级：收入 ≥US$50,000,000 为 phenomenon、≥US$20,000,000 为 strong、≥US$5,000,000 为 good，其余为 ordinary；下载量 ≥10,000,000 为 phenomenon、≥5,000,000 为 strong、≥1,000,000 为 good，其余为 ordinary。免费版只公开数值区间时，`value` 保存公开下限、`lowerBound` 设为 true，并在 `display` 中保留“>”标记；该口径仅用于同类手游规模分级。
+
+未来项目发现不依赖榜单。Phase 25 起增加定向遗漏审计，Phase 26-27 继续以新闻检索结果和近期 IP 手游目录反查数据库遗漏：先使用发行商 / IP 官网、官方社交账号、PR TIMES、4Gamer、Famitsu 与新闻检索发现候选，再回到官网、新闻稿或官方商店核验。商店允许预载或出现“正式发布”版本说明，不自动等同于服务已经开服；例如《SAKAMOTO DAYS Mission: Rogue Dawn》在 2026-09-10 已可安装，但官方倒计时仍确认 9 月 11 日正式开服，因此 `actualLaunchDate` 在开服前保持为空。只有平台尚未公布的正式项目使用 `unannounced`，页面显示“平台待公布”，不得猜测平台。
 
 历史 Steam 批次分别查询美国与日本商店。商店接口当前无法核验的地区不建立 release，不根据其他地区日期反推；全历史同时在线峰值通过 SteamCharts 或 SteamDB 记录，并在 `scope` 中保留核验截至日期。
 

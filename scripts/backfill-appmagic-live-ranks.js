@@ -124,6 +124,8 @@ const observations = products.flatMap((product) => [
   snapshotFor(product, "free_rank", product.freeRank),
   snapshotFor(product, "grossing_rank", product.grossingRank),
 ]);
+const mobileCatalog = data.releases.filter((release) => ["ios", "android"].includes(release.platform)
+  && release.storeId && release.storeAvailability === "available");
 const refreshedKeys = new Set(observations.map((snapshot) => [
   snapshot.projectId,
   snapshot.region,
@@ -147,22 +149,25 @@ data.rankSnapshots.sort((a, b) => String(a.date || "").localeCompare(String(b.da
   || String(a.projectId || a.releaseId || "").localeCompare(String(b.projectId || b.releaseId || ""))
   || String(a.metricType || "").localeCompare(String(b.metricType || "")));
 
-data.meta.schemaVersion = "2.8";
-data.meta.phase = Math.max(Number(data.meta.phase) || 0, 24);
+data.meta.schemaVersion = "2.9";
+data.meta.phase = Math.max(Number(data.meta.phase) || 0, 25);
 data.meta.generatedAt = generatedAt();
 data.meta.regionCoverage = {
   ...(data.meta.regionCoverage || {}),
   mobileStoreIdentityAuditDate: checkedAt,
-  mobileStoreIdentityTargets: 18,
-  mobileStoreIdentityVerified: 18,
+  mobileStoreIdentityTargets: mobileCatalog.length,
+  mobileStoreIdentityVerified: mobileCatalog.length,
 };
 data.meta.performanceCoverage = {
   ...(data.meta.performanceCoverage || {}),
   mobileStoreCatalog: {
     ...(data.meta.performanceCoverage?.mobileStoreCatalog || {}),
     verifiedAt: checkedAt,
-    releases: 18,
-    platforms: { ios: 8, android: 10 },
+    releases: mobileCatalog.length,
+    platforms: {
+      ios: mobileCatalog.filter((release) => release.platform === "ios").length,
+      android: mobileCatalog.filter((release) => release.platform === "android").length,
+    },
   },
   appMagicGooglePlayRanks: {
     verifiedAt: checkedAt,
