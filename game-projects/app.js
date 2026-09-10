@@ -29,7 +29,8 @@
   };
   const metricNames = {
     free_rank: "免费游戏榜", grossing_rank: "畅销游戏榜", top_seller_rank: "畅销榜",
-    concurrent_users: "同时在线", download_rank: "下载榜", physical_sales: "实体销量",
+    concurrent_users: "同时在线", daily_active_users: "日活跃用户", active_users: "活跃用户",
+    download_rank: "下载榜", physical_sales: "实体销量", unit_sales: "销量", estimated_sales: "销量估算",
     review_count: "评价数", review_score: "好评率", revenue: "公开收入", store_award: "商店奖项",
     estimated_downloads: "生命周期下载量估算", estimated_revenue: "生命周期收入估算",
   };
@@ -77,15 +78,25 @@
     clearIpDrilldown: $("#clear-ip-drilldown"),
     schedule: $("#release-schedule"),
     scheduleEmpty: $("#schedule-empty"),
+    performancePanel: $("#performance-panel"),
+    performanceSectionNote: $("#performance-section-note"),
     performanceProduct: $("#performance-product-filter"),
+    performanceOverviewView: $("#performance-overview-view"),
+    productPerformanceView: $("#product-performance-view"),
+    productPerformanceName: $("#product-performance-name"),
+    productPerformanceScope: $("#product-performance-scope"),
+    productPlatformTimelines: $("#product-platform-timelines"),
+    clearPerformanceProduct: $("#clear-performance-product"),
     steamPeakChart: $("#steam-peak-chart"),
     steamPeakEmpty: $("#steam-peak-empty"),
     performanceTierChart: $("#performance-tier-chart"),
     performanceTierEmpty: $("#performance-tier-empty"),
     mobileMarketChart: $("#mobile-market-chart"),
     mobileMarketEmpty: $("#mobile-market-empty"),
+    performanceDetailNote: $("#performance-detail-note"),
     performanceList: $("#performance-list"),
     performanceEmpty: $("#performance-empty"),
+    performanceMethod: $("#performance-method"),
     tableBody: $("#project-table-body"),
     tableEmpty: $("#project-table-empty"),
     tableCount: $("#project-count"),
@@ -625,7 +636,7 @@
       const width = Math.max(8, Math.log10(value + 1) / Math.log10(maximum + 1) * 100);
       const level = performanceLevels.includes(snapshot.performanceLevel) ? snapshot.performanceLevel : "ordinary";
       return `<div class="steam-peak-row">
-        <div class="steam-peak-label"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(project.ipName)}</span></div>
+        <div class="steam-peak-label"><button type="button" class="performance-product-select" data-performance-project-id="${escapeHtml(project.id)}">${escapeHtml(project.productName)}</button><span>${escapeHtml(project.ipName)}</span></div>
         <div class="steam-peak-track" aria-hidden="true"><span class="steam-peak-fill level-${escapeHtml(level)}" style="width:${width.toFixed(2)}%"></span></div>
         <strong class="steam-peak-value">${escapeHtml(numberFormat.format(value))}</strong>
       </div>`;
@@ -694,7 +705,7 @@
     const labels = { estimated_downloads: "下载量", estimated_revenue: "收入" };
     elements.mobileMarketChart.setAttribute("aria-label", `手游生命周期市场估算：${products.map(({ project, metrics }) => `${project.productName}，${Object.values(metrics).map(formatMetric).join("，")}`).join("；")}`);
     elements.mobileMarketChart.innerHTML = products.map(({ project, metrics }) => `<article class="mobile-market-product">
-      <div class="mobile-market-product-title"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(project.ipName)}</span></div>
+      <div class="mobile-market-product-title"><button type="button" class="performance-product-select" data-performance-project-id="${escapeHtml(project.id)}">${escapeHtml(project.productName)}</button><span>${escapeHtml(project.ipName)}</span></div>
       <div class="mobile-market-metrics">
         ${["estimated_downloads", "estimated_revenue"].map((metricType) => {
           const snapshot = metrics[metricType];
@@ -714,9 +725,187 @@
     return `${platforms} · ${region}`;
   }
 
+  const compactNumberFormat = new Intl.NumberFormat("zh-CN", { notation: "compact", maximumFractionDigits: 1 });
+  const salesMetrics = ["unit_sales", "estimated_sales", "physical_sales"];
+  const productPlatformGroups = [
+    {
+      id: "steam", title: "Steam", note: "销量与玩家活跃度分别观察，不与其他平台换算", platforms: ["steam"],
+      charts: [
+        { id: "steam-sales", title: "销量走势", note: "公开销量或可信区间估算", metrics: salesMetrics, unit: "份" },
+        { id: "steam-activity", title: "日活与在线人数", note: "DAU、活跃用户与同时在线人数分别成线", metrics: ["daily_active_users", "active_users", "concurrent_users"], unit: "人" },
+      ],
+    },
+    {
+      id: "console", title: "主机平台", note: "Nintendo Switch、PlayStation 与 Xbox 分平台、分地区呈现", platforms: ["switch", "playstation", "xbox"],
+      charts: [
+        { id: "console-sales", title: "销量走势", note: "实体及公开总销量", metrics: salesMetrics, unit: "份" },
+        { id: "console-reviews", title: "用户口碑走势", note: "平台用户好评率，不跨商店合并", metrics: ["review_score"], unit: "%", percent: true },
+      ],
+    },
+    {
+      id: "mobile", title: "手游双商店", note: "App Store 与 Google Play 的榜单名次分别成线，越接近第 1 名越好", platforms: ["ios", "android"],
+      charts: [
+        { id: "mobile-download-rank", title: "下载榜排名", note: "iOS 免费游戏榜 / Google Play 下载榜", metrics: ["free_rank", "download_rank"], unit: "名", rank: true },
+        { id: "mobile-grossing-rank", title: "畅销榜排名", note: "iOS / Google Play 游戏畅销榜", metrics: ["grossing_rank"], unit: "名", rank: true },
+        { id: "mobile-downloads", title: "生命周期下载规模", note: "第三方市场估算，仅作补充", metrics: ["estimated_downloads"], unit: "次", optional: true },
+        { id: "mobile-revenue", title: "生命周期收入规模", note: "第三方市场估算，仅作补充", metrics: ["estimated_revenue"], unit: "美元", currency: true, optional: true },
+      ],
+    },
+    {
+      id: "pc", title: "Windows PC", note: "非 Steam PC 渠道按可获得的销量与活跃数据呈现", platforms: ["windows"],
+      charts: [
+        { id: "pc-sales", title: "销量走势", note: "公开销量或可信区间估算", metrics: salesMetrics, unit: "份" },
+        { id: "pc-activity", title: "活跃用户走势", note: "日活与活跃用户分别成线", metrics: ["daily_active_users", "active_users", "concurrent_users"], unit: "人" },
+      ],
+    },
+    {
+      id: "web", title: "网页与小游戏", note: "网页、微信小游戏与抖音小游戏按各平台原生指标呈现", platforms: ["web", "wechat_minigame", "douyin_minigame"],
+      charts: [
+        { id: "web-popularity", title: "下载 / 人气榜排名", note: "平台榜单名次，越接近第 1 名越好", metrics: ["free_rank", "download_rank"], unit: "名", rank: true },
+        { id: "web-grossing", title: "畅销榜排名", note: "平台畅销或销售榜名次", metrics: ["grossing_rank", "top_seller_rank"], unit: "名", rank: true },
+      ],
+    },
+  ];
+
+  function snapshotPlatforms(entry) {
+    if (entry.release?.platform) return [entry.release.platform];
+    if (Array.isArray(entry.snapshot.platforms)) return entry.snapshot.platforms;
+    return entry.snapshot.platform ? [entry.snapshot.platform] : [];
+  }
+
+  function numericSnapshotValue(snapshot) {
+    if (Number.isFinite(Number(snapshot.rank))) return Number(snapshot.rank);
+    return Number.isFinite(Number(snapshot.value)) ? Number(snapshot.value) : null;
+  }
+
+  function chartValueLabel(value, chart) {
+    if (chart.rank) return `第 ${numberFormat.format(value)} 名`;
+    if (chart.percent) return `${numberFormat.format(value)}%`;
+    if (chart.currency) return `US$${compactNumberFormat.format(value)}`;
+    return `${compactNumberFormat.format(value)}${chart.unit || ""}`;
+  }
+
+  function niceChartMaximum(value) {
+    if (!Number.isFinite(value) || value <= 0) return 1;
+    const power = 10 ** Math.floor(Math.log10(value));
+    const normalized = value / power;
+    const multiplier = [1, 2, 5, 10].find((step) => normalized <= step) || 10;
+    return multiplier * power;
+  }
+
+  function timelineEntriesForChart(entries, group, chart) {
+    const platformSet = new Set(group.platforms);
+    return entries.map((entry) => {
+      const date = isoDate(entry.snapshot.date);
+      const value = numericSnapshotValue(entry.snapshot);
+      const platforms = snapshotPlatforms(entry);
+      if (!date || value === null || !chart.metrics.includes(entry.snapshot.metricType)
+        || !platforms.some((platform) => platformSet.has(platform))) return null;
+      const platformLabel = platforms.map((platform) => platformNames[platform] || platform).join(" + ") || "跨平台";
+      const regionCode = entry.release?.region || entry.snapshot.region;
+      const regionLabel = regionCode === "GLOBAL" ? "全球汇总" : regionNames[regionCode] || regionCode || "范围待确认";
+      return {
+        ...entry, date, value,
+        seriesKey: `${platforms.join("+")}:${regionCode || "scope"}:${entry.snapshot.metricType}`,
+        seriesLabel: `${platformLabel} · ${regionLabel} · ${metricNames[entry.snapshot.metricType] || entry.snapshot.metricType}`,
+      };
+    }).filter(Boolean);
+  }
+
+  function renderMetricTimelineChart(entries, group, chart) {
+    const chartEntries = timelineEntriesForChart(entries, group, chart);
+    const heading = `<div class="product-metric-heading"><div><strong>${escapeHtml(chart.title)}</strong><span>${escapeHtml(chart.note)}</span></div><span>${escapeHtml(numberFormat.format(chartEntries.length))} 个数据点</span></div>`;
+    if (!chartEntries.length) {
+      return `<article class="product-metric-card is-empty">${heading}<div class="product-chart-empty">该指标的历史时间序列待补；不会使用其他平台数据代替。</div></article>`;
+    }
+
+    const seriesMap = new Map();
+    for (const entry of chartEntries) {
+      if (!seriesMap.has(entry.seriesKey)) seriesMap.set(entry.seriesKey, { label: entry.seriesLabel, points: [] });
+      seriesMap.get(entry.seriesKey).points.push(entry);
+    }
+    const series = [...seriesMap.values()].map((item) => ({
+      ...item,
+      points: item.points.sort((a, b) => a.date.localeCompare(b.date)),
+    }));
+    const allDates = [...new Set(chartEntries.map((entry) => entry.date))].sort();
+    const allTimes = allDates.map((date) => new Date(`${date}T00:00:00Z`).getTime());
+    const minTime = Math.min(...allTimes);
+    const maxTime = Math.max(...allTimes);
+    const values = chartEntries.map((entry) => entry.value);
+    const plot = { width: 640, height: 220, left: 66, right: 16, top: 18, bottom: 46 };
+    const plotWidth = plot.width - plot.left - plot.right;
+    const plotHeight = plot.height - plot.top - plot.bottom;
+    const yMinimum = chart.rank ? 1 : 0;
+    const yMaximum = chart.percent ? 100 : chart.rank
+      ? Math.max(10, niceChartMaximum(Math.max(...values)))
+      : niceChartMaximum(Math.max(...values));
+    const xPosition = (date) => {
+      if (minTime === maxTime) return plot.left + plotWidth / 2;
+      const time = new Date(`${date}T00:00:00Z`).getTime();
+      return plot.left + ((time - minTime) / (maxTime - minTime)) * plotWidth;
+    };
+    const yPosition = (value) => {
+      const ratio = (value - yMinimum) / Math.max(1, yMaximum - yMinimum);
+      return chart.rank ? plot.top + ratio * plotHeight : plot.top + (1 - ratio) * plotHeight;
+    };
+    const yTicks = [...new Set([yMinimum, chart.rank ? Math.round((yMinimum + yMaximum) / 2) : yMaximum / 2, yMaximum])];
+    const xTicks = allDates.length <= 3
+      ? allDates
+      : [allDates[0], allDates[Math.floor((allDates.length - 1) / 2)], allDates.at(-1)];
+    const grid = yTicks.map((tick) => {
+      const y = yPosition(tick);
+      return `<line x1="${plot.left}" y1="${y.toFixed(2)}" x2="${plot.width - plot.right}" y2="${y.toFixed(2)}" class="product-chart-gridline"></line><text x="${plot.left - 9}" y="${(y + 4).toFixed(2)}" text-anchor="end" class="product-chart-axis-label">${escapeHtml(chart.rank ? `#${numberFormat.format(tick)}` : chartValueLabel(tick, chart))}</text>`;
+    }).join("");
+    const dateLabels = xTicks.map((date, index) => {
+      const anchor = index === 0 && xTicks.length > 1 ? "start" : index === xTicks.length - 1 && xTicks.length > 1 ? "end" : "middle";
+      return `<text x="${xPosition(date).toFixed(2)}" y="${plot.height - 16}" text-anchor="${anchor}" class="product-chart-axis-label">${escapeHtml(date)}</text>`;
+    }).join("");
+    const paths = series.map((item, index) => {
+      const path = item.points.map((point, pointIndex) => `${pointIndex ? "L" : "M"} ${xPosition(point.date).toFixed(2)} ${yPosition(point.value).toFixed(2)}`).join(" ");
+      const line = item.points.length > 1 ? `<path d="${path}" class="product-series-line series-tone-${index % 5}"></path>` : "";
+      const points = item.points.map((point) => `<circle cx="${xPosition(point.date).toFixed(2)}" cy="${yPosition(point.value).toFixed(2)}" r="5" class="product-series-point series-tone-${index % 5}"><title>${escapeHtml(`${item.label} · ${point.date} · ${chartValueLabel(point.value, chart)}`)}</title></circle>`).join("");
+      return `${line}${points}`;
+    }).join("");
+    const accessibleSummary = series.map((item) => `${item.label}：${item.points.map((point) => `${point.date} ${chartValueLabel(point.value, chart)}`).join("、")}`).join("；");
+    const legend = series.map((item, index) => {
+      const latest = item.points.at(-1);
+      return `<div class="product-series-legend-row"><span class="product-series-swatch series-tone-${index % 5}" aria-hidden="true"></span><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(chartValueLabel(latest.value, chart))}</strong><time>${escapeHtml(latest.date)}</time></div>`;
+    }).join("");
+    return `<article class="product-metric-card">${heading}<svg class="product-time-chart" viewBox="0 0 ${plot.width} ${plot.height}" role="img" aria-label="${escapeHtml(`${chart.title}：${accessibleSummary}`)}"><title>${escapeHtml(`${chart.title}，${accessibleSummary}`)}</title>${grid}<line x1="${plot.left}" y1="${plot.top + plotHeight}" x2="${plot.width - plot.right}" y2="${plot.top + plotHeight}" class="product-chart-axis"></line>${paths}${dateLabels}</svg><div class="product-series-legend">${legend}</div></article>`;
+  }
+
+  function renderProductPlatformTimelines(projectId, entries) {
+    const project = projectById.get(projectId);
+    if (!project) {
+      elements.productPlatformTimelines.innerHTML = '<div class="product-platform-empty">未找到该产品的项目记录。</div>';
+      return;
+    }
+    const matchingReleases = releases.filter((release) => release.projectId === projectId
+      && releaseRegionMatch(release)
+      && baseReleaseMatches(project, release, { ignoreRegion: true }));
+    const relevantPlatforms = new Set(matchingReleases.map((release) => release.platform));
+    for (const entry of entries) for (const platform of snapshotPlatforms(entry)) relevantPlatforms.add(platform);
+    const groups = productPlatformGroups.filter((group) => group.platforms.some((platform) => relevantPlatforms.has(platform)));
+    const platformLabels = [...relevantPlatforms].map((platform) => platformNames[platform] || platform);
+    elements.productPerformanceName.textContent = project.productName;
+    elements.productPerformanceScope.textContent = `${project.ipName} · ${platformLabels.join(" / ") || "平台待确认"} · ${state.performanceStartDate || "最早"} 至 ${state.performanceEndDate || "最新"}`;
+    if (!groups.length) {
+      elements.productPlatformTimelines.innerHTML = '<div class="product-platform-empty">当前筛选范围尚未确认该产品的平台版本。</div>';
+      return;
+    }
+    elements.productPlatformTimelines.innerHTML = groups.map((group) => {
+      const groupEntries = entries.filter((entry) => snapshotPlatforms(entry).some((platform) => group.platforms.includes(platform)));
+      const charts = group.charts.filter((chart) => !chart.optional || timelineEntriesForChart(groupEntries, group, chart).length > 0);
+      const groupPlatformLabels = group.platforms.filter((platform) => relevantPlatforms.has(platform)).map((platform) => platformNames[platform] || platform);
+      return `<section class="product-platform-section" aria-labelledby="product-platform-${escapeHtml(group.id)}"><div class="product-platform-heading"><div><span>${escapeHtml(groupPlatformLabels.join(" / ") || group.title)}</span><h3 id="product-platform-${escapeHtml(group.id)}">${escapeHtml(group.title)}</h3><p>${escapeHtml(group.note)}</p></div><strong>${escapeHtml(numberFormat.format(groupEntries.length))} 条已核验记录</strong></div><div class="product-metric-grid">${charts.map((chart) => renderMetricTimelineChart(groupEntries, group, chart)).join("")}</div></section>`;
+    }).join("");
+  }
+
   function renderPerformance() {
     const allEntries = performanceEntries();
-    const visibleProjectIds = [...new Set(allEntries.map(({ project }) => project.id))];
+    const candidateRows = collectFilteredRows(true).filter(({ project }) => state.selectedIp === "all" || canonicalIpName(project) === state.selectedIp);
+    const visibleProjectIds = [...new Set(candidateRows.map(({ project }) => project.id))];
     elements.performanceProduct.options[0].textContent = state.selectedIp === "all" ? "筛选期全部产品" : "当前 IP 全部产品";
     appendOptions(elements.performanceProduct, visibleProjectIds
       .sort((a, b) => (projectById.get(a)?.productName || a).localeCompare(projectById.get(b)?.productName || b, "zh-CN"))
@@ -725,17 +914,36 @@
       state.performanceProduct = "all";
     }
     elements.performanceProduct.value = state.performanceProduct;
+    const selectedProjectId = state.performanceProduct !== "all"
+      ? state.performanceProduct
+      : state.product !== "all" ? state.product : "all";
     const snapshots = allEntries
-      .filter(({ project }) => state.performanceProduct === "all" || project.id === state.performanceProduct)
+      .filter(({ project }) => selectedProjectId === "all" || project.id === selectedProjectId)
       .sort((a, b) => String(b.snapshot.date).localeCompare(String(a.snapshot.date)));
-    renderSteamPeakChart(snapshots);
-    renderPerformanceTierChart(snapshots);
-    renderMobileMarketChart(snapshots);
+    const productSelected = selectedProjectId !== "all";
+    elements.performanceOverviewView.hidden = productSelected;
+    elements.productPerformanceView.hidden = !productSelected;
+    elements.performanceSectionNote.textContent = productSelected
+      ? "按平台拆分该产品的重要指标；销量、活跃、口碑与商店榜单不跨平台混算。"
+      : "保留平台原始指标，再转换为可比较的表现等级。";
+    elements.performanceDetailNote.textContent = productSelected
+      ? "展示所选产品在当前表现期间内最近核验的 6 条原始记录"
+      : "展示当前筛选内最近核验的 6 条记录";
+    elements.performanceMethod.innerHTML = productSelected
+      ? "<strong>产品视图口径：</strong>每张图只比较同平台、同单位指标；Steam 重点观察销量与活跃，主机重点观察销量与用户口碑，手游分别观察 App Store 与 Google Play 的下载榜和畅销榜。榜单纵轴越接近第 1 名越好；累计值只按核验日期显示，不视为当日新增。"
+      : "<strong>分级口径：</strong>Steam 历史同时在线峰值 ≥100,000 为“现象级”，≥20,000 为“强势”，≥5,000 为“表现良好”；手游收入依次采用 ≥US$50M、≥US$20M、≥US$5M，手游下载量依次采用 ≥10M、≥5M、≥1M。AppMagic 免费公开区间仅表示下限，页面保留“&gt;”；不同平台指标不直接混算。";
+    if (productSelected) {
+      renderProductPlatformTimelines(selectedProjectId, snapshots);
+    } else {
+      renderSteamPeakChart(snapshots);
+      renderPerformanceTierChart(snapshots);
+      renderMobileMarketChart(snapshots);
+    }
     elements.performanceEmpty.hidden = snapshots.length > 0;
     elements.performanceList.innerHTML = snapshots.slice(0, 6).map(({ snapshot, release, project }) => {
       const level = snapshot.performanceLevel || "insufficient";
       return `<div class="performance-row">
-        <div class="performance-product"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(performancePlatformLabel(snapshot, release))}</span></div>
+        <div class="performance-product"><button type="button" class="performance-product-select" data-performance-project-id="${escapeHtml(project.id)}">${escapeHtml(project.productName)}</button><span>${escapeHtml(performancePlatformLabel(snapshot, release))}</span></div>
         <div class="performance-metric"><strong>${escapeHtml(formatMetric(snapshot))}</strong><span>${escapeHtml(snapshot.scope || "平台公开榜单")} · ${escapeHtml(isoDate(snapshot.date) || "日期待补")}</span></div>
         <span class="status-chip ${level === "phenomenon" || level === "strong" ? "active" : level === "insufficient" ? "pending" : "ended"} performance-level">${escapeHtml(levelNames[level] || level)}</span>
       </div>`;
@@ -925,6 +1133,21 @@
   elements.clearIpDrilldown.addEventListener("click", () => {
     state.selectedIp = "all";
     state.performanceProduct = "all";
+    render();
+  });
+  elements.performancePanel.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const button = event.target.closest(".performance-product-select");
+    if (!button) return;
+    const projectId = button.dataset.performanceProjectId;
+    if (!projectById.has(projectId)) return;
+    state.performanceProduct = projectId;
+    render();
+  });
+  elements.clearPerformanceProduct.addEventListener("click", () => {
+    state.product = "all";
+    state.performanceProduct = "all";
+    syncControls();
     render();
   });
   elements.reset.addEventListener("click", () => {

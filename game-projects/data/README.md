@@ -36,7 +36,7 @@
 每条记录保存一个平台原生指标，或一个明确标注汇总范围的跨平台估算：
 
 - `releaseId`、`date`；跨平台汇总记录改用 `projectId`，并通过 `platforms` 和 `region` 保存适用范围
-- `metricType`：free_rank、grossing_rank、top_seller_rank、concurrent_users、download_rank、physical_sales、review_count、review_score、estimated_downloads、estimated_revenue 等
+- `metricType`：free_rank、grossing_rank、top_seller_rank、download_rank、concurrent_users、daily_active_users、active_users、unit_sales、estimated_sales、physical_sales、review_count、review_score、estimated_downloads、estimated_revenue 等
 - `rank`：榜单名次
 - `value`：销量、在线人数或评价数值
 - `display`：需要保留原始文本口径时使用，例如商店奖项或“Steam 历史同时在线峰值”
@@ -45,6 +45,8 @@
 - `performanceLevel`：phenomenon、strong、good、ordinary、insufficient
 
 不同平台的原始指标不直接混算。产品级表现应先在各平台内部标准化，再汇总为表现等级。
+
+选择单一产品时，页面按平台生成独立时间图表：Steam 使用销量、日活 / 活跃 / 同时在线；主机使用销量与用户好评率；iOS、Android 使用下载榜与畅销榜，并分别保留商店、地区和指标名称。`date` 表示该数据点对应的日期；累计值或历史峰值只有核验日期时，必须在 `display` / `scope` 中明确写明“生命周期”“历史峰值”或“截至日期”，不得解释为当日新增或当日日活。
 
 ## regionChecks
 
