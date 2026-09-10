@@ -1,8 +1,8 @@
 window.GAME_PROJECTS_DATA = {
   "meta": {
-    "schemaVersion": "2.4",
-    "phase": 20,
-    "generatedAt": "2026-09-10T14:29:21+09:00",
+    "schemaVersion": "2.7",
+    "phase": 23,
+    "generatedAt": "2026-09-10T16:11:30+09:00",
     "latestProjectDate": "2026-09-08",
     "coverageStart": "2016-02-18",
     "defaultWindowDays": 90,
@@ -79,7 +79,10 @@ window.GAME_PROJECTS_DATA = {
         "蒸汽平台",
         "游戏官方中国大陆运营网站与发行公告"
       ],
-      "steamAuditedProducts": 24
+      "steamAuditedProducts": 24,
+      "mobileStoreIdentityAuditDate": "2026-09-10",
+      "mobileStoreIdentityTargets": 17,
+      "mobileStoreIdentityVerified": 17
     },
     "performanceCoverage": {
       "steamCharts": {
@@ -114,6 +117,100 @@ window.GAME_PROJECTS_DATA = {
         },
         "source": "Video Game Insights (Sensor Tower)",
         "unavailable": []
+      },
+      "consoleStoreRatings": {
+        "verifiedAt": "2026-09-10",
+        "metric": "store_user_rating_out_of_5_and_rating_count",
+        "projects": {
+          "playstation": 15,
+          "xbox": 20
+        },
+        "snapshots": 70,
+        "sources": {
+          "playstation": "PlayStation Store",
+          "xbox": "Xbox Store"
+        },
+        "note": "PlayStation 页面标注为全球玩家评分；Xbox 采用对应地区商店评分。",
+        "unavailable": [
+          {
+            "platform": "xbox",
+            "projectId": "kingdom-hearts-iv",
+            "storeId": "9P8LNZ7X5GVP",
+            "reason": "rating unavailable"
+          },
+          {
+            "platform": "xbox",
+            "projectId": "dragon-ball-xenoverse-3",
+            "storeId": "9N30KLM8JP2S",
+            "reason": "rating unavailable"
+          },
+          {
+            "platform": "xbox",
+            "projectId": "jujutsu-kaisen-rumble-survivaton",
+            "storeId": "9P5R86XXRVDD",
+            "reason": "rating unavailable"
+          }
+        ]
+      },
+      "mobileStoreCatalog": {
+        "verifiedAt": "2026-09-10",
+        "releases": 17,
+        "platforms": {
+          "ios": 8,
+          "android": 9
+        },
+        "sources": [
+          "Apple iTunes Search API",
+          "Google Play product pages"
+        ],
+        "unavailable": []
+      },
+      "appleAppStoreRanks": {
+        "verifiedAt": "2026-09-10",
+        "market": "JP",
+        "platform": "ios",
+        "chartCategory": "games",
+        "trackedProjects": 7,
+        "snapshotsAdded": 14,
+        "feeds": [
+          {
+            "metricType": "grossing_rank",
+            "snapshotDate": "2026-09-10",
+            "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+            "positions": 100,
+            "ranked": [
+              "persona-5-the-phantom-x",
+              "inazuma-eleven-cross",
+              "suikoden-star-leap"
+            ],
+            "unranked": [
+              "kaiju-no-8-the-game",
+              "dragon-ball-gekishin-squadra",
+              "mushoku-tensei-chronicle-of-echoes",
+              "my-hero-academia-united-survival"
+            ],
+            "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json"
+          },
+          {
+            "metricType": "free_rank",
+            "snapshotDate": "2026-09-10",
+            "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+            "positions": 100,
+            "ranked": [
+              "suikoden-star-leap"
+            ],
+            "unranked": [
+              "kaiju-no-8-the-game",
+              "dragon-ball-gekishin-squadra",
+              "persona-5-the-phantom-x",
+              "mushoku-tensei-chronicle-of-echoes",
+              "my-hero-academia-united-survival",
+              "inazuma-eleven-cross"
+            ],
+            "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json"
+          }
+        ],
+        "note": "Apple RSS 当前公开接口实际返回 Top 100；未出现的产品保存为未入 Top 100 状态，不推断其精确名次。该接口不提供历史回溯，脚本每日运行后累积时间序列。"
       }
     }
   },
@@ -1083,7 +1180,14 @@ window.GAME_PROJECTS_DATA = {
       "preregisterDate": "2025-04-25",
       "status": "launched",
       "sourceUrl": "https://games.aktsk.jp/en/news/61864",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "6742088839",
+      "storeUrl": "https://apps.apple.com/us/app/kaiju-no-8-the-game/id6742088839?uo=4",
+      "storeProductName": "KAIJU NO. 8 THE GAME",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "jp.aktsk.games.kaiju-no8-the-game",
+      "rawStoreReleaseDate": "2025-08-30T07:00:00Z"
     },
     {
       "id": "kj8-global-android",
@@ -1096,7 +1200,12 @@ window.GAME_PROJECTS_DATA = {
       "preregisterDate": "2025-04-25",
       "status": "launched",
       "sourceUrl": "https://games.aktsk.jp/en/news/61864",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "jp.aktsk.games.kaiju_no8_the_game",
+      "storeUrl": "https://play.google.com/store/apps/details?id=jp.aktsk.games.kaiju_no8_the_game&hl=en&gl=US",
+      "storeProductName": "KAIJU NO. 8 THE GAME",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "kj8-us-steam",
@@ -1134,7 +1243,14 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2025-09-09",
       "status": "launched",
       "sourceUrl": "https://en.dragon-ball-official.com/news/01_3667.html",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "6744439943",
+      "storeUrl": "https://apps.apple.com/us/app/dragon-ball-gekishin-squadra/id6744439943?uo=4",
+      "storeProductName": "DRAGON BALL GEKISHIN SQUADRA",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "jp.co.bandainamcoent.BNEI0418",
+      "rawStoreReleaseDate": "2025-09-10T07:00:00Z"
     },
     {
       "id": "dbgs-global-android",
@@ -1146,7 +1262,12 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2025-09-09",
       "status": "launched",
       "sourceUrl": "https://en.dragon-ball-official.com/news/01_3667.html",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "com.bandainamcoent.dbgekishinsquadra",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.bandainamcoent.dbgekishinsquadra&hl=en&gl=US",
+      "storeProductName": "DRAGON BALL GEKISHIN SQUADRA",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "dbgs-global-ps",
@@ -1195,7 +1316,14 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2025-09-10",
       "status": "launched",
       "sourceUrl": "https://en.dragon-ball-official.com/news/01_3667.html",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "6744439943",
+      "storeUrl": "https://apps.apple.com/jp/app/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB-%E3%82%B2%E3%82%AD%E3%82%B7%E3%83%B3-%E3%82%B9%E3%82%AF%E3%82%A2%E3%83%89%E3%83%A9/id6744439943?uo=4",
+      "storeProductName": "ドラゴンボール ゲキシン スクアドラ",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "jp.co.bandainamcoent.BNEI0418",
+      "rawStoreReleaseDate": "2025-09-10T07:00:00Z"
     },
     {
       "id": "dbgs-jp-android",
@@ -1207,7 +1335,12 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2025-09-10",
       "status": "launched",
       "sourceUrl": "https://en.dragon-ball-official.com/news/01_3667.html",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "com.bandainamcoent.dbgekishinsquadra",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.bandainamcoent.dbgekishinsquadra&hl=en&gl=JP",
+      "storeProductName": "DRAGON BALL GEKISHIN SQUADRA",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "dbgs-jp-ps",
@@ -1244,7 +1377,14 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2025-06-26",
       "status": "launched",
       "sourceUrl": "https://persona5x.com/news/",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "6736754647",
+      "storeUrl": "https://apps.apple.com/us/app/p5x-persona5-the-phantom-x/id6736754647?uo=4",
+      "storeProductName": "P5X | Persona5: The Phantom X",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "com.sega.persona5.the.phantomx.en",
+      "rawStoreReleaseDate": "2025-06-25T07:00:00Z"
     },
     {
       "id": "p5x-global-android",
@@ -1256,7 +1396,12 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2025-06-26",
       "status": "launched",
       "sourceUrl": "https://persona5x.com/news/",
-      "verifiedAt": "2026-09-07"
+      "verifiedAt": "2026-09-07",
+      "storeId": "com.sega.persona5.the.phantomx.en",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.sega.persona5.the.phantomx.en&hl=en&gl=US",
+      "storeProductName": "P5X | Persona5: The Phantom X",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "p5x-global-steam",
@@ -2019,7 +2164,11 @@ window.GAME_PROJECTS_DATA = {
       "preregisterDate": "2026-07-26",
       "status": "preregister",
       "sourceUrl": "https://konosuba-machisuba.com/",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeUrl": "https://play.google.com/store/apps/details?id=jp.kadokawa.gb.machisuba&hl=en&gl=JP",
+      "storeProductName": "この素晴らしい世界に祝福を！～この愛すべき街に繁栄を！～",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "kbt-jp-dmm",
@@ -2104,7 +2253,14 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-07-27",
       "status": "launched",
       "sourceUrl": "https://mushokutensei-coe.com/",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeId": "6754311241",
+      "storeUrl": "https://apps.apple.com/jp/app/%E7%84%A1%E8%81%B7%E8%BB%A2%E7%94%9F-%E7%95%B0%E4%B8%96%E7%95%8C%E8%A1%8C%E3%81%A3%E3%81%9F%E3%82%89%E6%9C%AC%E6%B0%97%E3%81%A0%E3%81%99-%E3%82%AF%E3%83%AD%E3%82%A8%E3%82%B3/id6754311241?uo=4",
+      "storeProductName": "無職転生 〜異世界行ったら本気だす〜 【クロエコ】",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "jp.gree-ent.mushoku",
+      "rawStoreReleaseDate": "2026-07-26T07:00:00Z"
     },
     {
       "id": "mtcoe-jp-android",
@@ -2117,7 +2273,11 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-07-27",
       "status": "launched",
       "sourceUrl": "https://mushokutensei-coe.com/",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeUrl": "https://play.google.com/store/apps/details?id=jp.gree_ent.mushoku&hl=en&gl=JP",
+      "storeProductName": "無職転生〜異世界行ったら本気だす〜クロニクル・オブ・エコーズ",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "mtcoe-jp-pc",
@@ -2141,7 +2301,14 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-08-06",
       "status": "launched",
       "sourceUrl": "https://www.klab.com/en/press/release/2026/0806/h.html",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeId": "6758648051",
+      "storeUrl": "https://apps.apple.com/us/app/mha-united-survival/id6758648051?uo=4",
+      "storeProductName": "MHA: UNITED SURVIVAL",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "com.klab.heroaca.united.survival",
+      "rawStoreReleaseDate": "2026-08-05T07:00:00Z"
     },
     {
       "id": "mhaus-global-android",
@@ -2154,7 +2321,11 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-08-06",
       "status": "launched",
       "sourceUrl": "https://www.klab.com/en/press/release/2026/0806/h.html",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.klab.heroaca.united.survival&hl=en&gl=US",
+      "storeProductName": "MHA: UNITED SURVIVAL",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "mhaus-global-pc",
@@ -2178,7 +2349,14 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-06-09",
       "status": "launched",
       "sourceUrl": "https://www.inazuma-cross.jp/",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeId": "6756994116",
+      "storeUrl": "https://apps.apple.com/jp/app/%E3%82%A4%E3%83%8A%E3%82%BA%E3%83%9E%E3%82%A4%E3%83%AC%E3%83%96%E3%83%B3-%E3%82%AF%E3%83%AD%E3%82%B9/id6756994116?uo=4",
+      "storeProductName": "イナズマイレブン クロス",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "jp.co.level5.inazumacross",
+      "rawStoreReleaseDate": "2026-06-08T07:00:00Z"
     },
     {
       "id": "iec-jp-android",
@@ -2191,7 +2369,11 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-06-09",
       "status": "launched",
       "sourceUrl": "https://www.inazuma-cross.jp/",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeUrl": "https://play.google.com/store/apps/details?id=jp.co.level5.inazumacross&hl=en&gl=JP",
+      "storeProductName": "イナズマイレブン クロス",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "ssl-jp-ios",
@@ -2203,7 +2385,14 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-08-07",
       "status": "launched",
       "sourceUrl": "https://www.gematsu.com/2026/08/suikoden-star-leap-launches-august-7-in-japan",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeId": "6746180100",
+      "storeUrl": "https://apps.apple.com/jp/app/%E5%B9%BB%E6%83%B3%E6%B0%B4%E6%BB%B8%E4%BC%9D-star-leap/id6746180100?uo=4",
+      "storeProductName": "幻想水滸伝 STAR LEAP",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "bundleId": "jp.konami.suikoden.starleap",
+      "rawStoreReleaseDate": "2026-08-05T07:00:00Z"
     },
     {
       "id": "ssl-jp-android",
@@ -2215,7 +2404,12 @@ window.GAME_PROJECTS_DATA = {
       "actualLaunchDate": "2026-08-07",
       "status": "launched",
       "sourceUrl": "https://www.gematsu.com/2026/08/suikoden-star-leap-launches-august-7-in-japan",
-      "verifiedAt": "2026-09-08"
+      "verifiedAt": "2026-09-08",
+      "storeId": "jp.konami.suikoden.starleap",
+      "storeUrl": "https://play.google.com/store/apps/details?id=jp.konami.suikoden.starleap&hl=en&gl=JP",
+      "storeProductName": "幻想水滸伝 STAR LEAP",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10"
     },
     {
       "id": "ssl-global-ios",
@@ -26489,6 +26683,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "attack-on-titan-2",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/C596V0P64DD6",
+      "storeId": "C596V0P64DD6",
+      "sourceProductName": "Attack on Titan 2",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 557,
+      "display": "Xbox Store US 商店用户评分人数 557",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "attack-on-titan-2",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/C596V0P64DD6",
+      "storeId": "C596V0P64DD6",
+      "sourceProductName": "Attack on Titan 2",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.3,
+      "ratingCount": 557,
+      "display": "Xbox Store US 商店用户评分 4.30/5（557 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9MT4F57F7CVW",
+      "storeId": "9MT4F57F7CVW",
+      "sourceProductName": "Attack on Titan 3",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 8,
+      "display": "Xbox Store US 商店用户评分人数 8",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "attack-on-titan-3",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9MT4F57F7CVW",
+      "storeId": "9MT4F57F7CVW",
+      "sourceProductName": "Attack on Titan 3",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 5,
+      "ratingCount": 8,
+      "display": "Xbox Store US 商店用户评分 5.00/5（8 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "attack-on-titan-wings-of-freedom",
       "platforms": [
         "steam"
@@ -26527,6 +26795,43 @@ window.GAME_PROJECTS_DATA = {
       "verifiedAt": "2026-09-10",
       "estimated": true,
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "attack-on-titan-wings-of-freedom",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/C3QWVTZ6HTCB",
+      "storeId": "C3QWVTZ6HTCB",
+      "sourceProductName": "Attack on Titan",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 458,
+      "display": "Xbox Store US 商店用户评分人数 458",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "attack-on-titan-wings-of-freedom",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/C3QWVTZ6HTCB",
+      "storeId": "C3QWVTZ6HTCB",
+      "sourceProductName": "Attack on Titan",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.5,
+      "ratingCount": 458,
+      "display": "Xbox Store US 商店用户评分 4.50/5（458 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
     },
     {
       "projectId": "bleach-rebirth-of-souls",
@@ -26589,6 +26894,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "bleach-rebirth-of-souls",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA03639_00-BLEACHROFS000000",
+      "storeId": "UP0700-PPSA03639_00-BLEACHROFS000000",
+      "sourceProductName": "BLEACH Rebirth of Souls PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 7371,
+      "display": "PlayStation Store 全球玩家评分人数 7,371",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "bleach-rebirth-of-souls",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PJK7WPHWM8L",
+      "storeId": "9PJK7WPHWM8L",
+      "sourceProductName": "BLEACH Rebirth of Souls",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 636,
+      "display": "Xbox Store US 商店用户评分人数 636",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "bleach-rebirth-of-souls",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA03639_00-BLEACHROFS000000",
+      "storeId": "UP0700-PPSA03639_00-BLEACHROFS000000",
+      "sourceProductName": "BLEACH Rebirth of Souls PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.43,
+      "ratingCount": 7371,
+      "display": "PlayStation Store 全球玩家评分 4.43/5（7,371 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "bleach-rebirth-of-souls",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PJK7WPHWM8L",
+      "storeId": "9PJK7WPHWM8L",
+      "sourceProductName": "BLEACH Rebirth of Souls",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.3,
+      "ratingCount": 636,
+      "display": "Xbox Store US 商店用户评分 4.30/5（636 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "captain-tsubasa-2-world-fighters",
       "platforms": [
         "steam"
@@ -26647,6 +27026,80 @@ window.GAME_PROJECTS_DATA = {
       "verifiedAt": "2026-09-10",
       "estimated": true,
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/JP0700-PPSA22728_00-MAINGAME00000000",
+      "storeId": "JP0700-PPSA22728_00-MAINGAME00000000",
+      "sourceProductName": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 463,
+      "display": "PlayStation Store 全球玩家评分人数 463",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9N8TN15X157T",
+      "storeId": "9N8TN15X157T",
+      "sourceProductName": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 12,
+      "display": "Xbox Store US 商店用户评分人数 12",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/JP0700-PPSA22728_00-MAINGAME00000000",
+      "storeId": "JP0700-PPSA22728_00-MAINGAME00000000",
+      "sourceProductName": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.98,
+      "ratingCount": 463,
+      "display": "PlayStation Store 全球玩家评分 3.98/5（463 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "captain-tsubasa-2-world-fighters",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9N8TN15X157T",
+      "storeId": "9N8TN15X157T",
+      "sourceProductName": "CAPTAIN TSUBASA 2: WORLD FIGHTERS",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.3,
+      "ratingCount": 12,
+      "display": "Xbox Store US 商店用户评分 4.30/5（12 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
     },
     {
       "projectId": "demon-slayer-hinokami-chronicles",
@@ -26709,6 +27162,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0177-PPSA03489_00-HINOKAMI00000000",
+      "storeId": "UP0177-PPSA03489_00-HINOKAMI00000000",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 16770,
+      "display": "PlayStation Store 全球玩家评分人数 16,770",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PHW7BZS9P7Z",
+      "storeId": "9PHW7BZS9P7Z",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 2342,
+      "display": "Xbox Store US 商店用户评分人数 2,342",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0177-PPSA03489_00-HINOKAMI00000000",
+      "storeId": "UP0177-PPSA03489_00-HINOKAMI00000000",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.59,
+      "ratingCount": 16770,
+      "display": "PlayStation Store 全球玩家评分 4.59/5（16,770 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PHW7BZS9P7Z",
+      "storeId": "9PHW7BZS9P7Z",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.3,
+      "ratingCount": 2342,
+      "display": "Xbox Store US 商店用户评分 4.30/5（2,342 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "demon-slayer-hinokami-chronicles-2",
       "platforms": [
         "steam"
@@ -26767,6 +27294,80 @@ window.GAME_PROJECTS_DATA = {
       "verifiedAt": "2026-09-10",
       "estimated": true,
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/HP0177-PPSA25427_00-HINOKAMI20000000",
+      "storeId": "HP0177-PPSA25427_00-HINOKAMI20000000",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2 Standard Edition PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 6446,
+      "display": "PlayStation Store 全球玩家评分人数 6,446",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9NCV4N00N94J",
+      "storeId": "9NCV4N00N94J",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 303,
+      "display": "Xbox Store US 商店用户评分人数 303",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/HP0177-PPSA25427_00-HINOKAMI20000000",
+      "storeId": "HP0177-PPSA25427_00-HINOKAMI20000000",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2 Standard Edition PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.65,
+      "ratingCount": 6446,
+      "display": "PlayStation Store 全球玩家评分 4.65/5（6,446 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "demon-slayer-hinokami-chronicles-2",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9NCV4N00N94J",
+      "storeId": "9NCV4N00N94J",
+      "sourceProductName": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.4,
+      "ratingCount": 303,
+      "display": "Xbox Store US 商店用户评分 4.40/5（303 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
     },
     {
       "projectId": "dragon-ball-fighterz",
@@ -26829,6 +27430,43 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "dragon-ball-fighterz",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BZRK5C951KK7",
+      "storeId": "BZRK5C951KK7",
+      "sourceProductName": "DRAGON BALL FIGHTERZ(Xbox One)",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 3293,
+      "display": "Xbox Store US 商店用户评分人数 3,293",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "dragon-ball-fighterz",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BZRK5C951KK7",
+      "storeId": "BZRK5C951KK7",
+      "sourceProductName": "DRAGON BALL FIGHTERZ(Xbox One)",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.7,
+      "ratingCount": 3293,
+      "display": "Xbox Store US 商店用户评分 3.70/5（3,293 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "dragon-ball-gekishin-squadra",
       "platforms": [
         "steam"
@@ -26866,6 +27504,42 @@ window.GAME_PROJECTS_DATA = {
       "steamAppId": 2072560,
       "verifiedAt": "2026-09-10",
       "estimated": true,
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json",
+      "storeId": "6744439943",
+      "display": "日本 App Store 免费游戏榜未入 Top 100",
+      "scope": "日本 App Store 免费游戏榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json",
+      "storeId": "6744439943",
+      "display": "日本 App Store 游戏畅销榜未入 Top 100",
+      "scope": "日本 App Store 游戏畅销榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+      "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
     },
     {
@@ -26929,6 +27603,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "dragon-ball-sparking-zero",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA15211_00-DRAGONBALLSPARK0",
+      "storeId": "UP0700-PPSA15211_00-DRAGONBALLSPARK0",
+      "sourceProductName": "DRAGON BALL: Sparking! ZERO",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 68393,
+      "display": "PlayStation Store 全球玩家评分人数 68,393",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9N7XMJJHNFC3",
+      "storeId": "9N7XMJJHNFC3",
+      "sourceProductName": "DRAGON BALL Sparking! ZERO",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 4529,
+      "display": "Xbox Store US 商店用户评分人数 4,529",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA15211_00-DRAGONBALLSPARK0",
+      "storeId": "UP0700-PPSA15211_00-DRAGONBALLSPARK0",
+      "sourceProductName": "DRAGON BALL: Sparking! ZERO",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.5,
+      "ratingCount": 68393,
+      "display": "PlayStation Store 全球玩家评分 4.50/5（68,393 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "dragon-ball-sparking-zero",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9N7XMJJHNFC3",
+      "storeId": "9N7XMJJHNFC3",
+      "sourceProductName": "DRAGON BALL Sparking! ZERO",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4,
+      "ratingCount": 4529,
+      "display": "Xbox Store US 商店用户评分 4.00/5（4,529 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "dragon-ball-z-kakarot",
       "platforms": [
         "steam"
@@ -26987,6 +27735,43 @@ window.GAME_PROJECTS_DATA = {
       "verifiedAt": "2026-09-10",
       "estimated": true,
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BT5X0XGCWGD6",
+      "storeId": "BT5X0XGCWGD6",
+      "sourceProductName": "DRAGON BALL Z: KAKAROT",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 4260,
+      "display": "Xbox Store US 商店用户评分人数 4,260",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "dragon-ball-z-kakarot",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BT5X0XGCWGD6",
+      "storeId": "BT5X0XGCWGD6",
+      "sourceProductName": "DRAGON BALL Z: KAKAROT",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.1,
+      "ratingCount": 4260,
+      "display": "Xbox Store US 商店用户评分 4.10/5（4,260 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
     },
     {
       "projectId": "echoes-of-aincrad",
@@ -27049,6 +27834,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "echoes-of-aincrad",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/JP0700-PPSA22969_00-SWORDARTONLINEV0",
+      "storeId": "JP0700-PPSA22969_00-SWORDARTONLINEV0",
+      "sourceProductName": "Echoes of Aincrad",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 6146,
+      "display": "PlayStation Store 全球玩家评分人数 6,146",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "echoes-of-aincrad",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9NN493BKMM4Q",
+      "storeId": "9NN493BKMM4Q",
+      "sourceProductName": "Echoes of Aincrad",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 271,
+      "display": "Xbox Store US 商店用户评分人数 271",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "echoes-of-aincrad",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/JP0700-PPSA22969_00-SWORDARTONLINEV0",
+      "storeId": "JP0700-PPSA22969_00-SWORDARTONLINEV0",
+      "sourceProductName": "Echoes of Aincrad",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.52,
+      "ratingCount": 6146,
+      "display": "PlayStation Store 全球玩家评分 3.52/5（6,146 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "echoes-of-aincrad",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9NN493BKMM4Q",
+      "storeId": "9NN493BKMM4Q",
+      "sourceProductName": "Echoes of Aincrad",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.5,
+      "ratingCount": 271,
+      "display": "Xbox Store US 商店用户评分 3.50/5（271 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "fairy-tail-2",
       "platforms": [
         "steam"
@@ -27089,6 +27948,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "fairy-tail-2",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/EP4108-PPSA24062_00-FAIRYTAIL2DDXSP0",
+      "storeId": "EP4108-PPSA24062_00-FAIRYTAIL2DDXSP0",
+      "sourceProductName": "FAIRY TAIL 2 Ultimate Edition (PS4 & PS5)",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 651,
+      "display": "PlayStation Store 全球玩家评分人数 651",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "fairy-tail-2",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/EP4108-PPSA24062_00-FAIRYTAIL2DDXSP0",
+      "storeId": "EP4108-PPSA24062_00-FAIRYTAIL2DDXSP0",
+      "sourceProductName": "FAIRY TAIL 2 Ultimate Edition (PS4 & PS5)",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.24,
+      "ratingCount": 651,
+      "display": "PlayStation Store 全球玩家评分 4.24/5（651 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "gundam-rogue-orbit",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PND4CGSV9SX",
+      "storeId": "9PND4CGSV9SX",
+      "sourceProductName": "GUNDAM ROGUE ORBIT",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 2,
+      "display": "Xbox Store US 商店用户评分人数 2",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "gundam-rogue-orbit",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PND4CGSV9SX",
+      "storeId": "9PND4CGSV9SX",
+      "sourceProductName": "GUNDAM ROGUE ORBIT",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 5,
+      "ratingCount": 2,
+      "display": "Xbox Store US 商店用户评分 5.00/5（2 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "hunter-x-hunter-nen-impact",
       "platforms": [
         "steam"
@@ -27126,6 +28059,80 @@ window.GAME_PROJECTS_DATA = {
       "steamAppId": 2456420,
       "verifiedAt": "2026-09-10",
       "estimated": true,
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/JP0036-PPSA24274_00-0000000000000000",
+      "storeId": "JP0036-PPSA24274_00-0000000000000000",
+      "sourceProductName": "HUNTER×HUNTER NEN×IMPACT",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 962,
+      "display": "PlayStation Store 全球玩家评分人数 962",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "hunter-x-hunter-nen-impact",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/JP0036-PPSA24274_00-0000000000000000",
+      "storeId": "JP0036-PPSA24274_00-0000000000000000",
+      "sourceProductName": "HUNTER×HUNTER NEN×IMPACT",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.36,
+      "ratingCount": 962,
+      "display": "PlayStation Store 全球玩家评分 3.36/5（962 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "inazuma-eleven-cross",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json",
+      "storeId": "6756994116",
+      "display": "日本 App Store 免费游戏榜未入 Top 100",
+      "scope": "日本 App Store 免费游戏榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "inazuma-eleven-cross",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "rank": 87,
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json",
+      "storeId": "6756994116",
+      "sourceProductName": "イナズマイレブン クロス",
+      "display": "日本 App Store 游戏畅销榜第 87 名",
+      "scope": "日本 App Store 游戏畅销榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+      "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
     },
     {
@@ -27189,6 +28196,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "jojo-all-star-battle-r",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA04220_00-JASBRMAINGAME000",
+      "storeId": "UP0700-PPSA04220_00-JASBRMAINGAME000",
+      "sourceProductName": "JoJo&#x27;s Bizarre Adventure: All-Star Battle R PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 5979,
+      "display": "PlayStation Store 全球玩家评分人数 5,979",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9P4811KBD5R9",
+      "storeId": "9P4811KBD5R9",
+      "sourceProductName": "JoJo's Bizarre Adventure: All-Star Battle R",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 1599,
+      "display": "Xbox Store US 商店用户评分人数 1,599",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA04220_00-JASBRMAINGAME000",
+      "storeId": "UP0700-PPSA04220_00-JASBRMAINGAME000",
+      "sourceProductName": "JoJo&#x27;s Bizarre Adventure: All-Star Battle R PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.53,
+      "ratingCount": 5979,
+      "display": "PlayStation Store 全球玩家评分 4.53/5（5,979 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "jojo-all-star-battle-r",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9P4811KBD5R9",
+      "storeId": "9P4811KBD5R9",
+      "sourceProductName": "JoJo's Bizarre Adventure: All-Star Battle R",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.1,
+      "ratingCount": 1599,
+      "display": "Xbox Store US 商店用户评分 4.10/5（1,599 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "jujutsu-kaisen-cursed-clash",
       "platforms": [
         "steam"
@@ -27247,6 +28328,80 @@ window.GAME_PROJECTS_DATA = {
       "verifiedAt": "2026-09-10",
       "estimated": true,
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA09536_00-JJKCVSX400000000",
+      "storeId": "UP0700-PPSA09536_00-JJKCVSX400000000",
+      "sourceProductName": "Jujutsu Kaisen Cursed Clash PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 23088,
+      "display": "PlayStation Store 全球玩家评分人数 23,088",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9N1T03Q2J6NH",
+      "storeId": "9N1T03Q2J6NH",
+      "sourceProductName": "Jujutsu Kaisen Cursed Clash",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 1097,
+      "display": "Xbox Store US 商店用户评分人数 1,097",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA09536_00-JJKCVSX400000000",
+      "storeId": "UP0700-PPSA09536_00-JJKCVSX400000000",
+      "sourceProductName": "Jujutsu Kaisen Cursed Clash PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.04,
+      "ratingCount": 23088,
+      "display": "PlayStation Store 全球玩家评分 4.04/5（23,088 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "jujutsu-kaisen-cursed-clash",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9N1T03Q2J6NH",
+      "storeId": "9N1T03Q2J6NH",
+      "sourceProductName": "Jujutsu Kaisen Cursed Clash",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.8,
+      "ratingCount": 1097,
+      "display": "Xbox Store US 商店用户评分 3.80/5（1,097 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
     },
     {
       "projectId": "jump-force",
@@ -27329,6 +28484,78 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "kaiju-no-8-the-game",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json",
+      "storeId": "6742088839",
+      "display": "日本 App Store 免费游戏榜未入 Top 100",
+      "scope": "日本 App Store 免费游戏榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json",
+      "storeId": "6742088839",
+      "display": "日本 App Store 游戏畅销榜未入 Top 100",
+      "scope": "日本 App Store 游戏畅销榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "mushoku-tensei-chronicle-of-echoes",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json",
+      "storeId": "6754311241",
+      "display": "日本 App Store 免费游戏榜未入 Top 100",
+      "scope": "日本 App Store 免费游戏榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "mushoku-tensei-chronicle-of-echoes",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json",
+      "storeId": "6754311241",
+      "display": "日本 App Store 游戏畅销榜未入 Top 100",
+      "scope": "日本 App Store 游戏畅销榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
       "projectId": "my-hero-academia-alls-justice",
       "platforms": [
         "steam"
@@ -27386,6 +28613,116 @@ window.GAME_PROJECTS_DATA = {
       "steamAppId": 2362050,
       "verifiedAt": "2026-09-10",
       "estimated": true,
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA26175_00-MAINGAME00000000",
+      "storeId": "UP0700-PPSA26175_00-MAINGAME00000000",
+      "sourceProductName": "MY HERO ACADEMIA: All’s Justice",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 1821,
+      "display": "PlayStation Store 全球玩家评分人数 1,821",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9P183CW04582",
+      "storeId": "9P183CW04582",
+      "sourceProductName": "MY HERO ACADEMIA: All’s Justice",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 175,
+      "display": "Xbox Store US 商店用户评分人数 175",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA26175_00-MAINGAME00000000",
+      "storeId": "UP0700-PPSA26175_00-MAINGAME00000000",
+      "sourceProductName": "MY HERO ACADEMIA: All’s Justice",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.99,
+      "ratingCount": 1821,
+      "display": "PlayStation Store 全球玩家评分 3.99/5（1,821 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "my-hero-academia-alls-justice",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9P183CW04582",
+      "storeId": "9P183CW04582",
+      "sourceProductName": "MY HERO ACADEMIA: All’s Justice",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.8,
+      "ratingCount": 175,
+      "display": "Xbox Store US 商店用户评分 3.80/5（175 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "my-hero-academia-united-survival",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json",
+      "storeId": "6758648051",
+      "display": "日本 App Store 免费游戏榜未入 Top 100",
+      "scope": "日本 App Store 免费游戏榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "my-hero-academia-united-survival",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json",
+      "storeId": "6758648051",
+      "display": "日本 App Store 游戏畅销榜未入 Top 100",
+      "scope": "日本 App Store 游戏畅销榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+      "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
     },
     {
@@ -27449,6 +28786,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "my-hero-ones-justice",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-CUSA12048_00-HEROGAME00000000",
+      "storeId": "UP0700-CUSA12048_00-HEROGAME00000000",
+      "sourceProductName": "MY HERO ONE&#x27;S JUSTICE",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 2506,
+      "display": "PlayStation Store 全球玩家评分人数 2,506",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BVFF56S7PXFJ",
+      "storeId": "BVFF56S7PXFJ",
+      "sourceProductName": "MY HERO ONE’S JUSTICE",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 319,
+      "display": "Xbox Store US 商店用户评分人数 319",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-CUSA12048_00-HEROGAME00000000",
+      "storeId": "UP0700-CUSA12048_00-HEROGAME00000000",
+      "sourceProductName": "MY HERO ONE&#x27;S JUSTICE",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.4,
+      "ratingCount": 2506,
+      "display": "PlayStation Store 全球玩家评分 4.40/5（2,506 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "my-hero-ones-justice",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BVFF56S7PXFJ",
+      "storeId": "BVFF56S7PXFJ",
+      "sourceProductName": "MY HERO ONE’S JUSTICE",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.9,
+      "ratingCount": 319,
+      "display": "Xbox Store US 商店用户评分 3.90/5（319 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "naruto-storm-connections",
       "platforms": [
         "steam"
@@ -27507,6 +28918,80 @@ window.GAME_PROJECTS_DATA = {
       "verifiedAt": "2026-09-10",
       "estimated": true,
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA06981_00-NARUTOUNSA000000",
+      "storeId": "UP0700-PPSA06981_00-NARUTOUNSA000000",
+      "sourceProductName": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 10856,
+      "display": "PlayStation Store 全球玩家评分人数 10,856",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9NM8JFMGVCVB",
+      "storeId": "9NM8JFMGVCVB",
+      "sourceProductName": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 963,
+      "display": "Xbox Store US 商店用户评分人数 963",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA06981_00-NARUTOUNSA000000",
+      "storeId": "UP0700-PPSA06981_00-NARUTOUNSA000000",
+      "sourceProductName": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3.87,
+      "ratingCount": 10856,
+      "display": "PlayStation Store 全球玩家评分 3.87/5（10,856 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "naruto-storm-connections",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9NM8JFMGVCVB",
+      "storeId": "9NM8JFMGVCVB",
+      "sourceProductName": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 3,
+      "ratingCount": 963,
+      "display": "Xbox Store US 商店用户评分 3.00/5（963 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
     },
     {
       "projectId": "one-piece-odyssey",
@@ -27569,6 +29054,43 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "one-piece-odyssey",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PND6XZTCZWT",
+      "storeId": "9PND6XZTCZWT",
+      "sourceProductName": "ONE PIECE ODYSSEY",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 240,
+      "display": "Xbox Store US 商店用户评分人数 240",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "one-piece-odyssey",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PND6XZTCZWT",
+      "storeId": "9PND6XZTCZWT",
+      "sourceProductName": "ONE PIECE ODYSSEY",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.2,
+      "ratingCount": 240,
+      "display": "Xbox Store US 商店用户评分 4.20/5（240 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "one-piece-world-seeker",
       "platforms": [
         "steam"
@@ -27629,6 +29151,80 @@ window.GAME_PROJECTS_DATA = {
       "performanceLevel": "insufficient"
     },
     {
+      "projectId": "one-piece-world-seeker",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-CUSA11205_00-OPWSK00APPLI0000",
+      "storeId": "UP0700-CUSA11205_00-OPWSK00APPLI0000",
+      "sourceProductName": "ONE PIECE World Seeker",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 5035,
+      "display": "PlayStation Store 全球玩家评分人数 5,035",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "one-piece-world-seeker",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BP95H7BN67D4",
+      "storeId": "BP95H7BN67D4",
+      "sourceProductName": "ONE PIECE World Seeker",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 641,
+      "display": "Xbox Store US 商店用户评分人数 641",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "one-piece-world-seeker",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-CUSA11205_00-OPWSK00APPLI0000",
+      "storeId": "UP0700-CUSA11205_00-OPWSK00APPLI0000",
+      "sourceProductName": "ONE PIECE World Seeker",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.28,
+      "ratingCount": 5035,
+      "display": "PlayStation Store 全球玩家评分 4.28/5（5,035 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "one-piece-world-seeker",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/BP95H7BN67D4",
+      "storeId": "BP95H7BN67D4",
+      "sourceProductName": "ONE PIECE World Seeker",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4,
+      "ratingCount": 641,
+      "display": "Xbox Store US 商店用户评分 4.00/5（641 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
       "projectId": "persona-5-the-phantom-x",
       "platforms": [
         "steam"
@@ -27646,6 +29242,43 @@ window.GAME_PROJECTS_DATA = {
       "steamAppId": 3061570,
       "verifiedAt": "2026-09-10",
       "estimated": true,
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "rankStatus": "not_in_top_100",
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json",
+      "storeId": "6502942931",
+      "display": "日本 App Store 免费游戏榜未入 Top 100",
+      "scope": "日本 App Store 免费游戏榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "rank": 44,
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json",
+      "storeId": "6502942931",
+      "sourceProductName": "P5X ペルソナ５: The Phantom X",
+      "display": "日本 App Store 游戏畅销榜第 44 名",
+      "scope": "日本 App Store 游戏畅销榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+      "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
     },
     {
@@ -27706,6 +29339,118 @@ window.GAME_PROJECTS_DATA = {
       "steamAppId": 1979440,
       "verifiedAt": "2026-09-10",
       "estimated": true,
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "sand-land",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA08575_00-SANDLMAINGAME000",
+      "storeId": "UP0700-PPSA08575_00-SANDLMAINGAME000",
+      "sourceProductName": "SAND LAND PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 6871,
+      "display": "PlayStation Store 全球玩家评分人数 6,871",
+      "scope": "全球玩家评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "sand-land",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PGCVR1C0MZH",
+      "storeId": "9PGCVR1C0MZH",
+      "sourceProductName": "SAND LAND",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "review_count",
+      "value": 182,
+      "display": "Xbox Store US 商店用户评分人数 182",
+      "scope": "US 商店用户评分人数；截至 2026-09-10"
+    },
+    {
+      "projectId": "sand-land",
+      "platforms": [
+        "playstation"
+      ],
+      "region": "GLOBAL",
+      "date": "2026-09-10",
+      "source": "PlayStation Store",
+      "sourceUrl": "https://store.playstation.com/en-us/product/UP0700-PPSA08575_00-SANDLMAINGAME000",
+      "storeId": "UP0700-PPSA08575_00-SANDLMAINGAME000",
+      "sourceProductName": "SAND LAND PS4 & PS5",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.14,
+      "ratingCount": 6871,
+      "display": "PlayStation Store 全球玩家评分 4.14/5（6,871 人评分）",
+      "scope": "全球玩家评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "sand-land",
+      "platforms": [
+        "xbox"
+      ],
+      "region": "US",
+      "date": "2026-09-10",
+      "source": "Xbox Store",
+      "sourceUrl": "https://www.xbox.com/en-us/games/store/x/9PGCVR1C0MZH",
+      "storeId": "9PGCVR1C0MZH",
+      "sourceProductName": "SAND LAND",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "metricType": "user_rating_5",
+      "value": 4.6,
+      "ratingCount": 182,
+      "display": "Xbox Store US 商店用户评分 4.60/5（182 人评分）",
+      "scope": "US 商店用户评分；截至 2026-09-10"
+    },
+    {
+      "projectId": "suikoden-star-leap",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "rank": 43,
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topfreeapplications/limit=200/genre=6014/json",
+      "storeId": "6746180100",
+      "sourceProductName": "幻想水滸伝 STAR LEAP",
+      "display": "日本 App Store 免费游戏榜第 43 名",
+      "scope": "日本 App Store 免费游戏榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:53-07:00",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "suikoden-star-leap",
+      "platforms": [
+        "ios"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "rank": 8,
+      "source": "Apple App Store RSS",
+      "sourceUrl": "https://itunes.apple.com/jp/rss/topgrossingapplications/limit=200/genre=6014/json",
+      "storeId": "6746180100",
+      "sourceProductName": "幻想水滸伝 STAR LEAP",
+      "display": "日本 App Store 游戏畅销榜第 8 名",
+      "scope": "日本 App Store 游戏畅销榜 Top 100；Apple RSS 当前榜单快照",
+      "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
+      "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
     }
   ],

@@ -25,7 +25,7 @@
 - `id`、`projectId`
 - `platform`：ios、android、steam、windows、switch、playstation、xbox、web、wechat_minigame、douyin_minigame
 - `region`：CN、HK、TW、JP、KR、SEA、US；仅有跨地区公告时使用 GLOBAL 或 ASIA，并在页面明确标为公告范围
-- `store`、`storeId`
+- `store`、`storeId`、`storeUrl`；移动端另保存商店原始产品名与 iOS `bundleId`
 - `plannedLaunchDate`：计划上线日期或时间窗口
 - `actualLaunchDate`：实际上线日期
 - `testStartDate`、`preregisterDate`、`serviceEndDate`
@@ -36,7 +36,7 @@
 每条记录保存一个平台原生指标，或一个明确标注汇总范围的跨平台估算：
 
 - `releaseId`、`date`；跨平台汇总记录改用 `projectId`，并通过 `platforms` 和 `region` 保存适用范围
-- `metricType`：free_rank、grossing_rank、top_seller_rank、download_rank、concurrent_users、average_concurrent_users、daily_active_users、active_users、unit_sales、estimated_sales、physical_sales、review_count、review_score、estimated_downloads、estimated_revenue 等
+- `metricType`：free_rank、grossing_rank、top_seller_rank、download_rank、concurrent_users、average_concurrent_users、daily_active_users、active_users、unit_sales、estimated_sales、physical_sales、review_count、review_score、user_rating_5、estimated_downloads、estimated_revenue 等
 - `rank`：榜单名次
 - `value`：销量、在线人数或评价数值
 - `display`：需要保留原始文本口径时使用，例如商店奖项或“Steam 历史同时在线峰值”
@@ -49,6 +49,10 @@
 选择单一产品时，页面按平台生成独立时间图表：Steam 使用销量、日活 / 活跃 / 月均同时在线，并将全历史峰值单独展示；主机使用销量与用户好评率；iOS、Android 使用下载榜与畅销榜，并分别保留商店、地区和指标名称。`date` 表示该数据点对应的日期；累计值或历史峰值只有核验日期时，必须在 `display` / `scope` 中明确写明“生命周期”“历史峰值”或“截至日期”，不得解释为当日新增或当日日活。
 
 Video Game Insights（Sensor Tower）的 `estimated_sales` 为平台级第三方模型累计销量估算，页面与官方披露的 `unit_sales`、实体周销量 `physical_sales` 分线显示。该估算不参与当前表现等级分布，也不可解释为发行商确认销量；脚本按核验日期保留历史快照，重复运行同一天只覆盖当天记录。
+
+主机用户口碑统一保留官方商店 5 分制星级 `user_rating_5` 与评分人数 `review_count`，两者分图展示。PlayStation Store 页面明确标注为“全球玩家评分”，因此仅保存一条 `GLOBAL` 平台快照；Xbox Store 评分按对应商店地区保存。评分人数用于判断样本规模，不等同于销量；两种指标目前都不参与跨平台表现等级。
+
+日本 iOS 当前榜单通过 Apple App Store RSS 的游戏畅销榜和免费游戏榜采集。公开接口实际返回 Top 100：榜内产品保存精确名次；未出现的产品只在覆盖元数据中记录“未入 Top 100”，不得写成第 101 名。接口不提供历史回溯，因此从首次采集日起按日累积；榜单名次目前不参与跨平台表现等级。
 
 ## regionChecks
 

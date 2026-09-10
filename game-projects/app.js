@@ -32,7 +32,7 @@
     concurrent_users: "历史在线峰值", average_concurrent_users: "月均同时在线",
     daily_active_users: "日活跃用户", active_users: "活跃用户",
     download_rank: "下载榜", physical_sales: "实体销量", unit_sales: "销量", estimated_sales: "销量估算",
-    review_count: "评价数", review_score: "好评率", revenue: "公开收入", store_award: "商店奖项",
+    review_count: "评价数", review_score: "好评率", user_rating_5: "玩家评分", revenue: "公开收入", store_award: "商店奖项",
     estimated_downloads: "生命周期下载量估算", estimated_revenue: "生命周期收入估算",
   };
   const levelNames = {
@@ -741,7 +741,8 @@
       id: "console", title: "主机平台", note: "Nintendo Switch、PlayStation 与 Xbox 分平台、分地区呈现", platforms: ["switch", "playstation", "xbox"],
       charts: [
         { id: "console-sales", title: "销量走势", note: "官方公开值、实体销量与第三方累计估算分别成线", metrics: salesMetrics, unit: "份" },
-        { id: "console-reviews", title: "用户口碑走势", note: "平台用户好评率，不跨商店合并", metrics: ["review_score"], unit: "%", percent: true },
+        { id: "console-reviews", title: "用户评分走势", note: "官方商店玩家星级；PlayStation 为全球口径，Xbox 按商店地区", metrics: ["user_rating_5"], unit: "/5", fixedMax: 5 },
+        { id: "console-review-count", title: "评分人数走势", note: "与玩家星级分开呈现，用于判断样本规模", metrics: ["review_count"], unit: "人", optional: true },
       ],
     },
     {
@@ -818,7 +819,16 @@
     const chartEntries = timelineEntriesForChart(entries, group, chart);
     const heading = `<div class="product-metric-heading"><div><strong>${escapeHtml(chart.title)}</strong><span>${escapeHtml(chart.note)}</span></div><span>${escapeHtml(numberFormat.format(chartEntries.length))} 个数据点</span></div>`;
     if (!chartEntries.length) {
-      return `<article class="product-metric-card is-empty">${heading}<div class="product-chart-empty">该指标的历史时间序列待补；不会使用其他平台数据代替。</div></article>`;
+      const platformSet = new Set(group.platforms);
+      const latestUnranked = entries
+        .filter((entry) => entry.snapshot.rankStatus === "not_in_top_100"
+          && chart.metrics.includes(entry.snapshot.metricType)
+          && snapshotPlatforms(entry).some((platform) => platformSet.has(platform)))
+        .sort((a, b) => String(b.snapshot.date).localeCompare(String(a.snapshot.date)))[0];
+      const emptyMessage = latestUnranked
+        ? `${isoDate(latestUnranked.snapshot.date)} 最新公开榜单快照：${formatMetric(latestUnranked.snapshot)}。`
+        : "该指标的历史时间序列待补；不会使用其他平台数据代替。";
+      return `<article class="product-metric-card is-empty">${heading}<div class="product-chart-empty">${escapeHtml(emptyMessage)}</div></article>`;
     }
 
     const seriesMap = new Map();
@@ -839,9 +849,9 @@
     const plotWidth = plot.width - plot.left - plot.right;
     const plotHeight = plot.height - plot.top - plot.bottom;
     const yMinimum = chart.rank ? 1 : 0;
-    const yMaximum = chart.percent ? 100 : chart.rank
+    const yMaximum = chart.fixedMax || (chart.percent ? 100 : chart.rank
       ? Math.max(10, niceChartMaximum(Math.max(...values)))
-      : niceChartMaximum(Math.max(...values));
+      : niceChartMaximum(Math.max(...values)));
     const xPosition = (date) => {
       if (minTime === maxTime) return plot.left + plotWidth / 2;
       const time = new Date(`${date}T00:00:00Z`).getTime();
