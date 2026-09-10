@@ -820,13 +820,22 @@
     const heading = `<div class="product-metric-heading"><div><strong>${escapeHtml(chart.title)}</strong><span>${escapeHtml(chart.note)}</span></div><span>${escapeHtml(numberFormat.format(chartEntries.length))} 个数据点</span></div>`;
     if (!chartEntries.length) {
       const platformSet = new Set(group.platforms);
-      const latestUnranked = entries
-        .filter((entry) => entry.snapshot.rankStatus === "not_in_top_100"
+      const unrankedEntries = entries
+        .filter((entry) => String(entry.snapshot.rankStatus || "").startsWith("not_in_top_")
           && chart.metrics.includes(entry.snapshot.metricType)
-          && snapshotPlatforms(entry).some((platform) => platformSet.has(platform)))
-        .sort((a, b) => String(b.snapshot.date).localeCompare(String(a.snapshot.date)))[0];
-      const emptyMessage = latestUnranked
-        ? `${isoDate(latestUnranked.snapshot.date)} 最新公开榜单快照：${formatMetric(latestUnranked.snapshot)}。`
+          && snapshotPlatforms(entry).some((platform) => platformSet.has(platform)));
+      const latestUnrankedBySeries = new Map();
+      for (const entry of unrankedEntries) {
+        const key = `${snapshotPlatforms(entry).join("+")}:${entry.release?.region || entry.snapshot.region || "scope"}:${entry.snapshot.metricType}`;
+        const previous = latestUnrankedBySeries.get(key);
+        if (!previous || String(entry.snapshot.date).localeCompare(String(previous.snapshot.date)) > 0) {
+          latestUnrankedBySeries.set(key, entry);
+        }
+      }
+      const latestUnranked = [...latestUnrankedBySeries.values()]
+        .sort((a, b) => snapshotPlatforms(a).join("+").localeCompare(snapshotPlatforms(b).join("+")));
+      const emptyMessage = latestUnranked.length
+        ? `最新公开榜单快照：${latestUnranked.map((entry) => `${isoDate(entry.snapshot.date)} ${formatMetric(entry.snapshot)}`).join("；")}。`
         : "该指标的历史时间序列待补；不会使用其他平台数据代替。";
       return `<article class="product-metric-card is-empty">${heading}<div class="product-chart-empty">${escapeHtml(emptyMessage)}</div></article>`;
     }

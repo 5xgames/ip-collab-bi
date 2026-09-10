@@ -1,8 +1,8 @@
 {
   "meta": {
-    "schemaVersion": "2.7",
-    "phase": 23,
-    "generatedAt": "2026-09-10T16:11:30+09:00",
+    "schemaVersion": "2.8",
+    "phase": 24,
+    "generatedAt": "2026-09-10T16:40:51+09:00",
     "latestProjectDate": "2026-09-08",
     "coverageStart": "2016-02-18",
     "defaultWindowDays": 90,
@@ -81,8 +81,8 @@
       ],
       "steamAuditedProducts": 24,
       "mobileStoreIdentityAuditDate": "2026-09-10",
-      "mobileStoreIdentityTargets": 17,
-      "mobileStoreIdentityVerified": 17
+      "mobileStoreIdentityTargets": 18,
+      "mobileStoreIdentityVerified": 18
     },
     "performanceCoverage": {
       "steamCharts": {
@@ -154,10 +154,10 @@
       },
       "mobileStoreCatalog": {
         "verifiedAt": "2026-09-10",
-        "releases": 17,
+        "releases": 18,
         "platforms": {
           "ios": 8,
-          "android": 9
+          "android": 10
         },
         "sources": [
           "Apple iTunes Search API",
@@ -211,6 +211,82 @@
           }
         ],
         "note": "Apple RSS 当前公开接口实际返回 Top 100；未出现的产品保存为未入 Top 100 状态，不推断其精确名次。该接口不提供历史回溯，脚本每日运行后累积时间序列。"
+      },
+      "appMagicGooglePlayRanks": {
+        "verifiedAt": "2026-09-10",
+        "market": "JP",
+        "platform": "android",
+        "chartCategory": "games",
+        "snapshotHour": "15:00",
+        "timeZone": "Asia/Tokyo",
+        "positions": 200,
+        "trackedProjects": 7,
+        "snapshotsAdded": 14,
+        "ranked": [
+          {
+            "projectId": "persona-5-the-phantom-x",
+            "metricType": "grossing_rank",
+            "rank": 85
+          },
+          {
+            "projectId": "suikoden-star-leap",
+            "metricType": "free_rank",
+            "rank": 52
+          },
+          {
+            "projectId": "suikoden-star-leap",
+            "metricType": "grossing_rank",
+            "rank": 26
+          }
+        ],
+        "unranked": [
+          {
+            "projectId": "kaiju-no-8-the-game",
+            "metricType": "free_rank"
+          },
+          {
+            "projectId": "kaiju-no-8-the-game",
+            "metricType": "grossing_rank"
+          },
+          {
+            "projectId": "dragon-ball-gekishin-squadra",
+            "metricType": "free_rank"
+          },
+          {
+            "projectId": "dragon-ball-gekishin-squadra",
+            "metricType": "grossing_rank"
+          },
+          {
+            "projectId": "persona-5-the-phantom-x",
+            "metricType": "free_rank"
+          },
+          {
+            "projectId": "mushoku-tensei-chronicle-of-echoes",
+            "metricType": "free_rank"
+          },
+          {
+            "projectId": "mushoku-tensei-chronicle-of-echoes",
+            "metricType": "grossing_rank"
+          },
+          {
+            "projectId": "my-hero-academia-united-survival",
+            "metricType": "free_rank"
+          },
+          {
+            "projectId": "my-hero-academia-united-survival",
+            "metricType": "grossing_rank"
+          },
+          {
+            "projectId": "inazuma-eleven-cross",
+            "metricType": "free_rank"
+          },
+          {
+            "projectId": "inazuma-eleven-cross",
+            "metricType": "grossing_rank"
+          }
+        ],
+        "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+        "note": "AppMagic 日本 Google Play 游戏免费榜与畅销榜 15:00 实时快照，范围为 Top 200；未出现的目标产品保存为未入 Top 200 状态，不推断其精确名次。该页面不作为历史回溯接口，后续采集按快照日累积时间序列。"
       }
     }
   },
@@ -11024,6 +11100,23 @@
       "sourceUrl": "https://store.playstation.com/en-sg/product/JP0700-CUSA34695_00-SANDLMAINGAME000",
       "verifiedAt": "2026-09-09",
       "storeTitle": "SAND LAND PS4® & PS5® (English, Japanese)"
+    },
+    {
+      "id": "p5x-jp-android",
+      "projectId": "persona-5-the-phantom-x",
+      "platform": "android",
+      "region": "JP",
+      "store": "Google Play 日本 (com.sega.persona5.the.phantomx.jp)",
+      "storeId": "com.sega.persona5.the.phantomx.jp",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.sega.persona5.the.phantomx.jp&hl=ja&gl=JP",
+      "storeProductName": "P5X ペルソナ５: The Phantom X",
+      "storeAvailability": "available",
+      "availabilityCheckedAt": "2026-09-10",
+      "plannedLaunchDate": "2025-06-26",
+      "actualLaunchDate": "2025-06-26",
+      "status": "launched",
+      "sourceUrl": "https://p5x.jp/news/details/000088eqwmuspx.html",
+      "verifiedAt": "2026-09-10"
     }
   ],
   "rankSnapshots": [
@@ -27527,6 +27620,26 @@
     {
       "projectId": "dragon-ball-gekishin-squadra",
       "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "com.bandainamcoent.dbgekishinsquadra",
+      "sourceProductName": "ドラゴンボール ゲキシン スクアドラ",
+      "scope": "日本 Google Play 免费游戏榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 免费游戏榜未入 Top 200"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platforms": [
         "ios"
       ],
       "region": "JP",
@@ -27541,6 +27654,26 @@
       "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
       "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "dragon-ball-gekishin-squadra",
+      "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "com.bandainamcoent.dbgekishinsquadra",
+      "sourceProductName": "ドラゴンボール ゲキシン スクアドラ",
+      "scope": "日本 Google Play 游戏畅销榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 游戏畅销榜未入 Top 200"
     },
     {
       "projectId": "dragon-ball-sparking-zero",
@@ -28119,6 +28252,26 @@
     {
       "projectId": "inazuma-eleven-cross",
       "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.co.level5.inazumacross",
+      "sourceProductName": "イナズマイレブン クロス",
+      "scope": "日本 Google Play 免费游戏榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 免费游戏榜未入 Top 200"
+    },
+    {
+      "projectId": "inazuma-eleven-cross",
+      "platforms": [
         "ios"
       ],
       "region": "JP",
@@ -28134,6 +28287,26 @@
       "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
       "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "inazuma-eleven-cross",
+      "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.co.level5.inazumacross",
+      "sourceProductName": "イナズマイレブン クロス",
+      "scope": "日本 Google Play 游戏畅销榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 游戏畅销榜未入 Top 200"
     },
     {
       "projectId": "jojo-all-star-battle-r",
@@ -28504,6 +28677,26 @@
     {
       "projectId": "kaiju-no-8-the-game",
       "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.aktsk.games.kaiju_no8_the_game",
+      "sourceProductName": "怪獣８号 THE GAME",
+      "scope": "日本 Google Play 免费游戏榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 免费游戏榜未入 Top 200"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
+      "platforms": [
         "ios"
       ],
       "region": "JP",
@@ -28518,6 +28711,26 @@
       "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
       "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "kaiju-no-8-the-game",
+      "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.aktsk.games.kaiju_no8_the_game",
+      "sourceProductName": "怪獣８号 THE GAME",
+      "scope": "日本 Google Play 游戏畅销榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 游戏畅销榜未入 Top 200"
     },
     {
       "projectId": "mushoku-tensei-chronicle-of-echoes",
@@ -28540,6 +28753,26 @@
     {
       "projectId": "mushoku-tensei-chronicle-of-echoes",
       "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.gree_ent.mushoku",
+      "sourceProductName": "無職転生〜異世界行ったら本気だす〜クロニクル・オブ・エコーズ",
+      "scope": "日本 Google Play 免费游戏榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 免费游戏榜未入 Top 200"
+    },
+    {
+      "projectId": "mushoku-tensei-chronicle-of-echoes",
+      "platforms": [
         "ios"
       ],
       "region": "JP",
@@ -28554,6 +28787,26 @@
       "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
       "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "mushoku-tensei-chronicle-of-echoes",
+      "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.gree_ent.mushoku",
+      "sourceProductName": "無職転生〜異世界行ったら本気だす〜クロニクル・オブ・エコーズ",
+      "scope": "日本 Google Play 游戏畅销榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 游戏畅销榜未入 Top 200"
     },
     {
       "projectId": "my-hero-academia-alls-justice",
@@ -28710,6 +28963,26 @@
     {
       "projectId": "my-hero-academia-united-survival",
       "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "com.klab.heroaca.united.survival",
+      "sourceProductName": "MHA: UNITED SURVIVAL",
+      "scope": "日本 Google Play 免费游戏榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 免费游戏榜未入 Top 200"
+    },
+    {
+      "projectId": "my-hero-academia-united-survival",
+      "platforms": [
         "ios"
       ],
       "region": "JP",
@@ -28724,6 +28997,26 @@
       "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
       "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "my-hero-academia-united-survival",
+      "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "com.klab.heroaca.united.survival",
+      "sourceProductName": "MHA: UNITED SURVIVAL",
+      "scope": "日本 Google Play 游戏畅销榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 游戏畅销榜未入 Top 200"
     },
     {
       "projectId": "my-hero-ones-justice",
@@ -29265,6 +29558,26 @@
     {
       "projectId": "persona-5-the-phantom-x",
       "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "com.sega.persona5.the.phantomx.jp",
+      "sourceProductName": "P5X ペルソナ５: The Phantom X",
+      "scope": "日本 Google Play 免费游戏榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rankStatus": "not_in_top_200",
+      "display": "日本 Google Play 免费游戏榜未入 Top 200"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platforms": [
         "ios"
       ],
       "region": "JP",
@@ -29280,6 +29593,26 @@
       "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
       "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "persona-5-the-phantom-x",
+      "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "com.sega.persona5.the.phantomx.jp",
+      "sourceProductName": "P5X ペルソナ５: The Phantom X",
+      "scope": "日本 Google Play 游戏畅销榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rank": 85,
+      "display": "日本 Google Play 游戏畅销榜第 85 名"
     },
     {
       "projectId": "sand-land",
@@ -29437,6 +29770,26 @@
     {
       "projectId": "suikoden-star-leap",
       "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "free_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.konami.suikoden.starleap",
+      "sourceProductName": "幻想水滸伝 STAR LEAP",
+      "scope": "日本 Google Play 免费游戏榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rank": 52,
+      "display": "日本 Google Play 免费游戏榜第 52 名"
+    },
+    {
+      "projectId": "suikoden-star-leap",
+      "platforms": [
         "ios"
       ],
       "region": "JP",
@@ -29452,6 +29805,26 @@
       "feedUpdatedAt": "2026-09-10T00:07:52-07:00",
       "verifiedAt": "2026-09-10",
       "performanceLevel": "insufficient"
+    },
+    {
+      "projectId": "suikoden-star-leap",
+      "platforms": [
+        "android"
+      ],
+      "region": "JP",
+      "date": "2026-09-10",
+      "metricType": "grossing_rank",
+      "source": "AppMagic",
+      "sourceUrl": "https://appmagic.rocks/top-charts/live-store-rankings?category=209&country=JP",
+      "storeId": "jp.konami.suikoden.starleap",
+      "sourceProductName": "幻想水滸伝 STAR LEAP",
+      "scope": "日本 Google Play 游戏畅销榜 Top 200；AppMagic 15:00（日本时间）实时榜快照",
+      "snapshotHour": "15:00",
+      "timeZone": "Asia/Tokyo",
+      "verifiedAt": "2026-09-10",
+      "performanceLevel": "insufficient",
+      "rank": 26,
+      "display": "日本 Google Play 游戏畅销榜第 26 名"
     }
   ],
   "regionChecks": [

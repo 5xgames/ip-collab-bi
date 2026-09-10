@@ -54,6 +54,8 @@ Video Game Insights（Sensor Tower）的 `estimated_sales` 为平台级第三方
 
 日本 iOS 当前榜单通过 Apple App Store RSS 的游戏畅销榜和免费游戏榜采集。公开接口实际返回 Top 100：榜内产品保存精确名次；未出现的产品只在覆盖元数据中记录“未入 Top 100”，不得写成第 101 名。接口不提供历史回溯，因此从首次采集日起按日累积；榜单名次目前不参与跨平台表现等级。
 
+日本 Android 当前榜单通过 AppMagic 的 Google Play 游戏免费榜和畅销榜采集。每次快照保存榜单日期、小时与日本时区：榜内产品保存精确名次；未出现在 Top 200 的目标产品只保存“未入 Top 200”状态，不得写成第 201 名。实时榜页面不作为历史回溯接口，因此从首次采集日起按快照日累积；AppMagic 榜单名次目前不参与跨平台表现等级。
+
 ## regionChecks
 
 每条记录代表一次“项目 × 平台 × 目标地区”的官方商店检查。`availability` 区分 `available`、`delisted_store_page`、`not_available_currently`、`not_listed_currently` 与 `check_failed`；后四者都不等同于游戏在所有平台从未发行。东南亚为复合地区，检查单一代表市场时必须写入 `representativeCountry` 并在页面披露样本范围。
