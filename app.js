@@ -27,6 +27,32 @@
   }
   if (!Array.isArray(data.trends)) data.trends = [];
 
+  const nameLocalization = window.IPBINameLocalization;
+  if (nameLocalization) {
+    for (const product of data.products) {
+      product.originalName = product.name;
+      product.name = nameLocalization.product(product.name, product.key);
+    }
+    for (const event of data.events) {
+      event.productOriginalName = event.product;
+      event.ipOriginalName = event.ip;
+      event.ipFamilyOriginalName = event.ipFamily;
+      event.product = nameLocalization.product(event.product, event.productKey);
+      event.ip = nameLocalization.ip(event.ip);
+      event.ipFamily = nameLocalization.ip(event.ipFamily || event.ipOriginalName);
+    }
+    for (const version of data.versions || []) {
+      version.productOriginalName = version.product;
+      version.product = nameLocalization.product(version.product, version.productKey);
+    }
+    for (const alert of data.newCollabAlerts || []) {
+      alert.productOriginalName = alert.product;
+      alert.ipOriginalName = alert.ip;
+      alert.product = nameLocalization.product(alert.product, alert.productKey);
+      alert.ip = nameLocalization.ip(alert.ip);
+    }
+  }
+
   const regionByCode = new Map(data.regions.map((region) => [region.code, region.name]));
   const productByKey = new Map(data.products.map((product) => [product.key, product.name]));
   const platformByCode = new Map((data.meta.platforms || []).map((platform) => [platform.code, platform.name]));
@@ -330,7 +356,10 @@
     if (ignoredDimension !== "product" && state.product !== "all" && event.productKey !== state.product) return false;
     if (ignoredDimension !== "ip" && state.ip !== "all" && (event.ipFamily || event.ip) !== state.ip) return false;
     if (!eventInPeriod(event)) return false;
-    if (query && !`${event.product} ${event.ip} ${event.ipFamily || ""}`.toLocaleLowerCase("zh-CN").includes(query)) return false;
+    if (query && ![
+      event.product, event.ip, event.ipFamily,
+      event.productOriginalName, event.ipOriginalName, event.ipFamilyOriginalName,
+    ].filter(Boolean).join(" ").toLocaleLowerCase("zh-CN").includes(query)) return false;
     return true;
   }
 
