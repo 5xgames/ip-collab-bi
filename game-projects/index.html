@@ -7,7 +7,7 @@
   <title>日本 IP 游戏化项目 BI</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20260907-site-tabs1">
-  <link rel="stylesheet" href="styles.css?v=20260911-project-calendar">
+  <link rel="stylesheet" href="styles.css?v=20260911-calendar-pages">
 </head>
 <body>
   <header class="topbar">
@@ -115,28 +115,18 @@
       <div class="project-calendar-toolbar">
         <div class="calendar-month-navigation" aria-label="切换日历月份">
           <button id="calendar-prev-month" class="calendar-nav-button" type="button" aria-label="上一个月">‹</button>
-          <strong id="calendar-month-label">—</strong>
+          <label class="calendar-period-field">
+            <span>年份</span>
+            <select id="calendar-year-select" aria-label="选择日历年份"></select>
+          </label>
+          <label class="calendar-period-field">
+            <span>月份</span>
+            <select id="calendar-month-select" aria-label="选择日历月份"></select>
+          </label>
           <button id="calendar-next-month" class="calendar-nav-button" type="button" aria-label="下一个月">›</button>
           <button id="calendar-today" class="calendar-text-button" type="button">回到今天</button>
         </div>
-        <div class="calendar-range-control" role="group" aria-label="项目公布与上线时间范围">
-          <div class="calendar-range-copy">
-            <span>项目时间范围</span>
-            <strong id="project-date-range-label">—</strong>
-          </div>
-          <div class="date-range-fields calendar-date-range-fields">
-            <label>
-              <span>开始</span>
-              <input id="project-start-date-filter" type="date" aria-label="项目时间范围开始日期">
-            </label>
-            <span class="date-range-separator" aria-hidden="true">—</span>
-            <label>
-              <span>结束</span>
-              <input id="project-end-date-filter" type="date" aria-label="项目时间范围结束日期">
-            </label>
-          </div>
-          <button id="calendar-full-range" class="calendar-text-button" type="button">全部期间</button>
-        </div>
+        <span class="calendar-location-note">选择年份与月份即可定位历史或未来项目</span>
       </div>
       <div class="calendar-legend" aria-label="项目节点图例">
         <span><i class="calendar-event-dot announce" aria-hidden="true"></i>公布 / 动态</span>
@@ -170,7 +160,7 @@
           </div>
         </aside>
       </div>
-      <p class="project-calendar-note">日历月份用于浏览，右上角“项目时间范围”控制全页项目筛选；选择单一产品后仍展示该产品完整生命周期。表现数据期间保持独立。</p>
+      <p class="project-calendar-note">日历仅用于按年月定位项目，不限制其他模块的数据范围；只有官方确认到具体日期的节点才会落在某一天，年份或季度窗口单独列示。</p>
     </section>
 
     <section class="panel ip-activity-panel" aria-labelledby="ip-activity-title">
@@ -178,7 +168,7 @@
         <div>
           <p class="section-kicker">IP GAME ACTIVITY</p>
           <h2 id="ip-activity-title">IP 游戏化活跃度</h2>
-          <p class="section-note">同时对照全库项目量、筛选期项目、未来计划与最近一次上线；点击 IP 名称可联动查看其上线时间、平台表现与项目明细。</p>
+          <p class="section-note">基于数据库已收录的全部历史与未来项目，分析累计项目量、未来计划和游戏化空窗；点击 IP 名称可联动查看对应项目。</p>
         </div>
         <span id="ip-activity-count" class="count-badge">0 个 IP</span>
       </div>
@@ -188,8 +178,7 @@
           <thead>
             <tr>
               <th>IP</th>
-              <th>全库项目</th>
-              <th>筛选期项目</th>
+              <th>历史项目</th>
               <th>已上线</th>
               <th>未来计划</th>
               <th>最近上线 / 空窗</th>
@@ -200,11 +189,12 @@
         </table>
       </div>
       <div id="ip-activity-empty" class="empty-state" hidden>当前筛选条件下没有可比较的 IP 游戏化项目。</div>
+      <div id="ip-activity-pagination" class="pagination-bar" aria-label="IP 游戏化活跃度分页"></div>
       <div id="ip-drilldown-status" class="ip-drilldown-status" aria-live="polite" hidden>
         <span>当前查看 <strong id="ip-drilldown-name"></strong> 的上线时间、平台表现与项目明细</span>
         <button id="clear-ip-drilldown" type="button">查看全部 IP</button>
       </div>
-      <p class="ip-activity-method">“全库项目”及“空窗期”基于当前数据库已收录项目计算，不代表该 IP 历史上从未推出其他游戏；项目时间范围只影响“筛选期项目”。</p>
+      <p class="ip-activity-method">历史项目及空窗期不设时间窗口，基于当前数据库已收录项目计算；平台、地区、状态、IP 类型等项目筛选仍会生效。本数据库不代表该 IP 历史项目已绝对穷尽。</p>
     </section>
 
     <section class="project-dashboard-grid">
@@ -213,11 +203,13 @@
           <div>
             <p class="section-kicker">RELEASE SCHEDULE</p>
             <h2 id="schedule-title">上线时间表</h2>
-            <p class="section-note">受项目时间范围影响、不受表现数据期间影响；计划日期、年份窗口与“时间待定”均保留。</p>
+            <p class="section-note">呈现当前项目筛选下的完整历史与未来上线记录；计划日期、年份窗口与“时间待定”均保留。</p>
           </div>
+          <span id="schedule-count" class="count-badge">0 个节点</span>
         </div>
         <div id="release-schedule" class="release-schedule" aria-live="polite"></div>
         <div id="schedule-empty" class="empty-state" hidden>当前筛选条件下没有可展示的上线时间。</div>
+        <div id="schedule-pagination" class="pagination-bar" aria-label="上线时间表分页"></div>
       </article>
 
       <article id="performance-panel" class="panel performance-panel" aria-labelledby="performance-title">
@@ -229,7 +221,7 @@
           </div>
           <label class="compact-select">
             <span>产品</span>
-            <select id="performance-product-filter"><option value="all">筛选期全部产品</option></select>
+            <select id="performance-product-filter"><option value="all">当前筛选全部产品</option></select>
           </label>
         </div>
         <div class="project-date-panel performance-date-panel" role="group" aria-label="表现数据期间">
@@ -313,10 +305,10 @@
       <div class="section-heading">
         <div>
           <p class="section-kicker">PROJECT DATABASE</p>
-          <h2 id="project-table-title">游戏化项目明细</h2>
-          <p class="section-note">受项目时间范围影响、不受表现数据期间影响；地区按日本、中国大陆、香港、台湾、韩国、东南亚、美国拆分。“全球/亚洲公告”只作为待逐区核验线索。</p>
+          <h2 id="project-table-title">游戏化项目明细（按产品去重）</h2>
+          <p class="section-note">每个产品默认只显示一项，保留信息最明确的上线节点；可展开查看全部地区与平台版本。“全球/亚洲公告”仅表示公告范围。</p>
         </div>
-        <span id="project-count" class="count-badge">0 条</span>
+        <span id="project-count" class="count-badge">0 个产品</span>
       </div>
       <div class="table-wrap project-table-wrap">
         <table class="project-table">
@@ -336,6 +328,7 @@
         </table>
       </div>
       <div id="project-table-empty" class="empty-state" hidden>项目数据正在建库，当前没有已核验记录。</div>
+      <div id="project-pagination" class="pagination-bar" aria-label="游戏化项目明细分页"></div>
     </section>
   </main>
 
@@ -346,6 +339,7 @@
   </footer>
 
   <script src="data/projects.js?v=20260910-project-audit27"></script>
-  <script src="app.js?v=20260911-project-calendar"></script>
+  <script src="../name-localization.js?v=20260911-zh-names1"></script>
+  <script src="app.js?v=20260911-zh-names1"></script>
 </body>
 </html>

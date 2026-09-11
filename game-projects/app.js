@@ -7,6 +7,15 @@
   const releases = Array.isArray(data.releases) ? data.releases : [];
   const rankSnapshots = Array.isArray(data.rankSnapshots) ? data.rankSnapshots : [];
   const regionChecks = Array.isArray(data.regionChecks) ? data.regionChecks : [];
+  const nameLocalization = window.IPBINameLocalization;
+  if (nameLocalization) {
+    for (const project of projects) {
+      project.productOriginalName = project.productName;
+      project.ipOriginalName = project.ipName;
+      project.productName = nameLocalization.product(project.productName, project.id);
+      project.ipName = nameLocalization.ip(project.ipName);
+    }
+  }
   const projectById = new Map(projects.map((project) => [project.id, project]));
   const releaseById = new Map(releases.map((release) => [release.id, release]));
 
@@ -42,15 +51,13 @@
   };
   const ipNameAliases = new Map([
     ["DRAGON BALL Z / 龙珠Z", "DRAGON BALL / 龙珠"],
+    ["龙珠Z", "龙珠"],
   ]);
 
   const $ = (selector) => document.querySelector(selector);
   const elements = {
     generatedAt: $("#generated-at"),
     latestProjectDate: $("#latest-project-date"),
-    projectStartDate: $("#project-start-date-filter"),
-    projectEndDate: $("#project-end-date-filter"),
-    projectDateRangeLabel: $("#project-date-range-label"),
     performanceStartDate: $("#performance-start-date-filter"),
     performanceEndDate: $("#performance-end-date-filter"),
     performanceDateRangeLabel: $("#performance-date-range-label"),
@@ -70,11 +77,11 @@
     kpiReleases: $("#kpi-releases"),
     recentCount: $("#recent-project-count"),
     calendarGrid: $("#project-calendar-grid"),
-    calendarMonthLabel: $("#calendar-month-label"),
+    calendarYearSelect: $("#calendar-year-select"),
+    calendarMonthSelect: $("#calendar-month-select"),
     calendarPrevMonth: $("#calendar-prev-month"),
     calendarNextMonth: $("#calendar-next-month"),
     calendarToday: $("#calendar-today"),
-    calendarFullRange: $("#calendar-full-range"),
     calendarSelectedDate: $("#calendar-selected-date"),
     calendarSelectedSummary: $("#calendar-selected-summary"),
     calendarAgendaList: $("#calendar-agenda-list"),
@@ -85,11 +92,14 @@
     ipActivityBody: $("#ip-activity-table-body"),
     ipActivityEmpty: $("#ip-activity-empty"),
     ipActivityCount: $("#ip-activity-count"),
+    ipActivityPagination: $("#ip-activity-pagination"),
     ipDrilldownStatus: $("#ip-drilldown-status"),
     ipDrilldownName: $("#ip-drilldown-name"),
     clearIpDrilldown: $("#clear-ip-drilldown"),
     schedule: $("#release-schedule"),
     scheduleEmpty: $("#schedule-empty"),
+    scheduleCount: $("#schedule-count"),
+    schedulePagination: $("#schedule-pagination"),
     performancePanel: $("#performance-panel"),
     performanceSectionNote: $("#performance-section-note"),
     performanceProduct: $("#performance-product-filter"),
@@ -112,6 +122,7 @@
     tableBody: $("#project-table-body"),
     tableEmpty: $("#project-table-empty"),
     tableCount: $("#project-count"),
+    projectPagination: $("#project-pagination"),
     footerSource: $("#footer-source"),
   };
 
@@ -157,8 +168,6 @@
   const numberFormat = new Intl.NumberFormat("zh-CN");
 
   const state = {
-    projectStartDate: projectMinimumDate,
-    projectEndDate: projectMaximumDate,
     performanceStartDate: defaultPerformanceStartDate,
     performanceEndDate: defaultPerformanceEndDate,
     platform: "all",
@@ -171,6 +180,9 @@
     selectedIp: "all",
     calendarMonth: today.slice(0, 7),
     calendarSelectedDate: today,
+    ipActivityPage: 1,
+    schedulePage: 1,
+    projectPage: 1,
   };
 
   function escapeHtml(value) {
@@ -231,30 +243,11 @@
     };
   }
 
-  function projectDateMatches(project, projectReleases) {
-    if (state.product !== "all") return true;
-    const values = [project.announcementDate, project.latestUpdateDate];
-    for (const release of projectReleases) {
-      values.push(
-        release.testStartDate,
-        release.preregisterDate,
-        release.plannedLaunchDate,
-        release.actualLaunchDate,
-        release.serviceEndDate,
-      );
-    }
-    const ranges = values.map(dateBounds).filter(Boolean);
-    if (!ranges.length) return true;
-    return ranges.some(({ start, end }) => (
-      (!state.projectStartDate || end >= state.projectStartDate)
-      && (!state.projectEndDate || start <= state.projectEndDate)
-    ));
-  }
-
   function textMatches(project, release) {
     if (!state.search) return true;
     const haystack = [
-      project.productName, project.ipName, project.ipType, project.genre,
+      project.productName, project.ipName, project.productOriginalName, project.ipOriginalName,
+      project.ipType, project.genre,
       project.developer, project.publisher, release?.store,
     ].join(" ").toLocaleLowerCase();
     return haystack.includes(state.search.toLocaleLowerCase());
@@ -271,15 +264,15 @@
   }
 
   function filteredRows() {
-    return collectFilteredRows(false);
+    return collectFilteredRows();
   }
 
-  function collectFilteredRows(ignoreProjectDate) {
+  function collectFilteredRows() {
     const rows = [];
     for (const project of projects) {
       const projectReleases = releases.filter((release) => release.projectId === project.id);
       if (!projectReleases.length) {
-        if ((ignoreProjectDate || projectDateMatches(project, [])) && baseReleaseMatches(project, null) && state.platform === "all" && state.region === "all") {
+        if (baseReleaseMatches(project, null) && state.platform === "all" && state.region === "all") {
           rows.push({ project, release: null });
         }
         continue;
@@ -291,7 +284,7 @@
         const regionMatch = releaseRegionMatch(release);
         if (!regionMatch) continue;
         if (regionMatch.quality === "announcement_scope" && exactPlatforms.has(release.platform)) continue;
-        if ((ignoreProjectDate || projectDateMatches(project, [release])) && baseReleaseMatches(project, release, { ignoreRegion: true })) {
+        if (baseReleaseMatches(project, release, { ignoreRegion: true })) {
           rows.push({ project, release, regionMatch });
         }
       }
@@ -327,10 +320,16 @@
       .slice()
       .sort((a, b) => String(a.productName).localeCompare(String(b.productName), "zh-CN"))
       .map((project) => [project.id, project.productName]));
-    elements.projectStartDate.min = projectMinimumDate;
-    elements.projectStartDate.max = projectMaximumDate;
-    elements.projectEndDate.min = projectMinimumDate;
-    elements.projectEndDate.max = projectMaximumDate;
+    const minimumYear = Number(projectMinimumDate.slice(0, 4));
+    const maximumYear = Number(projectMaximumDate.slice(0, 4));
+    elements.calendarYearSelect.innerHTML = Array.from(
+      { length: maximumYear - minimumYear + 1 },
+      (_, index) => `<option value="${minimumYear + index}">${minimumYear + index} 年</option>`,
+    ).join("");
+    elements.calendarMonthSelect.innerHTML = Array.from(
+      { length: 12 },
+      (_, index) => `<option value="${String(index + 1).padStart(2, "0")}">${index + 1} 月</option>`,
+    ).join("");
     elements.performanceStartDate.min = performanceMinimumDate;
     elements.performanceStartDate.max = performanceMaximumDate;
     elements.performanceEndDate.min = performanceMinimumDate;
@@ -338,8 +337,6 @@
   }
 
   function syncControls() {
-    elements.projectStartDate.value = state.projectStartDate;
-    elements.projectEndDate.value = state.projectEndDate;
     elements.performanceStartDate.value = state.performanceStartDate;
     elements.performanceEndDate.value = state.performanceEndDate;
     elements.platform.value = state.platform;
@@ -348,10 +345,29 @@
     elements.ipType.value = state.ipType;
     elements.product.value = state.product;
     elements.search.value = state.search;
-    elements.projectDateRangeLabel.textContent = state.product === "all"
-      ? `${state.projectStartDate || "最早"} — ${state.projectEndDate || "最晚计划"}`
-      : "已选产品 · 完整生命周期";
+    elements.calendarYearSelect.value = state.calendarMonth.slice(0, 4);
+    elements.calendarMonthSelect.value = state.calendarMonth.slice(5, 7);
     elements.performanceDateRangeLabel.textContent = `${state.performanceStartDate || "最早"} — ${state.performanceEndDate || "最新"}`;
+  }
+
+  function paginate(items, stateKey, pageSize) {
+    const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
+    state[stateKey] = Math.min(Math.max(1, state[stateKey]), totalPages);
+    const startIndex = (state[stateKey] - 1) * pageSize;
+    return {
+      items: items.slice(startIndex, startIndex + pageSize),
+      page: state[stateKey],
+      totalPages,
+    };
+  }
+
+  function renderPagination(element, stateKey, totalItems, pageSize) {
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+    const page = Math.min(Math.max(1, state[stateKey]), totalPages);
+    element.hidden = totalItems <= pageSize;
+    element.innerHTML = totalItems > pageSize ? `<button type="button" data-page-state="${stateKey}" data-page="${page - 1}"${page <= 1 ? " disabled" : ""}>上一页</button>
+      <span>第 <strong>${page}</strong> / ${totalPages} 页 · 每页 ${pageSize} 项</span>
+      <button type="button" data-page-state="${stateKey}" data-page="${page + 1}"${page >= totalPages ? " disabled" : ""}>下一页</button>` : "";
   }
 
   function calendarEventType(label) {
@@ -362,6 +378,10 @@
     if (label === "停止运营") return "ended";
     return "announce";
   }
+
+  const calendarEventPriority = {
+    announce: 1, planned: 2, preregister: 3, testing: 4, launched: 5, ended: 6,
+  };
 
   function monthBounds(month) {
     const [year, monthNumber] = month.split("-").map(Number);
@@ -416,13 +436,21 @@
         add(project, release, release.serviceEndDate, "停止运营");
       }
     }
-    const exact = [...exactEvents.values()];
-    const launchedKeys = new Set(exact
-      .filter((event) => event.eventType === "launched")
-      .map((event) => `${event.project.id}|${event.date}`));
+    const definitiveExactEvents = new Map();
+    for (const event of exactEvents.values()) {
+      const key = `${event.project.id}|${event.date}`;
+      const previous = definitiveExactEvents.get(key);
+      if (!previous || calendarEventPriority[event.eventType] > calendarEventPriority[previous.eventType]) {
+        if (previous) {
+          for (const [releaseId, release] of previous.releases) event.releases.set(releaseId, release);
+        }
+        definitiveExactEvents.set(key, event);
+      } else {
+        for (const [releaseId, release] of event.releases) previous.releases.set(releaseId, release);
+      }
+    }
     return {
-      exact: exact
-        .filter((event) => event.eventType !== "planned" || !launchedKeys.has(`${event.project.id}|${event.date}`))
+      exact: [...definitiveExactEvents.values()]
         .sort((a, b) => a.date.localeCompare(b.date) || a.project.productName.localeCompare(b.project.productName, "zh-CN")),
       windows: [...windowEvents.values()].sort((a, b) => a.bounds.start.localeCompare(b.bounds.start)),
     };
@@ -453,14 +481,27 @@
       if (!eventsByDate.has(event.date)) eventsByDate.set(event.date, []);
       eventsByDate.get(event.date).push(event);
     }
-    const monthWindows = windows.filter((event) => event.bounds.end >= monthStart && event.bounds.start <= monthEnd);
+    const windowCandidates = windows.filter((event) => event.bounds.end >= monthStart && event.bounds.start <= monthEnd);
+    const monthWindowMap = new Map();
+    for (const event of windowCandidates) {
+      const previous = monthWindowMap.get(event.project.id);
+      const eventSpan = new Date(`${event.bounds.end}T00:00:00Z`) - new Date(`${event.bounds.start}T00:00:00Z`);
+      const previousSpan = previous
+        ? new Date(`${previous.bounds.end}T00:00:00Z`) - new Date(`${previous.bounds.start}T00:00:00Z`)
+        : Number.POSITIVE_INFINITY;
+      if (!previous || eventSpan < previousSpan
+        || (eventSpan === previousSpan && calendarEventPriority[event.eventType] > calendarEventPriority[previous.eventType])) {
+        monthWindowMap.set(event.project.id, event);
+      }
+    }
+    const monthWindows = [...monthWindowMap.values()];
     const monthProjectCount = new Set([
       ...monthEvents.map((event) => event.project.id),
       ...monthWindows.map((event) => event.project.id),
     ]).size;
     elements.recentCount.textContent = `本月 ${monthProjectCount} 项 · ${monthEvents.length} 个节点`;
-    const [year, monthNumber] = state.calendarMonth.split("-").map(Number);
-    elements.calendarMonthLabel.textContent = `${year} 年 ${monthNumber} 月`;
+    elements.calendarYearSelect.value = state.calendarMonth.slice(0, 4);
+    elements.calendarMonthSelect.value = state.calendarMonth.slice(5, 7);
     elements.calendarPrevMonth.disabled = state.calendarMonth <= projectMinimumDate.slice(0, 7);
     elements.calendarNextMonth.disabled = state.calendarMonth >= projectMaximumDate.slice(0, 7);
 
@@ -469,9 +510,6 @@
     }
     const leadingDays = (new Date(`${monthStart}T00:00:00Z`).getUTCDay() + 6) % 7;
     const totalCells = Math.ceil((leadingDays + days) / 7) * 7;
-    const productIgnoresRange = state.product !== "all";
-    const rangeIsDefault = productIgnoresRange
-      || (state.projectStartDate === projectMinimumDate && state.projectEndDate === projectMaximumDate);
     const cells = [];
     for (let cellIndex = 0; cellIndex < totalCells; cellIndex += 1) {
       const dayNumber = cellIndex - leadingDays + 1;
@@ -481,15 +519,9 @@
       }
       const date = `${state.calendarMonth}-${String(dayNumber).padStart(2, "0")}`;
       const dayEvents = eventsByDate.get(date) || [];
-      const inRange = productIgnoresRange || (
-        (!state.projectStartDate || date >= state.projectStartDate)
-        && (!state.projectEndDate || date <= state.projectEndDate)
-      );
       const classNames = ["calendar-day"];
       if (date === today) classNames.push("is-today");
       if (date === state.calendarSelectedDate) classNames.push("is-selected");
-      if (!inRange) classNames.push("is-outside-range");
-      if (!rangeIsDefault && inRange) classNames.push("is-in-range");
       const visibleEvents = dayEvents.slice(0, 3);
       cells.push(`<div class="${classNames.join(" ")}" role="gridcell" data-calendar-date="${date}">
         <button class="calendar-day-number" type="button" data-calendar-date="${date}" aria-label="${escapeHtml(formatCalendarDate(date))}${dayEvents.length ? `，${dayEvents.length} 个项目节点` : ""}">${dayNumber}</button>
@@ -531,22 +563,21 @@
     return { days, label: `${(days / 365.25).toFixed(1)} 年` };
   }
 
-  function renderIpActivity(periodRows, lifecycleRows) {
+  function renderIpActivity(rows) {
     const activeFutureStatuses = new Set(["announced", "testing", "preregister", "upcoming"]);
     const groups = new Map();
     const ensureGroup = (project) => {
       const ipName = canonicalIpName(project);
       if (!groups.has(ipName)) groups.set(ipName, {
-        ipName, projects: new Map(), releases: new Map(), periodProjects: new Set(),
+        ipName, projects: new Map(), releases: new Map(),
       });
       return groups.get(ipName);
     };
-    for (const { project, release } of lifecycleRows) {
+    for (const { project, release } of rows) {
       const group = ensureGroup(project);
       group.projects.set(project.id, project);
       if (release) group.releases.set(release.id, release);
     }
-    for (const { project } of periodRows) ensureGroup(project).periodProjects.add(project.id);
 
     const activityRows = [...groups.values()].map((group) => {
       const groupProjects = [...group.projects.values()];
@@ -584,7 +615,6 @@
       return {
         ...group,
         totalCount: group.projects.size,
-        periodCount: group.periodProjects.size,
         launchedCount: launchedProjects.size,
         upcomingCount: upcomingProjects.size,
         lastLaunch,
@@ -592,8 +622,7 @@
         nextProject: nextProjects[0] || null,
         inactive: Boolean(lastLaunch) && gap.days >= 365 * 3 && upcomingProjects.size === 0,
       };
-    }).sort((a, b) => b.periodCount - a.periodCount
-      || b.totalCount - a.totalCount
+    }).sort((a, b) => b.totalCount - a.totalCount
       || b.upcomingCount - a.upcomingCount
       || a.ipName.localeCompare(b.ipName, "zh-CN"));
 
@@ -604,12 +633,12 @@
 
     elements.ipActivityCount.textContent = `${numberFormat.format(activityRows.length)} 个 IP`;
     elements.ipActivityEmpty.hidden = activityRows.length > 0;
-    elements.ipActivityBody.innerHTML = activityRows.map((row) => {
+    const pageData = paginate(activityRows, "ipActivityPage", 10);
+    elements.ipActivityBody.innerHTML = pageData.items.map((row) => {
       const selected = row.ipName === state.selectedIp;
       return `<tr${selected ? ' class="is-selected"' : ""}>
       <td><button type="button" class="ip-activity-select" data-ip-name="${escapeHtml(row.ipName)}" aria-pressed="${selected}">${escapeHtml(row.ipName)}</button>${row.inactive ? '<span class="ip-activity-flag">近 3 年无新作计划</span>' : ""}</td>
       <td><strong class="ip-activity-number">${escapeHtml(numberFormat.format(row.totalCount))}</strong></td>
-      <td><strong class="ip-activity-number${row.periodCount ? " active" : ""}">${escapeHtml(numberFormat.format(row.periodCount))}</strong></td>
       <td>${escapeHtml(numberFormat.format(row.launchedCount))}</td>
       <td>${row.upcomingCount ? `<span class="status-chip active">${escapeHtml(numberFormat.format(row.upcomingCount))} 项</span>` : '<span class="table-secondary">暂无</span>'}</td>
       <td>${row.lastLaunch
@@ -620,6 +649,7 @@
         : '<span class="table-secondary">暂无已公布项目</span>'}</td>
     </tr>`;
     }).join("");
+    renderPagination(elements.ipActivityPagination, "ipActivityPage", activityRows.length, 10);
 
     const hasSelectedIp = state.selectedIp !== "all";
     elements.ipDrilldownStatus.hidden = !hasSelectedIp;
@@ -674,15 +704,17 @@
       groupedSchedule.get(key).regions.add(regionInfo.scopeLabel ? `${regionInfo.label}（${regionInfo.scopeLabel}）` : regionInfo.label);
     }
     const scheduleRows = [...groupedSchedule.values()]
-      .sort((a, b) => Number(b.future) - Number(a.future) || a.sortKey.localeCompare(b.sortKey) || a.project.productName.localeCompare(b.project.productName, "zh-CN"))
-      .slice(0, 16);
+      .sort((a, b) => Number(b.future) - Number(a.future) || a.sortKey.localeCompare(b.sortKey) || a.project.productName.localeCompare(b.project.productName, "zh-CN"));
+    const pageData = paginate(scheduleRows, "schedulePage", 6);
+    elements.scheduleCount.textContent = `${numberFormat.format(scheduleRows.length)} 个节点`;
     elements.scheduleEmpty.hidden = scheduleRows.length > 0;
-    elements.schedule.innerHTML = scheduleRows.map(({ project, platforms, regions, timing, actual }) => `<div class="schedule-row">
+    elements.schedule.innerHTML = pageData.items.map(({ project, platforms, regions, timing, actual }) => `<div class="schedule-row">
       ${isoDate(timing)
         ? `<time class="schedule-date" datetime="${escapeHtml(isoDate(timing))}">${escapeHtml(timing)}</time>`
         : `<span class="schedule-date">${escapeHtml(timing)}</span>`}
       <div class="schedule-content"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml([...platforms].join(" / "))} · ${escapeHtml([...regions].join(" / "))} · ${actual ? "实际上线" : "计划上线"}</span></div>
     </div>`).join("");
+    renderPagination(elements.schedulePagination, "schedulePage", scheduleRows.length, 6);
   }
 
   function formatMetric(snapshot) {
@@ -1050,9 +1082,9 @@
 
   function renderPerformance() {
     const allEntries = performanceEntries();
-    const candidateRows = collectFilteredRows(true).filter(({ project }) => state.selectedIp === "all" || canonicalIpName(project) === state.selectedIp);
+    const candidateRows = collectFilteredRows().filter(({ project }) => state.selectedIp === "all" || canonicalIpName(project) === state.selectedIp);
     const visibleProjectIds = [...new Set(candidateRows.map(({ project }) => project.id))];
-    elements.performanceProduct.options[0].textContent = state.selectedIp === "all" ? "筛选期全部产品" : "当前 IP 全部产品";
+    elements.performanceProduct.options[0].textContent = state.selectedIp === "all" ? "当前筛选全部产品" : "当前 IP 全部产品";
     appendOptions(elements.performanceProduct, visibleProjectIds
       .sort((a, b) => (projectById.get(a)?.productName || a).localeCompare(projectById.get(b)?.productName || b, "zh-CN"))
       .map((id) => [id, projectById.get(id)?.productName || id]));
@@ -1112,30 +1144,81 @@
       .sort(byDateAndLevel)[0] || null;
   }
 
+  function preferredTiming(values) {
+    return [...new Set(values.map((value) => String(value || "").trim()).filter(Boolean))]
+      .sort((a, b) => {
+        const aBounds = dateBounds(a);
+        const bBounds = dateBounds(b);
+        if (!aBounds && !bBounds) return a.localeCompare(b, "zh-CN");
+        if (!aBounds) return 1;
+        if (!bBounds) return -1;
+        return aBounds.start.localeCompare(bBounds.start) || aBounds.end.localeCompare(bBounds.end);
+      });
+  }
+
+  function displayPreferredTiming(values, emptyLabel) {
+    const timings = preferredTiming(values);
+    if (!timings.length) return displayDate("", emptyLabel);
+    return `${displayDate(timings[0], emptyLabel)}${timings.length > 1 ? `<span class="project-date-note">另有 ${timings.length - 1} 个地区日期</span>` : ""}`;
+  }
+
+  function projectStatusForRows(project, projectRows) {
+    const statuses = projectRows.map(({ release }) => release?.status).filter(Boolean);
+    if (project.status === "cancelled" || statuses.length && statuses.every((status) => status === "cancelled")) return "cancelled";
+    if (project.status === "ended" || statuses.length && statuses.every((status) => status === "ended")) return "ended";
+    if (projectRows.some(({ release }) => isoDate(release?.actualLaunchDate) && isoDate(release.actualLaunchDate) <= today)) return "launched";
+    return ["testing", "preregister", "upcoming", "delayed", "announced"]
+      .find((status) => project.status === status || statuses.includes(status)) || project.status || "announced";
+  }
+
   function renderTable(rows) {
-    const sortedRows = rows.slice().sort((a, b) => {
-      const aDate = isoDate(a.release?.actualLaunchDate) || isoDate(a.release?.plannedLaunchDate) || isoDate(a.project.announcementDate);
-      const bDate = isoDate(b.release?.actualLaunchDate) || isoDate(b.release?.plannedLaunchDate) || isoDate(b.project.announcementDate);
-      return bDate.localeCompare(aDate);
-    });
-    elements.tableCount.textContent = `${numberFormat.format(sortedRows.length)} 条`;
-    elements.tableEmpty.hidden = sortedRows.length > 0;
-    elements.tableBody.innerHTML = sortedRows.map(({ project, release, regionMatch }) => {
-      const status = release?.status || project.status || "announced";
-      const scopedOnly = state.region !== "all" && regionMatch?.quality === "announcement_scope";
-      const performance = release && !scopedOnly ? latestPerformanceForRelease(release) : null;
-      const regionInfo = displayedRegion(release, regionMatch);
+    const groupedProjects = new Map();
+    for (const row of rows) {
+      if (!groupedProjects.has(row.project.id)) groupedProjects.set(row.project.id, { project: row.project, rows: new Map() });
+      const rowKey = row.release?.id || `${row.project.id}:unannounced`;
+      groupedProjects.get(row.project.id).rows.set(rowKey, row);
+    }
+    const projectRows = [...groupedProjects.values()].map(({ project, rows: rowMap }) => {
+      const groupedRows = [...rowMap.values()];
+      const sortDates = [
+        isoDate(project.latestUpdateDate), isoDate(project.announcementDate),
+        ...groupedRows.flatMap(({ release }) => [isoDate(release?.actualLaunchDate), isoDate(release?.plannedLaunchDate)]),
+      ].filter(Boolean).sort();
+      return { project, rows: groupedRows, sortDate: sortDates.at(-1) || "" };
+    }).sort((a, b) => b.sortDate.localeCompare(a.sortDate) || a.project.productName.localeCompare(b.project.productName, "zh-CN"));
+    const pageData = paginate(projectRows, "projectPage", 8);
+    const releaseCount = rows.filter(({ release }) => release).length;
+    elements.tableCount.textContent = `${numberFormat.format(projectRows.length)} 个产品 · ${numberFormat.format(releaseCount)} 个版本`;
+    elements.tableEmpty.hidden = projectRows.length > 0;
+    elements.tableBody.innerHTML = pageData.items.map(({ project, rows: groupedRows }) => {
+      const status = projectStatusForRows(project, groupedRows);
+      const releasesForProject = groupedRows.map(({ release }) => release).filter(Boolean);
+      const platforms = [...new Set(releasesForProject.map((release) => platformNames[release.platform] || release.platform))];
+      const regions = [...new Set(groupedRows
+        .filter(({ release }) => release)
+        .map(({ release, regionMatch }) => displayedRegion(release, regionMatch).label))];
+      const performance = groupedRows.map(({ release, regionMatch }) => {
+        const scopedOnly = state.region !== "all" && regionMatch?.quality === "announcement_scope";
+        return release && !scopedOnly ? latestPerformanceForRelease(release) : null;
+      }).filter(Boolean).sort((a, b) => String(b.date).localeCompare(String(a.date))
+        || (performanceWeights[b.performanceLevel] || 0) - (performanceWeights[a.performanceLevel] || 0))[0];
+      const variants = groupedRows.filter(({ release }) => release).sort((a, b) => {
+        const aRegion = displayedRegion(a.release, a.regionMatch).label;
+        const bRegion = displayedRegion(b.release, b.regionMatch).label;
+        return aRegion.localeCompare(bRegion, "zh-CN") || String(a.release.platform).localeCompare(String(b.release.platform));
+      });
       return `<tr>
         <td><span class="table-primary">${escapeHtml(project.productName)}</span><span class="table-secondary">${escapeHtml(project.ipName)} · ${escapeHtml(project.ipType || "类型待补")}</span></td>
         <td><span class="table-primary">${escapeHtml(project.developer || "开发商待补")}</span><span class="table-secondary">发行：${escapeHtml(project.publisher || "待补")}</span></td>
-        <td><div class="project-platforms"><span class="project-chip platform">${escapeHtml(release ? platformNames[release.platform] || release.platform : "平台待公布")}</span><span class="project-chip region">${escapeHtml(regionInfo.label)}</span>${regionInfo.scopeLabel ? `<span class="project-chip pending">${escapeHtml(regionInfo.scopeLabel)}</span>` : ""}</div><span class="table-secondary">${escapeHtml(release?.store || "渠道待确认")}</span></td>
+        <td><div class="project-platforms">${(platforms.length ? platforms : ["平台待公布"]).map((platform) => `<span class="project-chip platform">${escapeHtml(platform)}</span>`).join("")}${regions.map((region) => `<span class="project-chip region">${escapeHtml(region)}</span>`).join("")}</div>${variants.length ? `<details class="release-variants"><summary>${variants.length} 个地区平台版本</summary><div class="release-variant-list">${variants.map(({ release, regionMatch }) => { const regionInfo = displayedRegion(release, regionMatch); const timing = release.actualLaunchDate || release.plannedLaunchDate || "时间待定"; return `<div><strong>${escapeHtml(platformNames[release.platform] || release.platform)} · ${escapeHtml(regionInfo.label)}</strong><span>${escapeHtml(isoDate(timing) || timing)} · ${escapeHtml(isoDate(release.actualLaunchDate) ? "实际上线" : "计划记录")}</span></div>`; }).join("")}</div></details>` : '<span class="table-secondary">渠道待确认</span>'}</td>
         <td>${displayDate(project.announcementDate)}</td>
-        <td>${displayDate(release?.plannedLaunchDate, ["announced", "testing", "preregister", "upcoming"].includes(status) ? "时间待定" : "待确认")}</td>
-        <td>${displayDate(release?.actualLaunchDate, "尚未上线")}</td>
+        <td>${displayPreferredTiming(releasesForProject.map((release) => release.plannedLaunchDate), ["announced", "testing", "preregister", "upcoming"].includes(status) ? "时间待定" : "待确认")}</td>
+        <td>${displayPreferredTiming(releasesForProject.map((release) => release.actualLaunchDate), "尚未上线")}</td>
         <td><span class="status-chip ${statusClass(status)}">${escapeHtml(statusNames[status] || status)}</span></td>
         <td>${performance ? `<span class="table-primary">${escapeHtml(formatMetric(performance))}</span><span class="table-secondary">${escapeHtml(levelNames[performance.performanceLevel] || "表现等级待评估")}</span>` : '<span class="project-chip pending">榜单待补</span>'}</td>
       </tr>`;
     }).join("");
+    renderPagination(elements.projectPagination, "projectPage", projectRows.length, 8);
   }
 
   function renderKpis(rows) {
@@ -1210,11 +1293,10 @@
 
   function render() {
     const rows = filteredRows();
-    const lifecycleRows = collectFilteredRows(true);
     renderKpis(rows);
     renderRegionAudit();
-    renderProjectCalendar(lifecycleRows);
-    renderIpActivity(rows, lifecycleRows);
+    renderProjectCalendar(rows);
+    renderIpActivity(rows);
     const downstreamRows = state.selectedIp === "all"
       ? rows
       : rows.filter(({ project }) => canonicalIpName(project) === state.selectedIp);
@@ -1222,17 +1304,11 @@
     renderPerformance();
     renderTable(downstreamRows);
     elements.summary.textContent = rows.length
-      ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台记录。${state.region === "all" ? "“全球/亚洲”仅表示公告范围。" : `其中 ${rows.filter(({ regionMatch }) => regionMatch?.quality === "verified").length} 条已逐区核验，${rows.filter(({ regionMatch }) => regionMatch?.quality === "announcement_scope").length} 条为公告覆盖待逐区确认。`}${state.product === "all" ? "" : " 已选择单一产品，项目时间范围不限制其完整生命周期。"}`
+      ? `当前筛选显示 ${new Set(rows.map(({ project }) => project.id)).size} 个项目、${rows.filter(({ release }) => release).length} 个地区平台记录。${state.region === "all" ? "“全球/亚洲”仅表示公告范围。" : `其中 ${rows.filter(({ regionMatch }) => regionMatch?.quality === "verified").length} 条已逐区核验，${rows.filter(({ regionMatch }) => regionMatch?.quality === "announcement_scope").length} 条为公告覆盖待逐区确认。`}`
       : "当前筛选条件下没有可展示的项目；可调整产品、平台、地区或其他项目筛选条件。";
   }
 
   function updateStateAndRender(event) {
-    state.projectStartDate = elements.projectStartDate.value;
-    state.projectEndDate = elements.projectEndDate.value;
-    if (state.projectStartDate && state.projectEndDate && state.projectStartDate > state.projectEndDate) {
-      state.projectStartDate = state.projectEndDate;
-      elements.projectStartDate.value = state.projectStartDate;
-    }
     state.performanceStartDate = elements.performanceStartDate.value;
     state.performanceEndDate = elements.performanceEndDate.value;
     if (state.performanceStartDate && state.performanceEndDate && state.performanceStartDate > state.performanceEndDate) {
@@ -1246,17 +1322,11 @@
     state.product = elements.product.value;
     state.search = elements.search.value.trim();
     state.performanceProduct = elements.performanceProduct.value;
-    if (event?.target === elements.projectStartDate && state.projectStartDate) {
-      state.calendarMonth = clampCalendarMonth(state.projectStartDate.slice(0, 7));
-      state.calendarSelectedDate = state.projectStartDate;
+    if (![elements.performanceStartDate, elements.performanceEndDate, elements.performanceProduct].includes(event?.target)) {
+      state.ipActivityPage = 1;
+      state.schedulePage = 1;
+      state.projectPage = 1;
     }
-    if (event?.target === elements.projectEndDate && state.projectEndDate) {
-      state.calendarMonth = clampCalendarMonth(state.projectEndDate.slice(0, 7));
-      state.calendarSelectedDate = state.projectEndDate;
-    }
-    elements.projectDateRangeLabel.textContent = state.product === "all"
-      ? `${state.projectStartDate || "最早"} — ${state.projectEndDate || "最晚计划"}`
-      : "已选产品 · 完整生命周期";
     elements.performanceDateRangeLabel.textContent = `${state.performanceStartDate || "最早"} — ${state.performanceEndDate || "最新"}`;
     render();
   }
@@ -1269,12 +1339,18 @@
   render();
 
   for (const element of [
-    elements.projectStartDate, elements.projectEndDate,
     elements.performanceStartDate, elements.performanceEndDate,
     elements.platform, elements.region,
     elements.status, elements.ipType, elements.product, elements.performanceProduct,
   ]) element.addEventListener("change", updateStateAndRender);
   elements.search.addEventListener("input", updateStateAndRender);
+  const updateCalendarPeriod = () => {
+    state.calendarMonth = clampCalendarMonth(`${elements.calendarYearSelect.value}-${elements.calendarMonthSelect.value}`);
+    state.calendarSelectedDate = `${state.calendarMonth}-01`;
+    render();
+  };
+  elements.calendarYearSelect.addEventListener("change", updateCalendarPeriod);
+  elements.calendarMonthSelect.addEventListener("change", updateCalendarPeriod);
   elements.calendarPrevMonth.addEventListener("click", () => {
     state.calendarMonth = clampCalendarMonth(shiftMonth(state.calendarMonth, -1));
     state.calendarSelectedDate = `${state.calendarMonth}-01`;
@@ -1288,12 +1364,6 @@
   elements.calendarToday.addEventListener("click", () => {
     state.calendarMonth = clampCalendarMonth(today.slice(0, 7));
     state.calendarSelectedDate = today;
-    render();
-  });
-  elements.calendarFullRange.addEventListener("click", () => {
-    state.projectStartDate = projectMinimumDate;
-    state.projectEndDate = projectMaximumDate;
-    syncControls();
     render();
   });
   elements.calendarGrid.addEventListener("click", (event) => {
@@ -1311,6 +1381,9 @@
     state.product = projectId;
     state.performanceProduct = projectId;
     state.selectedIp = "all";
+    state.ipActivityPage = 1;
+    state.schedulePage = 1;
+    state.projectPage = 1;
     syncControls();
     render();
   };
@@ -1323,11 +1396,15 @@
     const ipName = button.dataset.ipName;
     state.selectedIp = state.selectedIp === ipName ? "all" : ipName;
     state.performanceProduct = "all";
+    state.schedulePage = 1;
+    state.projectPage = 1;
     render();
   });
   elements.clearIpDrilldown.addEventListener("click", () => {
     state.selectedIp = "all";
     state.performanceProduct = "all";
+    state.schedulePage = 1;
+    state.projectPage = 1;
     render();
   });
   elements.performancePanel.addEventListener("click", (event) => {
@@ -1342,16 +1419,28 @@
   elements.clearPerformanceProduct.addEventListener("click", () => {
     state.product = "all";
     state.performanceProduct = "all";
+    state.ipActivityPage = 1;
+    state.schedulePage = 1;
+    state.projectPage = 1;
     syncControls();
     render();
   });
+  for (const pagination of [elements.ipActivityPagination, elements.schedulePagination, elements.projectPagination]) {
+    pagination.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const button = event.target.closest("button[data-page-state][data-page]");
+      if (!button || button.disabled || !(button.dataset.pageState in state)) return;
+      state[button.dataset.pageState] = Number(button.dataset.page);
+      render();
+    });
+  }
   elements.reset.addEventListener("click", () => {
     Object.assign(state, {
-      projectStartDate: projectMinimumDate, projectEndDate: projectMaximumDate,
       performanceStartDate: defaultPerformanceStartDate, performanceEndDate: defaultPerformanceEndDate,
       platform: "all", region: "all",
       status: "all", ipType: "all", product: "all", search: "", performanceProduct: "all", selectedIp: "all",
       calendarMonth: clampCalendarMonth(today.slice(0, 7)), calendarSelectedDate: today,
+      ipActivityPage: 1, schedulePage: 1, projectPage: 1,
     });
     syncControls();
     render();
