@@ -376,11 +376,11 @@
     if (label === "计划上线") return "planned";
     if (label === "正式上线") return "launched";
     if (label === "停止运营") return "ended";
-    return "announce";
+    return "planned";
   }
 
   const calendarEventPriority = {
-    announce: 1, planned: 2, preregister: 3, testing: 4, launched: 5, ended: 6,
+    planned: 1, preregister: 2, testing: 3, launched: 4, ended: 5,
   };
 
   function monthBounds(month) {
@@ -426,8 +426,6 @@
     };
     for (const { project, releases: releaseMap } of groupedProjects.values()) {
       const projectReleases = [...releaseMap.values()];
-      add(project, null, project.announcementDate, "首次公布");
-      add(project, null, project.latestUpdateDate, project.latestUpdateLabel || "最近动态");
       for (const release of projectReleases) {
         add(project, release, release.testStartDate, "开始测试");
         add(project, release, release.preregisterDate, "开放预约");

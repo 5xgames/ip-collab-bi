@@ -138,7 +138,6 @@
 
 .calendar-legend > span { display: inline-flex; align-items: center; gap: 5px; }
 .calendar-event-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: #718096; }
-.calendar-event-dot.announce { background: #7658ff; }
 .calendar-event-dot.testing { background: #df8d00; }
 .calendar-event-dot.preregister { background: #d456a4; }
 .calendar-event-dot.planned { background: #2f6fed; }
@@ -210,8 +209,6 @@
 .calendar-event:hover { filter: brightness(0.97); }
 .calendar-event i { width: 3px; height: 14px; flex: 0 0 3px; border-radius: 3px; background: #718096; }
 .calendar-event span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.calendar-event-announce { background: rgba(118, 88, 255, 0.09); color: #6142d1; }
-.calendar-event-announce i { background: #7658ff; }
 .calendar-event-testing { background: rgba(223, 141, 0, 0.11); color: #8e5a00; }
 .calendar-event-testing i { background: #df8d00; }
 .calendar-event-preregister { background: rgba(212, 86, 164, 0.10); color: #a53e7e; }
