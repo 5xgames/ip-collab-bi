@@ -579,32 +579,47 @@
 
     const activityRows = [...groups.values()].map((group) => {
       const groupProjects = [...group.projects.values()];
-      const groupReleases = [...group.releases.values()];
+      const groupProjectIds = new Set(groupProjects.map((project) => project.id));
+      const allProjectReleases = releases.filter((release) => groupProjectIds.has(release.projectId));
       const launchedProjects = new Set();
       const upcomingProjects = new Map();
       const launchMoments = [];
+      const releasesByProject = new Map();
+      const firstLaunchByProject = new Map();
+      // IP activity is product-based: later ports and regional listings must not reset a title's first launch.
+      for (const release of allProjectReleases) {
+        if (!releasesByProject.has(release.projectId)) releasesByProject.set(release.projectId, []);
+        releasesByProject.get(release.projectId).push(release);
+        const actualDate = isoDate(release.actualLaunchDate);
+        if (!actualDate || actualDate > today) continue;
+        const previous = firstLaunchByProject.get(release.projectId);
+        if (!previous || actualDate < previous) firstLaunchByProject.set(release.projectId, actualDate);
+      }
       for (const project of groupProjects) {
         if (["launched", "ended"].includes(project.status)) launchedProjects.add(project.id);
-      }
-      for (const release of groupReleases) {
-        const project = projectById.get(release.projectId);
-        const actualDate = isoDate(release.actualLaunchDate);
-        if (actualDate && actualDate <= today) {
-          launchedProjects.add(release.projectId);
-          launchMoments.push({ date: actualDate, productName: project?.productName || release.projectId });
+        const firstLaunch = firstLaunchByProject.get(project.id);
+        if (firstLaunch) {
+          launchedProjects.add(project.id);
+          launchMoments.push({ date: firstLaunch, productName: project.productName });
         }
-        const status = release.status || project?.status || "announced";
-        if (actualDate || !activeFutureStatuses.has(status)) continue;
-        const plannedTiming = String(release.plannedLaunchDate || "").trim();
+        if (launchedProjects.has(project.id)) continue;
+        const projectReleases = releasesByProject.get(project.id) || [];
+        const activeReleases = projectReleases.filter((release) => {
+          if (isoDate(release.actualLaunchDate)) return false;
+          const status = release.status || project.status || "announced";
+          if (!activeFutureStatuses.has(status)) return false;
+          const bounds = dateBounds(String(release.plannedLaunchDate || "").trim());
+          return !bounds || bounds.end >= today;
+        });
+        if (!activeFutureStatuses.has(project.status) && !activeReleases.length) continue;
+        const plannedTiming = preferredTiming(activeReleases.map((release) => release.plannedLaunchDate))[0] || "时间待定";
         const bounds = dateBounds(plannedTiming);
-        if (bounds && bounds.end < today) continue;
-        const previous = upcomingProjects.get(release.projectId);
         const candidate = {
-          productName: project?.productName || release.projectId,
-          timing: plannedTiming || "时间待定",
+          productName: project.productName,
+          timing: plannedTiming,
           sortKey: bounds?.start || "9999-12-31",
         };
-        if (!previous || candidate.sortKey < previous.sortKey) upcomingProjects.set(release.projectId, candidate);
+        upcomingProjects.set(project.id, candidate);
       }
       launchMoments.sort((a, b) => b.date.localeCompare(a.date));
       const nextProjects = [...upcomingProjects.values()].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
@@ -662,7 +677,7 @@
     </div><div>
       <span>未来已有计划</span><strong>${escapeHtml(numberFormat.format(upcomingIpCount))} 个 IP</strong><small>${escapeHtml(numberFormat.format(upcomingProjectCount))} 个已公布项目</small>
     </div><div>
-      <span>最长空窗且无新作</span><strong>${escapeHtml(longestInactive?.ipName || "暂无可判定 IP")}</strong><small>${longestInactive ? `距最近上线 ${escapeHtml(longestInactive.gap.label)}` : "需补充更多历史上线日期"}</small>
+      <span>最长空窗且无新作</span><strong>${escapeHtml(longestInactive?.ipName || "暂无可判定 IP")}</strong><small>${longestInactive ? `距最近作品首发 ${escapeHtml(longestInactive.gap.label)}` : "需补充更多历史首发日期"}</small>
     </div>` : "";
     return activityRows;
   }

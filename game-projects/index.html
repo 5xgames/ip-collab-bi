@@ -167,7 +167,7 @@
         <div>
           <p class="section-kicker">IP GAME ACTIVITY</p>
           <h2 id="ip-activity-title">IP 游戏化活跃度</h2>
-          <p class="section-note">基于数据库已收录的全部历史与未来项目，分析累计项目量、未来计划和游戏化空窗；点击 IP 名称可联动查看对应项目。</p>
+          <p class="section-note">基于数据库已收录的全部历史与未来项目，按每款产品的全球最早首发时间分析累计项目量、未来计划和游戏化空窗；点击 IP 名称可联动查看对应项目。</p>
         </div>
         <span id="ip-activity-count" class="count-badge">0 个 IP</span>
       </div>
@@ -180,7 +180,7 @@
               <th>历史项目</th>
               <th>已上线</th>
               <th>未来计划</th>
-              <th>最近上线 / 空窗</th>
+              <th>最近作品首发 / 空窗</th>
               <th>下一款</th>
             </tr>
           </thead>
@@ -193,7 +193,7 @@
         <span>当前查看 <strong id="ip-drilldown-name"></strong> 的上线时间、平台表现与项目明细</span>
         <button id="clear-ip-drilldown" type="button">查看全部 IP</button>
       </div>
-      <p class="ip-activity-method">历史项目及空窗期不设时间窗口，基于当前数据库已收录项目计算；平台、地区、状态、IP 类型等项目筛选仍会生效。本数据库不代表该 IP 历史项目已绝对穷尽。</p>
+      <p class="ip-activity-method">同一产品先取全球各地区、各平台中最早的已核验上线日作为首发日，后续移植与地区上架不会重置 IP 空窗期；已上线产品也不会重复计入未来计划。平台、地区、状态、IP 类型等项目筛选仍会生效。</p>
     </section>
 
     <section class="project-dashboard-grid">
@@ -339,6 +339,6 @@
 
   <script src="data/projects.js?v=20260910-project-audit27"></script>
   <script src="../name-localization.js?v=20260911-zh-names2"></script>
-  <script src="app.js?v=20260911-calendar-statuses"></script>
+  <script src="app.js?v=20260911-first-launch"></script>
 </body>
 </html>
