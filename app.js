@@ -209,15 +209,19 @@
 
     const generatedDay = firstIsoDate(data.meta.generatedAt);
     const thisUpdateCount = Number(data.meta.newCollabThisUpdateCount) || 0;
+    const todayCount = alerts.filter((alert) => firstIsoDate(alert.discoveredAt) === generatedDay).length;
+    const highlightedCount = Math.max(thisUpdateCount, todayCount);
     elements.newAlertPanel.hidden = false;
-    elements.newAlertCount.textContent = thisUpdateCount > 0
-      ? `本次新增 ${numberFormat.format(thisUpdateCount)} 个`
+    elements.newAlertCount.textContent = highlightedCount > 0
+      ? `今日新增 ${numberFormat.format(highlightedCount)} 个`
       : `近 7 天 ${numberFormat.format(alerts.length)} 个`;
     elements.newAlertList.innerHTML = alerts.map((alert, index) => {
       const start = firstIsoDate(alert.start);
       const end = firstIsoDate(alert.end);
       const period = end && end !== start ? `${start} — ${end}` : (start || "日期待核验");
       const regions = Array.isArray(alert.regions) && alert.regions.length ? alert.regions.join("、") : "地区待核验";
+      const confirmedRegions = Array.isArray(alert.confirmedRegions) ? alert.confirmedRegions : [];
+      const candidateRegions = Array.isArray(alert.candidateRegions) ? alert.candidateRegions : [];
       const platforms = Array.isArray(alert.platforms) && alert.platforms.length
         ? alert.platforms.map((platform) => platformName(platform)).join("、")
         : "平台待核验";
@@ -232,7 +236,9 @@
           <h3><span>${escapeHtml(alert.product || alert.productKey || "产品待核验")}</span><i aria-hidden="true">×</i><strong>${escapeHtml(alert.ip || "IP待核验")}</strong></h3>
           <dl class="new-alert-meta">
             <div><dt>联动时间</dt><dd>${escapeHtml(period)}</dd></div>
-            <div><dt>地区</dt><dd>${escapeHtml(regions)}</dd></div>
+            ${confirmedRegions.length ? `<div><dt>已确认</dt><dd>${escapeHtml(confirmedRegions.join("、"))}</dd></div>` : ""}
+            ${candidateRegions.length ? `<div><dt>候选地区</dt><dd>${escapeHtml(candidateRegions.join("、"))}（待逐区核验）</dd></div>` : ""}
+            ${!confirmedRegions.length && !candidateRegions.length ? `<div><dt>地区</dt><dd>${escapeHtml(regions)}</dd></div>` : ""}
             <div><dt>平台</dt><dd>${escapeHtml(platforms)}</dd></div>
           </dl>
           <button class="new-alert-action" type="button" data-new-alert-index="${index}">筛选查看</button>
