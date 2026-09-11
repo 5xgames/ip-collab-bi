@@ -454,6 +454,60 @@
     };
   }
 
+  function calendarFocusForIp(ipName) {
+    const projectIds = new Set(filteredRows()
+      .filter(({ project }) => canonicalIpName(project) === ipName)
+      .map(({ project }) => project.id));
+    if (!projectIds.size) return null;
+
+    const releasesByProject = new Map();
+    for (const release of releases) {
+      if (!projectIds.has(release.projectId)) continue;
+      if (!releasesByProject.has(release.projectId)) releasesByProject.set(release.projectId, []);
+      releasesByProject.get(release.projectId).push(release);
+    }
+
+    const futureProjects = [];
+    const launchedProjects = [];
+    for (const projectId of projectIds) {
+      const project = projectById.get(projectId);
+      if (!project) continue;
+      const projectReleases = releasesByProject.get(projectId) || [];
+      const firstLaunchDate = projectReleases
+        .map((release) => isoDate(release.actualLaunchDate))
+        .filter((date) => date && date <= today)
+        .sort()[0];
+      if (firstLaunchDate) {
+        launchedProjects.push({ projectId, productName: project.productName, date: firstLaunchDate });
+        continue;
+      }
+
+      const nextTiming = projectReleases
+        .map((release) => dateBounds(release.plannedLaunchDate))
+        .filter((bounds) => bounds && bounds.end >= today)
+        .map((bounds) => ({
+          bounds,
+          date: bounds.start <= today && today <= bounds.end ? today : bounds.start,
+        }))
+        .sort((a, b) => a.date.localeCompare(b.date)
+          || a.bounds.start.localeCompare(b.bounds.start)
+          || a.bounds.end.localeCompare(b.bounds.end))[0];
+      if (nextTiming) {
+        futureProjects.push({
+          projectId,
+          productName: project.productName,
+          date: nextTiming.date,
+        });
+      }
+    }
+
+    const focus = futureProjects.sort((a, b) => a.date.localeCompare(b.date)
+      || a.productName.localeCompare(b.productName, "zh-CN"))[0]
+      || launchedProjects.sort((a, b) => b.date.localeCompare(a.date)
+        || a.productName.localeCompare(b.productName, "zh-CN"))[0];
+    return focus ? { ...focus, month: focus.date.slice(0, 7) } : null;
+  }
+
   function calendarEventScope(event) {
     const eventReleases = [...event.releases.values()];
     if (!eventReleases.length) return `${event.project.ipName} · 平台及地区待公布`;
@@ -1308,11 +1362,11 @@
     const rows = filteredRows();
     renderKpis(rows);
     renderRegionAudit();
-    renderProjectCalendar(rows);
     renderIpActivity(rows);
     const downstreamRows = state.selectedIp === "all"
       ? rows
       : rows.filter(({ project }) => canonicalIpName(project) === state.selectedIp);
+    renderProjectCalendar(downstreamRows);
     renderSchedule(downstreamRows);
     renderPerformance();
     renderTable(downstreamRows);
@@ -1407,7 +1461,15 @@
     const button = event.target.closest(".ip-activity-select");
     if (!button) return;
     const ipName = button.dataset.ipName;
-    state.selectedIp = state.selectedIp === ipName ? "all" : ipName;
+    const isSelecting = state.selectedIp !== ipName;
+    state.selectedIp = isSelecting ? ipName : "all";
+    if (isSelecting) {
+      const focus = calendarFocusForIp(ipName);
+      if (focus) {
+        state.calendarMonth = clampCalendarMonth(focus.month);
+        state.calendarSelectedDate = focus.date;
+      }
+    }
     state.performanceProduct = "all";
     state.schedulePage = 1;
     state.projectPage = 1;
