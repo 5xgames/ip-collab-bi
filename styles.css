@@ -182,6 +182,139 @@ h2 { margin-bottom: 0; font-size: 19px; line-height: 1.3; letter-spacing: -0.015
 .data-date span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
 .data-date strong { margin-top: 2px; font-size: 18px; }
 
+.new-alert-panel {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 20px 22px 22px;
+  border: 1px solid rgba(220, 76, 100, 0.2);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(255, 240, 243, 0.98), rgba(255, 249, 235, 0.94));
+  box-shadow: 0 12px 34px rgba(171, 62, 83, 0.09);
+}
+
+.new-alert-panel::after {
+  content: "NEW";
+  position: absolute;
+  top: -13px;
+  right: 16px;
+  color: rgba(220, 76, 100, 0.055);
+  font-size: 74px;
+  font-weight: 900;
+  letter-spacing: -0.07em;
+  pointer-events: none;
+}
+
+.new-alert-panel[hidden] { display: none; }
+
+.new-alert-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+
+.new-alert-heading .section-kicker { color: var(--red); }
+.new-alert-heading p:last-child { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+
+.new-alert-count {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.new-alert-list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 12px;
+}
+
+.new-alert-card {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 11px;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid rgba(220, 76, 100, 0.13);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 5px 16px rgba(79, 40, 49, 0.045);
+}
+
+.new-alert-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.new-alert-status,
+.new-alert-discovered {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.new-alert-status {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: #8b5a00;
+}
+
+.new-alert-discovered { color: var(--red); }
+
+.new-alert-card h3 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px 8px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.new-alert-card h3 span { font-weight: 800; }
+.new-alert-card h3 i { color: var(--muted); font-size: 11px; font-style: normal; }
+.new-alert-card h3 strong { color: var(--red); font-weight: 850; }
+
+.new-alert-meta {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+}
+
+.new-alert-meta div { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 8px; }
+.new-alert-meta dt { color: var(--muted); font-size: 10px; }
+.new-alert-meta dd { min-width: 0; margin: 0; color: var(--ink); font-size: 11px; font-weight: 650; overflow-wrap: anywhere; }
+
+.new-alert-action {
+  justify-self: start;
+  min-height: 32px;
+  padding: 5px 11px;
+  border: 1px solid rgba(220, 76, 100, 0.2);
+  border-radius: 9px;
+  background: var(--red-soft);
+  color: #b02b43;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.new-alert-action:hover { border-color: rgba(220, 76, 100, 0.4); background: #ffe4ea; }
+.new-alert-action:focus-visible { outline: 3px solid rgba(220, 76, 100, 0.2); outline-offset: 2px; }
+
 .filter-panel,
 .panel,
 .kpi-card {
@@ -949,6 +1082,10 @@ footer strong { color: var(--ink); }
   main { width: min(100% - 24px, 1480px); padding-top: 24px; }
   .intro { align-items: stretch; flex-direction: column; }
   .data-date { align-self: flex-start; }
+  .new-alert-panel { padding: 17px; border-radius: 14px; }
+  .new-alert-heading { align-items: stretch; flex-direction: column; gap: 10px; }
+  .new-alert-count { align-self: flex-start; }
+  .new-alert-list { grid-template-columns: 1fr; }
   .filter-panel, .panel { padding: 17px; border-radius: 14px; }
   .filters { grid-template-columns: 1fr; }
   .date-range-header { align-items: stretch; flex-direction: column; gap: 10px; }

@@ -6,7 +6,7 @@
   <meta name="description" content="日本娱乐 IP 与手游联动地区表现 BI">
   <title>日本 IP × 手游联动 BI</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260908-sticky-date1">
+  <link rel="stylesheet" href="styles.css?v=20260911-new-alert1">
 </head>
 <body>
   <header class="topbar">
@@ -70,6 +70,18 @@
         <span>榜单最新日期</span>
         <strong id="latest-rank-date">—</strong>
       </div>
+    </section>
+
+    <section id="new-collab-alerts" class="new-alert-panel" aria-labelledby="new-alert-title" hidden>
+      <div class="new-alert-heading">
+        <div>
+          <p class="section-kicker">NEW COLLAB ALERTS</p>
+          <h2 id="new-alert-title">新联动项目提醒</h2>
+          <p>近 7 天首次收录的近期及预告项目；同一联动的跨平台、跨地区记录已合并。</p>
+        </div>
+        <span id="new-alert-count" class="new-alert-count"></span>
+      </div>
+      <div id="new-alert-list" class="new-alert-list" aria-live="polite"></div>
     </section>
 
     <section class="filter-panel" aria-labelledby="filter-title">
@@ -303,7 +315,7 @@
     <span id="history-coverage-text" class="footer-source">正在读取历史库覆盖范围…</span>
   </footer>
 
-  <script src="data/dashboard.js?v=cb1f51b2835b"></script>
-  <script src="app.js?v=20260908-filter-sync1"></script>
+  <script src="data/dashboard.js?v=52eba9ef553c"></script>
+  <script src="app.js?v=20260911-new-alert1"></script>
 </body>
 </html>

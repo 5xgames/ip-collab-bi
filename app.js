@@ -43,6 +43,9 @@
 
   const $ = (selector) => document.querySelector(selector);
   const elements = {
+    newAlertPanel: $("#new-collab-alerts"),
+    newAlertCount: $("#new-alert-count"),
+    newAlertList: $("#new-alert-list"),
     platform: $("#platform-filter"),
     region: $("#region-filter"),
     product: $("#product-filter"),
@@ -195,6 +198,69 @@
     return `数据生成 ${new Intl.DateTimeFormat("zh-CN", {
       timeZone: "Asia/Tokyo", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit",
     }).format(parsed)}（日本时间）`;
+  }
+
+  function renderNewCollabAlerts() {
+    const alerts = Array.isArray(data.newCollabAlerts) ? data.newCollabAlerts : [];
+    if (!elements.newAlertPanel || !elements.newAlertList || alerts.length === 0) {
+      if (elements.newAlertPanel) elements.newAlertPanel.hidden = true;
+      return;
+    }
+
+    const generatedDay = firstIsoDate(data.meta.generatedAt);
+    const thisUpdateCount = Number(data.meta.newCollabThisUpdateCount) || 0;
+    elements.newAlertPanel.hidden = false;
+    elements.newAlertCount.textContent = thisUpdateCount > 0
+      ? `本次新增 ${numberFormat.format(thisUpdateCount)} 个`
+      : `近 7 天 ${numberFormat.format(alerts.length)} 个`;
+    elements.newAlertList.innerHTML = alerts.map((alert, index) => {
+      const start = firstIsoDate(alert.start);
+      const end = firstIsoDate(alert.end);
+      const period = end && end !== start ? `${start} — ${end}` : (start || "日期待核验");
+      const regions = Array.isArray(alert.regions) && alert.regions.length ? alert.regions.join("、") : "地区待核验";
+      const platforms = Array.isArray(alert.platforms) && alert.platforms.length
+        ? alert.platforms.map((platform) => platformName(platform)).join("、")
+        : "平台待核验";
+      const discovered = firstIsoDate(alert.discoveredAt);
+      const discoveredLabel = discovered === generatedDay ? "今日新收录" : `${discovered || "近期"} 收录`;
+      return `
+        <article class="new-alert-card">
+          <div class="new-alert-card-top">
+            <span class="new-alert-status">${escapeHtml(alert.status || "新项目")}</span>
+            <span class="new-alert-discovered">${escapeHtml(discoveredLabel)}</span>
+          </div>
+          <h3><span>${escapeHtml(alert.product || alert.productKey || "产品待核验")}</span><i aria-hidden="true">×</i><strong>${escapeHtml(alert.ip || "IP待核验")}</strong></h3>
+          <dl class="new-alert-meta">
+            <div><dt>联动时间</dt><dd>${escapeHtml(period)}</dd></div>
+            <div><dt>地区</dt><dd>${escapeHtml(regions)}</dd></div>
+            <div><dt>平台</dt><dd>${escapeHtml(platforms)}</dd></div>
+          </dl>
+          <button class="new-alert-action" type="button" data-new-alert-index="${index}">筛选查看</button>
+        </article>`;
+    }).join("");
+
+    elements.newAlertList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-new-alert-index]");
+      if (!button) return;
+      const alert = alerts[Number(button.dataset.newAlertIndex)];
+      if (!alert) return;
+      const alertStart = firstIsoDate(alert.start);
+      const alertEnd = firstIsoDate(alert.end) || alertStart;
+      Object.assign(state, {
+        platform: "all",
+        region: "all",
+        product: alert.productKey || "all",
+        ip: alert.ip || "all",
+        search: "",
+        trendKey: "",
+        startDate: alertStart && alertStart >= minimumDate ? alertStart : minimumDate,
+        endDate: alertEnd && alertEnd <= maximumDate ? alertEnd : maximumDate,
+      });
+      elements.search.value = "";
+      syncRangeControls();
+      render();
+      document.querySelector(".filter-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   }
 
   function eventStatusKind(event) {
@@ -986,6 +1052,7 @@
   $("#history-coverage-text").textContent = `${data.meta.definitions.historyCoverage} ${data.meta.definitions.historyRankPolicy} ${data.meta.definitions.historyRankComparison || ""} ${data.meta.definitions.historyRankAttribution || ""}`;
   $("#minigame-coverage-text").textContent = data.meta.definitions.minigameCoverage || "小游戏渠道数据尚未接入。";
   populateFilters();
+  renderNewCollabAlerts();
   bindControls();
   render();
 })();
