@@ -68,9 +68,19 @@
     kpiUpcoming: $("#kpi-upcoming"),
     kpiUpcomingDetail: $("#kpi-upcoming-detail"),
     kpiReleases: $("#kpi-releases"),
-    recentList: $("#recent-project-list"),
-    recentEmpty: $("#recent-project-empty"),
     recentCount: $("#recent-project-count"),
+    calendarGrid: $("#project-calendar-grid"),
+    calendarMonthLabel: $("#calendar-month-label"),
+    calendarPrevMonth: $("#calendar-prev-month"),
+    calendarNextMonth: $("#calendar-next-month"),
+    calendarToday: $("#calendar-today"),
+    calendarFullRange: $("#calendar-full-range"),
+    calendarSelectedDate: $("#calendar-selected-date"),
+    calendarSelectedSummary: $("#calendar-selected-summary"),
+    calendarAgendaList: $("#calendar-agenda-list"),
+    calendarAgendaEmpty: $("#calendar-agenda-empty"),
+    calendarWindowSection: $("#calendar-window-section"),
+    calendarWindowList: $("#calendar-window-list"),
     ipActivitySummary: $("#ip-activity-summary"),
     ipActivityBody: $("#ip-activity-table-body"),
     ipActivityEmpty: $("#ip-activity-empty"),
@@ -159,6 +169,8 @@
     search: "",
     performanceProduct: "all",
     selectedIp: "all",
+    calendarMonth: today.slice(0, 7),
+    calendarSelectedDate: today,
   };
 
   function escapeHtml(value) {
@@ -217,24 +229,6 @@
       label: regionNames[regionMatch.displayRegion] || regionMatch.displayRegion,
       scopeLabel: regionMatch.scopeLabel || "",
     };
-  }
-
-  function allMilestones(project, projectReleases) {
-    const milestones = [];
-    const add = (dateValue, label, release) => {
-      const date = isoDate(dateValue);
-      if (date) milestones.push({ date, label, release });
-    };
-    add(project.announcementDate, "首次公布", null);
-    add(project.latestUpdateDate, project.latestUpdateLabel || "最近动态", null);
-    for (const release of projectReleases) {
-      add(release.testStartDate, "开始测试", release);
-      add(release.preregisterDate, "开放预约", release);
-      add(release.plannedLaunchDate, "计划上线", release);
-      add(release.actualLaunchDate, "正式上线", release);
-      add(release.serviceEndDate, "停止运营", release);
-    }
-    return milestones.sort((a, b) => a.date.localeCompare(b.date));
   }
 
   function projectDateMatches(project, projectReleases) {
@@ -360,37 +354,167 @@
     elements.performanceDateRangeLabel.textContent = `${state.performanceStartDate || "最早"} — ${state.performanceEndDate || "最新"}`;
   }
 
-  function latestMilestone(project, projectReleases) {
-    return allMilestones(project, projectReleases).at(-1) || null;
+  function calendarEventType(label) {
+    if (label === "开始测试") return "testing";
+    if (label === "开放预约") return "preregister";
+    if (label === "计划上线") return "planned";
+    if (label === "正式上线") return "launched";
+    if (label === "停止运营") return "ended";
+    return "announce";
   }
 
-  function renderRecentProjects(rows) {
+  function monthBounds(month) {
+    const [year, monthNumber] = month.split("-").map(Number);
+    const start = `${year}-${String(monthNumber).padStart(2, "0")}-01`;
+    const end = new Date(Date.UTC(year, monthNumber, 0)).toISOString().slice(0, 10);
+    return { start, end, days: Number(end.slice(8, 10)) };
+  }
+
+  function shiftMonth(month, delta) {
+    const [year, monthNumber] = month.split("-").map(Number);
+    return new Date(Date.UTC(year, monthNumber - 1 + delta, 1)).toISOString().slice(0, 7);
+  }
+
+  function clampCalendarMonth(month) {
+    const minimumMonth = projectMinimumDate.slice(0, 7);
+    const maximumMonth = projectMaximumDate.slice(0, 7);
+    return month < minimumMonth ? minimumMonth : month > maximumMonth ? maximumMonth : month;
+  }
+
+  function calendarProjectData(rows) {
     const groupedProjects = new Map();
     for (const { project, release } of rows) {
-      if (!groupedProjects.has(project.id)) groupedProjects.set(project.id, { project, releases: [] });
-      if (release) groupedProjects.get(project.id).releases.push(release);
+      if (!groupedProjects.has(project.id)) groupedProjects.set(project.id, { project, releases: new Map() });
+      if (release) groupedProjects.get(project.id).releases.set(release.id, release);
     }
-    const uniqueProjects = [...groupedProjects.values()]
-      .map(({ project, releases: filteredReleases }) => ({ project, filteredReleases, milestone: latestMilestone(project, filteredReleases) }))
-      .sort((a, b) => String(b.milestone?.date || "").localeCompare(String(a.milestone?.date || "")))
-      .slice(0, 9);
-    elements.recentCount.textContent = `${uniqueProjects.length} 项`;
-    elements.recentEmpty.hidden = uniqueProjects.length > 0;
-    elements.recentList.innerHTML = uniqueProjects.map(({ project, filteredReleases, milestone }) => {
-      const release = milestone?.release || filteredReleases[0];
-      const effectiveStatus = release?.status || project.status || "announced";
-      const platformLabel = release ? platformNames[release.platform] || release.platform : "平台待公布";
-      const regionInfo = displayedRegion(release);
-      const regionLabel = regionInfo.scopeLabel ? `${regionInfo.label}（${regionInfo.scopeLabel}）` : regionInfo.label;
-      return `<article class="recent-project-card">
-        <div class="recent-card-top">
-          <div class="recent-card-title"><strong>${escapeHtml(project.productName)}</strong><span>${escapeHtml(project.ipName)} · ${escapeHtml(project.ipType || "IP类型待核验")}</span></div>
-          <span class="status-chip ${statusClass(effectiveStatus)}">${escapeHtml(statusNames[effectiveStatus] || effectiveStatus)}</span>
-        </div>
-        <p class="recent-card-summary">${escapeHtml(project.summary || "项目内容待补充")}</p>
-        <div class="recent-card-footer"><span>${escapeHtml(platformLabel)} · ${escapeHtml(regionLabel)}</span><span>${escapeHtml(milestone?.label || "最近核验")} <time>${escapeHtml(milestone?.date || "待确认")}</time></span></div>
-      </article>`;
-    }).join("");
+    const exactEvents = new Map();
+    const windowEvents = new Map();
+    const add = (project, release, dateValue, label) => {
+      if (!dateValue) return;
+      const exactDate = isoDate(dateValue);
+      const bounds = dateBounds(dateValue);
+      if (!bounds) return;
+      const eventType = calendarEventType(label);
+      const key = exactDate
+        ? `${project.id}|${exactDate}|${label}`
+        : `${project.id}|${String(dateValue)}|${label}`;
+      const target = exactDate ? exactEvents : windowEvents;
+      if (!target.has(key)) target.set(key, {
+        project, date: exactDate, timing: String(dateValue), bounds, label, eventType, releases: new Map(),
+      });
+      if (release) target.get(key).releases.set(release.id, release);
+    };
+    for (const { project, releases: releaseMap } of groupedProjects.values()) {
+      const projectReleases = [...releaseMap.values()];
+      add(project, null, project.announcementDate, "首次公布");
+      add(project, null, project.latestUpdateDate, project.latestUpdateLabel || "最近动态");
+      for (const release of projectReleases) {
+        add(project, release, release.testStartDate, "开始测试");
+        add(project, release, release.preregisterDate, "开放预约");
+        add(project, release, release.plannedLaunchDate, "计划上线");
+        add(project, release, release.actualLaunchDate, "正式上线");
+        add(project, release, release.serviceEndDate, "停止运营");
+      }
+    }
+    const exact = [...exactEvents.values()];
+    const launchedKeys = new Set(exact
+      .filter((event) => event.eventType === "launched")
+      .map((event) => `${event.project.id}|${event.date}`));
+    return {
+      exact: exact
+        .filter((event) => event.eventType !== "planned" || !launchedKeys.has(`${event.project.id}|${event.date}`))
+        .sort((a, b) => a.date.localeCompare(b.date) || a.project.productName.localeCompare(b.project.productName, "zh-CN")),
+      windows: [...windowEvents.values()].sort((a, b) => a.bounds.start.localeCompare(b.bounds.start)),
+    };
+  }
+
+  function calendarEventScope(event) {
+    const eventReleases = [...event.releases.values()];
+    if (!eventReleases.length) return `${event.project.ipName} · 平台及地区待公布`;
+    const platforms = [...new Set(eventReleases.map((release) => platformNames[release.platform] || release.platform))];
+    const regions = [...new Set(eventReleases.map((release) => displayedRegion(release).label))];
+    return `${event.project.ipName} · ${platforms.join(" / ")} · ${regions.join(" / ")}`;
+  }
+
+  function formatCalendarDate(date) {
+    const parsed = new Date(`${date}T00:00:00Z`);
+    return new Intl.DateTimeFormat("zh-CN", {
+      timeZone: "UTC", month: "long", day: "numeric", weekday: "short",
+    }).format(parsed);
+  }
+
+  function renderProjectCalendar(rows) {
+    const { exact, windows } = calendarProjectData(rows);
+    state.calendarMonth = clampCalendarMonth(state.calendarMonth);
+    const { start: monthStart, end: monthEnd, days } = monthBounds(state.calendarMonth);
+    const monthEvents = exact.filter((event) => event.date >= monthStart && event.date <= monthEnd);
+    const eventsByDate = new Map();
+    for (const event of monthEvents) {
+      if (!eventsByDate.has(event.date)) eventsByDate.set(event.date, []);
+      eventsByDate.get(event.date).push(event);
+    }
+    const monthWindows = windows.filter((event) => event.bounds.end >= monthStart && event.bounds.start <= monthEnd);
+    const monthProjectCount = new Set([
+      ...monthEvents.map((event) => event.project.id),
+      ...monthWindows.map((event) => event.project.id),
+    ]).size;
+    elements.recentCount.textContent = `本月 ${monthProjectCount} 项 · ${monthEvents.length} 个节点`;
+    const [year, monthNumber] = state.calendarMonth.split("-").map(Number);
+    elements.calendarMonthLabel.textContent = `${year} 年 ${monthNumber} 月`;
+    elements.calendarPrevMonth.disabled = state.calendarMonth <= projectMinimumDate.slice(0, 7);
+    elements.calendarNextMonth.disabled = state.calendarMonth >= projectMaximumDate.slice(0, 7);
+
+    if (!state.calendarSelectedDate.startsWith(`${state.calendarMonth}-`)) {
+      state.calendarSelectedDate = monthEvents[0]?.date || monthStart;
+    }
+    const leadingDays = (new Date(`${monthStart}T00:00:00Z`).getUTCDay() + 6) % 7;
+    const totalCells = Math.ceil((leadingDays + days) / 7) * 7;
+    const productIgnoresRange = state.product !== "all";
+    const rangeIsDefault = productIgnoresRange
+      || (state.projectStartDate === projectMinimumDate && state.projectEndDate === projectMaximumDate);
+    const cells = [];
+    for (let cellIndex = 0; cellIndex < totalCells; cellIndex += 1) {
+      const dayNumber = cellIndex - leadingDays + 1;
+      if (dayNumber < 1 || dayNumber > days) {
+        cells.push('<div class="calendar-day calendar-day-blank" aria-hidden="true"></div>');
+        continue;
+      }
+      const date = `${state.calendarMonth}-${String(dayNumber).padStart(2, "0")}`;
+      const dayEvents = eventsByDate.get(date) || [];
+      const inRange = productIgnoresRange || (
+        (!state.projectStartDate || date >= state.projectStartDate)
+        && (!state.projectEndDate || date <= state.projectEndDate)
+      );
+      const classNames = ["calendar-day"];
+      if (date === today) classNames.push("is-today");
+      if (date === state.calendarSelectedDate) classNames.push("is-selected");
+      if (!inRange) classNames.push("is-outside-range");
+      if (!rangeIsDefault && inRange) classNames.push("is-in-range");
+      const visibleEvents = dayEvents.slice(0, 3);
+      cells.push(`<div class="${classNames.join(" ")}" role="gridcell" data-calendar-date="${date}">
+        <button class="calendar-day-number" type="button" data-calendar-date="${date}" aria-label="${escapeHtml(formatCalendarDate(date))}${dayEvents.length ? `，${dayEvents.length} 个项目节点` : ""}">${dayNumber}</button>
+        <div class="calendar-day-events">${visibleEvents.map((event) => `<button class="calendar-event calendar-event-${event.eventType}" type="button" data-calendar-date="${date}" title="${escapeHtml(`${event.label} · ${event.project.productName}`)}"><i aria-hidden="true"></i><span>${escapeHtml(event.project.productName)}</span></button>`).join("")}${dayEvents.length > visibleEvents.length ? `<button class="calendar-event-more" type="button" data-calendar-date="${date}">+${dayEvents.length - visibleEvents.length}</button>` : ""}</div>
+      </div>`);
+    }
+    elements.calendarGrid.innerHTML = cells.join("");
+
+    const selectedEvents = eventsByDate.get(state.calendarSelectedDate) || [];
+    elements.calendarSelectedDate.textContent = formatCalendarDate(state.calendarSelectedDate);
+    elements.calendarSelectedSummary.textContent = selectedEvents.length
+      ? `${selectedEvents.length} 个节点 · ${new Set(selectedEvents.map((event) => event.project.id)).size} 个项目`
+      : "当日暂无精确日期节点";
+    elements.calendarAgendaEmpty.hidden = selectedEvents.length > 0;
+    elements.calendarAgendaList.innerHTML = selectedEvents.map((event) => `<button class="calendar-agenda-item" type="button" data-project-id="${escapeHtml(event.project.id)}">
+      <i class="calendar-event-dot ${event.eventType}" aria-hidden="true"></i>
+      <span><strong>${escapeHtml(event.project.productName)}</strong><small>${escapeHtml(calendarEventScope(event))}</small></span>
+      <em title="${escapeHtml(event.label)}">${escapeHtml(event.label)}</em>
+    </button>`).join("");
+
+    elements.calendarWindowSection.hidden = monthWindows.length === 0;
+    elements.calendarWindowList.innerHTML = monthWindows.map((event) => `<button class="calendar-window-item" type="button" data-project-id="${escapeHtml(event.project.id)}">
+      <span><strong>${escapeHtml(event.project.productName)}</strong><small>${escapeHtml(calendarEventScope(event))}</small></span>
+      <em>${escapeHtml(event.timing)}</em>
+    </button>`).join("");
   }
 
   function canonicalIpName(project) {
@@ -1089,7 +1213,7 @@
     const lifecycleRows = collectFilteredRows(true);
     renderKpis(rows);
     renderRegionAudit();
-    renderRecentProjects(rows);
+    renderProjectCalendar(lifecycleRows);
     renderIpActivity(rows, lifecycleRows);
     const downstreamRows = state.selectedIp === "all"
       ? rows
@@ -1102,7 +1226,7 @@
       : "当前筛选条件下没有可展示的项目；可调整产品、平台、地区或其他项目筛选条件。";
   }
 
-  function updateStateAndRender() {
+  function updateStateAndRender(event) {
     state.projectStartDate = elements.projectStartDate.value;
     state.projectEndDate = elements.projectEndDate.value;
     if (state.projectStartDate && state.projectEndDate && state.projectStartDate > state.projectEndDate) {
@@ -1122,6 +1246,14 @@
     state.product = elements.product.value;
     state.search = elements.search.value.trim();
     state.performanceProduct = elements.performanceProduct.value;
+    if (event?.target === elements.projectStartDate && state.projectStartDate) {
+      state.calendarMonth = clampCalendarMonth(state.projectStartDate.slice(0, 7));
+      state.calendarSelectedDate = state.projectStartDate;
+    }
+    if (event?.target === elements.projectEndDate && state.projectEndDate) {
+      state.calendarMonth = clampCalendarMonth(state.projectEndDate.slice(0, 7));
+      state.calendarSelectedDate = state.projectEndDate;
+    }
     elements.projectDateRangeLabel.textContent = state.product === "all"
       ? `${state.projectStartDate || "最早"} — ${state.projectEndDate || "最晚计划"}`
       : "已选产品 · 完整生命周期";
@@ -1143,6 +1275,47 @@
     elements.status, elements.ipType, elements.product, elements.performanceProduct,
   ]) element.addEventListener("change", updateStateAndRender);
   elements.search.addEventListener("input", updateStateAndRender);
+  elements.calendarPrevMonth.addEventListener("click", () => {
+    state.calendarMonth = clampCalendarMonth(shiftMonth(state.calendarMonth, -1));
+    state.calendarSelectedDate = `${state.calendarMonth}-01`;
+    render();
+  });
+  elements.calendarNextMonth.addEventListener("click", () => {
+    state.calendarMonth = clampCalendarMonth(shiftMonth(state.calendarMonth, 1));
+    state.calendarSelectedDate = `${state.calendarMonth}-01`;
+    render();
+  });
+  elements.calendarToday.addEventListener("click", () => {
+    state.calendarMonth = clampCalendarMonth(today.slice(0, 7));
+    state.calendarSelectedDate = today;
+    render();
+  });
+  elements.calendarFullRange.addEventListener("click", () => {
+    state.projectStartDate = projectMinimumDate;
+    state.projectEndDate = projectMaximumDate;
+    syncControls();
+    render();
+  });
+  elements.calendarGrid.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const dateTarget = event.target.closest("[data-calendar-date]");
+    if (!dateTarget) return;
+    state.calendarSelectedDate = dateTarget.dataset.calendarDate;
+    render();
+  });
+  const selectCalendarProject = (event) => {
+    if (!(event.target instanceof Element)) return;
+    const button = event.target.closest("[data-project-id]");
+    const projectId = button?.dataset.projectId;
+    if (!projectById.has(projectId)) return;
+    state.product = projectId;
+    state.performanceProduct = projectId;
+    state.selectedIp = "all";
+    syncControls();
+    render();
+  };
+  elements.calendarAgendaList.addEventListener("click", selectCalendarProject);
+  elements.calendarWindowList.addEventListener("click", selectCalendarProject);
   elements.ipActivityBody.addEventListener("click", (event) => {
     if (!(event.target instanceof Element)) return;
     const button = event.target.closest(".ip-activity-select");
@@ -1178,6 +1351,7 @@
       performanceStartDate: defaultPerformanceStartDate, performanceEndDate: defaultPerformanceEndDate,
       platform: "all", region: "all",
       status: "all", ipType: "all", product: "all", search: "", performanceProduct: "all", selectedIp: "all",
+      calendarMonth: clampCalendarMonth(today.slice(0, 7)), calendarSelectedDate: today,
     });
     syncControls();
     render();

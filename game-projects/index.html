@@ -7,7 +7,7 @@
   <title>日本 IP 游戏化项目 BI</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20260907-site-tabs1">
-  <link rel="stylesheet" href="styles.css?v=20260910-product-series">
+  <link rel="stylesheet" href="styles.css?v=20260911-project-calendar">
 </head>
 <body>
   <header class="topbar">
@@ -49,24 +49,6 @@
           <h2 id="filter-title">项目筛选</h2>
         </div>
         <button id="reset-filters" class="button secondary" type="button">重置</button>
-      </div>
-      <div class="project-date-panel" role="group" aria-label="项目公布与上线时间范围">
-        <div>
-          <span>项目公布 / 上线时间范围</span>
-          <strong id="project-date-range-label">—</strong>
-          <small>用于查询过去与未来项目；选择单一产品时展示其完整生命周期</small>
-        </div>
-        <div class="date-range-fields">
-          <label>
-            <span>开始</span>
-            <input id="project-start-date-filter" type="date">
-          </label>
-          <span class="date-range-separator" aria-hidden="true">—</span>
-          <label>
-            <span>结束</span>
-            <input id="project-end-date-filter" type="date">
-          </label>
-        </div>
       </div>
       <div class="filters project-filters">
         <label>
@@ -121,17 +103,74 @@
       </article>
     </section>
 
-    <section class="panel recent-project-panel" aria-labelledby="recent-project-title">
+    <section class="panel project-calendar-panel" aria-labelledby="project-calendar-title">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">RECENT PROJECTS</p>
-          <h2 id="recent-project-title">最近的 IP 游戏化项目</h2>
-          <p class="section-note">按最近一次公布、测试或上线动态排序，不进行 IP 影响力排名。</p>
+          <p class="section-kicker">PROJECT CALENDAR</p>
+          <h2 id="project-calendar-title">IP 游戏化项目日历</h2>
+          <p class="section-note">按月查看公布、测试、预约、计划上线、正式上线与停运节点；点击日期查看当天项目。</p>
         </div>
-        <span id="recent-project-count" class="count-badge">0 项</span>
+        <span id="recent-project-count" class="count-badge">本月 0 项</span>
       </div>
-      <div id="recent-project-list" class="recent-project-list" aria-live="polite"></div>
-      <div id="recent-project-empty" class="empty-state" hidden>项目数据正在建库，完成核验后将在这里展示最近动态。</div>
+      <div class="project-calendar-toolbar">
+        <div class="calendar-month-navigation" aria-label="切换日历月份">
+          <button id="calendar-prev-month" class="calendar-nav-button" type="button" aria-label="上一个月">‹</button>
+          <strong id="calendar-month-label">—</strong>
+          <button id="calendar-next-month" class="calendar-nav-button" type="button" aria-label="下一个月">›</button>
+          <button id="calendar-today" class="calendar-text-button" type="button">回到今天</button>
+        </div>
+        <div class="calendar-range-control" role="group" aria-label="项目公布与上线时间范围">
+          <div class="calendar-range-copy">
+            <span>项目时间范围</span>
+            <strong id="project-date-range-label">—</strong>
+          </div>
+          <div class="date-range-fields calendar-date-range-fields">
+            <label>
+              <span>开始</span>
+              <input id="project-start-date-filter" type="date" aria-label="项目时间范围开始日期">
+            </label>
+            <span class="date-range-separator" aria-hidden="true">—</span>
+            <label>
+              <span>结束</span>
+              <input id="project-end-date-filter" type="date" aria-label="项目时间范围结束日期">
+            </label>
+          </div>
+          <button id="calendar-full-range" class="calendar-text-button" type="button">全部期间</button>
+        </div>
+      </div>
+      <div class="calendar-legend" aria-label="项目节点图例">
+        <span><i class="calendar-event-dot announce" aria-hidden="true"></i>公布 / 动态</span>
+        <span><i class="calendar-event-dot testing" aria-hidden="true"></i>测试</span>
+        <span><i class="calendar-event-dot preregister" aria-hidden="true"></i>预约</span>
+        <span><i class="calendar-event-dot planned" aria-hidden="true"></i>计划上线</span>
+        <span><i class="calendar-event-dot launched" aria-hidden="true"></i>正式上线</span>
+        <span><i class="calendar-event-dot ended" aria-hidden="true"></i>停运</span>
+      </div>
+      <div class="project-calendar-layout">
+        <div class="project-calendar-main">
+          <div class="calendar-weekdays" aria-hidden="true">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span class="weekend">六</span><span class="weekend">日</span>
+          </div>
+          <div id="project-calendar-grid" class="project-calendar-grid" role="grid" aria-label="IP 游戏化项目月历" aria-live="polite"></div>
+        </div>
+        <aside class="calendar-agenda" aria-labelledby="calendar-selected-date">
+          <div class="calendar-agenda-heading">
+            <span>当天项目</span>
+            <strong id="calendar-selected-date">—</strong>
+            <small id="calendar-selected-summary">请选择日历日期</small>
+          </div>
+          <div id="calendar-agenda-list" class="calendar-agenda-list"></div>
+          <div id="calendar-agenda-empty" class="calendar-agenda-empty" hidden>当天没有已核验的项目节点。</div>
+          <div id="calendar-window-section" class="calendar-window-section" hidden>
+            <div class="calendar-window-heading">
+              <span>本月日期窗口</span>
+              <small>官方尚未公布精确日期</small>
+            </div>
+            <div id="calendar-window-list" class="calendar-window-list"></div>
+          </div>
+        </aside>
+      </div>
+      <p class="project-calendar-note">日历月份用于浏览，右上角“项目时间范围”控制全页项目筛选；选择单一产品后仍展示该产品完整生命周期。表现数据期间保持独立。</p>
     </section>
 
     <section class="panel ip-activity-panel" aria-labelledby="ip-activity-title">
@@ -307,6 +346,6 @@
   </footer>
 
   <script src="data/projects.js?v=20260910-project-audit27"></script>
-  <script src="app.js?v=20260910-project-audit27"></script>
+  <script src="app.js?v=20260911-project-calendar"></script>
 </body>
 </html>
