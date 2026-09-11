@@ -173,7 +173,7 @@ function generatedAt() {
   data.rankSnapshots.sort((a, b) => String(a.date || "").localeCompare(String(b.date || ""))
     || String(a.projectId || a.releaseId || "").localeCompare(String(b.projectId || b.releaseId || ""))
     || String(a.metricType || "").localeCompare(String(b.metricType || "")));
-  data.meta.schemaVersion = "2.5";
+  data.meta.schemaVersion = data.meta.schemaVersion || "2.5";
   data.meta.phase = Math.max(Number(data.meta.phase) || 0, 21);
   data.meta.generatedAt = generatedAt();
   data.meta.performanceCoverage = {

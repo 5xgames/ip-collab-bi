@@ -7,7 +7,13 @@ const jsPath = path.join(root, "game-projects/data/projects.js");
 const data = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
 const coverageStart = "2018-01-01";
-const verifiedAt = "2026-09-10";
+const now = new Date();
+const verifiedAt = new Intl.DateTimeFormat("sv-SE", {
+  timeZone: "Asia/Tokyo",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+}).format(now);
 const source = "SteamCharts";
 const monthNumbers = new Map([
   ["January", "01"], ["February", "02"], ["March", "03"], ["April", "04"],
@@ -117,9 +123,13 @@ const targets = [...appProjects].map(([appId, projectId]) => ({ appId, projectId
   data.rankSnapshots.sort((a, b) => String(a.date || "").localeCompare(String(b.date || ""))
     || String(a.projectId || a.releaseId || "").localeCompare(String(b.projectId || b.releaseId || ""))
     || String(a.metricType || "").localeCompare(String(b.metricType || "")));
-  data.meta.schemaVersion = "2.4";
+  data.meta.schemaVersion = data.meta.schemaVersion || "2.4";
   data.meta.phase = Math.max(Number(data.meta.phase) || 0, 19);
-  data.meta.generatedAt = "2026-09-10T12:30:00+09:00";
+  data.meta.generatedAt = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Asia/Tokyo",
+    dateStyle: "short",
+    timeStyle: "medium",
+  }).format(now).replace(" ", "T") + "+09:00";
   data.meta.performanceCoverage = {
     ...(data.meta.performanceCoverage || {}),
     steamCharts: {

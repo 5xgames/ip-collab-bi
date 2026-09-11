@@ -142,6 +142,12 @@
     return { start: `${year}-01-01`, end: `${year}-12-31` };
   };
   const generatedDate = isoDate(meta.generatedAt) || new Date().toISOString().slice(0, 10);
+  const today = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
   const projectDateValues = [
     ...projects.flatMap((project) => [project.announcementDate, project.latestUpdateDate, project.verifiedAt]),
     ...releases.flatMap((release) => [
@@ -164,7 +170,6 @@
   const defaultPerformanceStartDate = defaultPerformanceStartObject.toISOString().slice(0, 10) < performanceMinimumDate
     ? performanceMinimumDate
     : defaultPerformanceStartObject.toISOString().slice(0, 10);
-  const today = generatedDate;
   const numberFormat = new Intl.NumberFormat("zh-CN");
 
   const state = {

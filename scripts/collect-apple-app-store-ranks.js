@@ -177,7 +177,7 @@ function generatedAt() {
     || String(a.projectId || a.releaseId || "").localeCompare(String(b.projectId || b.releaseId || ""))
     || String(a.metricType || "").localeCompare(String(b.metricType || "")));
 
-  data.meta.schemaVersion = "2.9";
+  data.meta.schemaVersion = data.meta.schemaVersion || "2.9";
   data.meta.phase = Math.max(Number(data.meta.phase) || 0, 27);
   data.meta.generatedAt = generatedAt();
   data.meta.performanceCoverage = {
